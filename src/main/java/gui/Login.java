@@ -1,0 +1,49 @@
+package gui;
+
+import controller.Controller;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Login {
+    private static JFrame loginFrame;
+    private JPanel loginFinestra;
+    private JTextField campoEmail;
+    private JTextField campoPassword;
+    private JButton accediButton;
+    private JButton creaAccountButton;
+
+
+    public static void main(String[] args) {
+        Controller controller= new Controller();
+        Login login = new Login();
+        loginFrame = new JFrame("Login");
+        loginFrame.setContentPane(login.loginFinestra);
+        loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        loginFrame.pack();
+
+        //per avviare bisogna andare su login quindi qui
+
+        //size fissa, deve andare prima di setVisiblie
+        loginFrame.setResizable(false);
+        loginFrame.setSize(400,325);
+        loginFrame.setLocationRelativeTo(null);
+        loginFrame.setVisible(true);
+
+        //gestione pulsante account
+        login.creaAccountButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CreaAccount creaAccount = new CreaAccount(loginFrame, controller);
+                loginFrame.setVisible(false);
+            }
+        });
+
+        //pulsante login
+
+
+
+    }
+}
+
