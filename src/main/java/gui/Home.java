@@ -1,7 +1,6 @@
 package gui;
 
 import controller.Controller;
-import model.Ristorante;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +15,7 @@ public class Home {
     private JButton ristoranteButton;
     private JButton supermercatoButton;
     private JLabel returnLogin;
-    private static JFrame frameHome;
+    private JFrame frameHome;
     private Controller controller;
 
     public Home(JFrame loginFrame, Controller controller) {
@@ -42,16 +41,17 @@ public class Home {
                 frameHome.setVisible (false);
 
             }
-        }) ;
-        /*bottone per passare dalla home a ristorante, DA RIVEDERE
+        });
+
+       /*//bottone per passare dalla home a ristorante, DA RIVEDERE
         ristoranteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Ristorante ristorante = new Ristorante(frameRistorante, controller);
+                RistoranteForm ristorante = new RistoranteForm(frameHome, controller);
                 frameHome.setVisible(false);
-                frameRistorante.setVisible(true);
             }
         });*/
+
        /* //da rivedere, STESSA COSA DI SOPRA
         ristoranteButton.addActionListener(new ActionListener() {
             @Override

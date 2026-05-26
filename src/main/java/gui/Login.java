@@ -46,7 +46,7 @@ public class Login {
         login.accediButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Home Home = new Home (loginFrame, controller);
+                Home Home = new Home(loginFrame, controller);
                 loginFrame.setVisible(false);
             }
         });
