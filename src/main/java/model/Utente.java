@@ -2,23 +2,13 @@ package model;
 
 public class Utente {
 
-    private int idUtente;
     private String nome, cognome, email, password;
 
-    public Utente(int idUtente, String nome, String cognome, String email, String password) {
-        this.idUtente = idUtente;
+    public Utente(String nome, String cognome, String email, String password) {
         this.nome = nome;
         this.cognome = cognome;
         this.email = email;
         this.password = password;
-    }
-
-    public int getIdUtente() {
-        return idUtente;
-    }
-
-    public void setIdUtente(int idUtente) {
-        this.idUtente = idUtente;
     }
 
     public String getNome() {

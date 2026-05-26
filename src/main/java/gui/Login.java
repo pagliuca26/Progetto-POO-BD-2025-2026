@@ -40,8 +40,14 @@ public class Login {
             }
         });
 
-        //pulsante login
-
+        //pulsante accedi
+        login.accediButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Home Home = new Home (loginFrame, controller);
+                loginFrame.setVisible(false);
+            }
+        });
 
 
     }

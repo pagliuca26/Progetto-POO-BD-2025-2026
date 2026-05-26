@@ -26,5 +26,5 @@ public class Ristorante  extends PuntoVendita{
     Ristorante Guacamole = new Ristorante(102, "Guacamole", "Via Roma 26 (NA)", "dalle 16:00 alle 23:00", "Ristorante messicano");
 
     //creazione ristante 3
-    Ristorante Panzerotto = new Ristorante(103, "Panzerotto", "Via Torquato Tasso 16 (NA)", "dalle 21:00 alle 23:30", "Friggitoria");
+    Ristorante Tokyo = new Ristorante(103, "Tokyo", "Via Torquato Tasso 16 (NA)", "dalle 21:00 alle 23:30", "Ristorante giapponese");
 }

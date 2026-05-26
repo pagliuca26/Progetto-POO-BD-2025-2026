@@ -3,19 +3,19 @@ import controller.Controller;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 
 public class CreaAccount {
 
-    private JTextField inserisciNome;
-    private JTextField inserisciEmail;
+    private JTextField creaNome;
+    private JTextField creaEmail;
     private JPanel creaAccountPanel;
-    private JTextField campoCognome;
-    private JPasswordField campoPassword;
+    private JTextField creaCognome;
 
     private JButton accountCreato;
+    private JPasswordField creaPassword;
+    private JLabel tornaLogin;
     private JLabel tornaAccedi;
 
     public CreaAccount(JFrame loginFrame, Controller controller) {
@@ -38,6 +38,17 @@ public class CreaAccount {
             }
         });
 
+
+        // rendere il Jlabel cliccabile
+        tornaLogin.setCursor (new Cursor(Cursor.HAND_CURSOR)); //cambia il cursore
+
+        tornaLogin.addMouseListener(new MouseAdapter() {
+        @Override
+            public void mouseClicked (MouseEvent e) {
+            loginFrame.setVisible(true);
+            frame.setVisible(false);
+        }
+        });
 
 
 
