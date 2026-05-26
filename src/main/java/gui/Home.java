@@ -50,20 +50,20 @@ public class Home {
 
 
                //da rivedere
-                ristoranteButton.addActionListener(new ActionListener() {
+                //ristoranteButton.addActionListener(new ActionListener() {
 
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                Ristorante ristoranteForm  = new Ristorante(frameHome,controller);
-                                frameHome.setVisible(false);
+                        //    @Override
+                           // public void actionPerformed(ActionEvent e) {
+                              //  Ristorante ristoranteForm  = new Ristorante(frameHome,controller);
+                              //  frameHome.setVisible(false);
 
 
 
                             }
-                        });
+                      //  });
     }
 
-}
+//}
 
 
 
