@@ -10,10 +10,11 @@ public class Login {
     private static JFrame loginFrame;
     private JPanel loginFinestra;
     private JTextField campoEmail;
-    private JTextField campoPassword;
     private JButton accediButton;
     private JButton creaAccountButton;
     private JLabel ominoLogin;
+    private JLabel nomeApp;
+    private JPasswordField campoPassword;
 
 
     public static void main(String[] args) {
@@ -28,7 +29,7 @@ public class Login {
 
         //size fissa, deve andare prima di setVisiblie
         loginFrame.setResizable(false);
-        loginFrame.setSize(400,325);
+        loginFrame.setSize(400,400);
         loginFrame.setLocationRelativeTo(null);
         loginFrame.setVisible(true);
 

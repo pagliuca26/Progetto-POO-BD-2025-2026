@@ -11,8 +11,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 
-
-
 public class Home {
     private JPanel homePanel;
     private JButton ristoranteButton;
@@ -29,7 +27,7 @@ public class Home {
         frameHome.setVisible(true);
 
         frameHome.setResizable(false);
-        frameHome.setSize(400, 325);
+        frameHome.setSize(400, 400);
         frameHome.setLocationRelativeTo(null);
         frameHome.setVisible(true);
 
@@ -45,25 +43,29 @@ public class Home {
 
             }
         }) ;
+        /*bottone per passare dalla home a ristorante, DA RIVEDERE
+        ristoranteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Ristorante ristorante = new Ristorante(frameRistorante, controller);
+                frameHome.setVisible(false);
+                frameRistorante.setVisible(true);
+            }
+        });*/
+       /* //da rivedere, STESSA COSA DI SOPRA
+        ristoranteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Ristorante ristoranteForm  = new Ristorante(frameHome,controller);
+                frameHome.setVisible(false);
 
 
 
-
-               //da rivedere
-                //ristoranteButton.addActionListener(new ActionListener() {
-
-                        //    @Override
-                           // public void actionPerformed(ActionEvent e) {
-                              //  Ristorante ristoranteForm  = new Ristorante(frameHome,controller);
-                              //  frameHome.setVisible(false);
-
-
-
-                            }
-                      //  });
+            }
+        });*/
     }
 
-//}
+}
 
 
 

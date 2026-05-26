@@ -23,8 +23,10 @@ public class RistoranteForm {
 
        //per la grandezza della finestra
         frameRistorante.setResizable(false);
-        frameRistorante.setSize(400, 325);
+        frameRistorante.setSize(400, 400);
         frameRistorante.setLocationRelativeTo(null);
         frameRistorante.setVisible(true);
+
+
     }
 }

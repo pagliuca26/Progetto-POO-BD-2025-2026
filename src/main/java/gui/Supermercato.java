@@ -24,7 +24,7 @@ public class Supermercato {
 
         //per la grandezza della finestra
         frameSupermercato.setResizable(false);
-        frameSupermercato.setSize(400, 325);
+        frameSupermercato.setSize(400, 400);
         frameSupermercato.setLocationRelativeTo(null);
         frameSupermercato.setVisible(true);
 
