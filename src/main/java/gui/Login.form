@@ -7,9 +7,10 @@
     </constraints>
     <properties>
       <background color="-7753499"/>
+      <font size="16"/>
       <foreground color="-7753499"/>
     </properties>
-    <border type="none"/>
+    <border type="none" title="                                                        👤"/>
     <children>
       <component id="61cca" class="javax.swing.JButton" binding="creaAccountButton" default-binding="true">
         <constraints>
