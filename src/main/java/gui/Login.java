@@ -13,6 +13,7 @@ public class Login {
     private JTextField campoPassword;
     private JButton accediButton;
     private JButton creaAccountButton;
+    private JLabel ominoLogin;
 
 
     public static void main(String[] args) {
