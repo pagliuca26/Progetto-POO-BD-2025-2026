@@ -8,7 +8,7 @@ public class BoxDespar {
     private JButton acquistaDespar;
     private JLabel supDespar;
 
-    //costruttore
+    //costruttore :)
     public BoxDespar(JPanel boxDespar, JButton acquistaDespar, JLabel supDespar) {
 
         frameDespar = new JFrame("Despar");
