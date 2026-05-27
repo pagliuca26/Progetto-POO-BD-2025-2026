@@ -76,8 +76,9 @@
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <font name="Antique Olive Compact" size="26" style="0"/>
-          <text value="Benvenuto in Boxy!!"/>
+          <font name="Ink Free" size="40" style="1"/>
+          <foreground color="-12290075"/>
+          <text value="Benvenuto in Boxy!"/>
         </properties>
       </component>
       <component id="61cca" class="javax.swing.JButton" binding="creaAccountButton" default-binding="true">

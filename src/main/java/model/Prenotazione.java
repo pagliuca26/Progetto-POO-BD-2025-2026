@@ -2,21 +2,10 @@ package model;
 
 public class Prenotazione {
 
-    private int idPrenotazione;
     private String codiceRitiro, stato;
 
-    public Prenotazione(int idPrenotazione, String codiceRitiro, String stato) {
-        this.idPrenotazione = idPrenotazione;
+    public Prenotazione( String codiceRitiro) {
         this.codiceRitiro = codiceRitiro;
-        this.stato = stato;
-    }
-
-    public int getIdPrenotazione() {
-        return idPrenotazione;
-    }
-
-    public void setIdPrenotazione(int idPrenotazione) {
-        this.idPrenotazione = idPrenotazione;
     }
 
     public String getCodiceRitiro() {

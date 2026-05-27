@@ -15,8 +15,8 @@ public class Home {
     private JButton ristoranteButton;
     private JButton supermercatoButton;
     private JLabel returnLogin;
-    private JButton button1;
-    private JButton button2;
+    private JButton preferitiHome;
+    private JButton impHome;
     private JFrame frameHome;
     private Controller controller;
 
@@ -28,7 +28,7 @@ public class Home {
         frameHome.setVisible(true);
 
         frameHome.setResizable(false);
-        frameHome.setSize(400, 400);
+        frameHome.setSize(450, 450);
         frameHome.setLocationRelativeTo(null);
         frameHome.setVisible(true);
 
@@ -45,26 +45,23 @@ public class Home {
             }
         });
 
-       /*//bottone per passare dalla home a ristorante, DA RIVEDERE
+        //bottone dalla home al ristorante
         ristoranteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 RistoranteForm ristorante = new RistoranteForm(frameHome, controller);
                 frameHome.setVisible(false);
             }
-        });*/
+        });
 
-       /* //da rivedere, STESSA COSA DI SOPRA
-        ristoranteButton.addActionListener(new ActionListener() {
+        //bottone dalla home al supermercato
+        supermercatoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Ristorante ristoranteForm  = new Ristorante(frameHome,controller);
+                Supermercato supermercato = new Supermercato (frameHome, controller);
                 frameHome.setVisible(false);
-
-
-
             }
-        });*/
+        });
     }
 
 }

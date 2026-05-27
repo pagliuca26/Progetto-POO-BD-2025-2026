@@ -5,12 +5,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-
 public class CreaAccount {
-    private JTextField creaNome;
     private JTextField creaEmail;
     private JPanel creaAccountPanel;
-    private JTextField creaCognome;
     private JButton accountCreato;
     private JPasswordField creaPassword;
     private JLabel tornaLogin;
@@ -18,7 +15,8 @@ public class CreaAccount {
 
     //costruttore
     public CreaAccount(JFrame loginFrame, Controller controller) {
-        JFrame frame = new JFrame("Crea Account");
+
+        JFrame frame = new JFrame("Crea un nuovo account ;)");
         frame.setContentPane(creaAccountPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -26,36 +24,41 @@ public class CreaAccount {
         //size fissa
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
-        frame.setSize(400,400);
+        frame.setSize(450,450);
         frame.setVisible(true);
 
-        //bottone crea account per tornare al login,nel costruttore
+        //gestone pulsante torna alla pagina di login
+        tornaLogin.setCursor(new Cursor(Cursor.HAND_CURSOR)); //cambia il cursore quando ci passa sopra
+
+        tornaLogin.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                loginFrame.setVisible(true);
+                frame.setVisible(false);
+            }
+        });
+
+        //gestione pulsante crea account
         accountCreato.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.setVisible(false);
-                loginFrame.setVisible(true);
+                try{
+                    String email = creaEmail.getText();
+                    String password = creaPassword.getText();
+                    controller.creaUtente(email, password);
+                    JOptionPane.showMessageDialog(null, "Account creato con successo!");
+
+                    //torna alla pagina di login
+                    loginFrame.setVisible(true);
+                    frame.setVisible(false);
+                }
+                catch(RuntimeException ex){
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
 
 
-        // rendere il Jlabel cliccabile
-        tornaLogin.setCursor (new Cursor(Cursor.HAND_CURSOR)); //cambia il cursore
-
-        tornaLogin.addMouseListener(new MouseAdapter() {
-        @Override
-            public void mouseClicked (MouseEvent e) {
-            loginFrame.setVisible(true);
-            frame.setVisible(false);
-        }
-        });
-
-
-
-    }
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
     }
 }
 

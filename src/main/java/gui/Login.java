@@ -25,11 +25,9 @@ public class Login {
         loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         loginFrame.pack();
 
-        //per avviare bisogna andare su login quindi qui
-
         //size fissa, deve andare prima di setVisiblie
         loginFrame.setResizable(false);
-        loginFrame.setSize(400,400);
+        loginFrame.setSize(450,450);
         loginFrame.setLocationRelativeTo(null);
         loginFrame.setVisible(true);
 
@@ -37,6 +35,8 @@ public class Login {
         login.creaAccountButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                login.campoEmail.setText(""); //se l'utente ha scritto qualcosa in questi campi, vengono resettati
+                login.campoPassword.setText("");
                 CreaAccount creaAccount = new CreaAccount(loginFrame, controller);
                 loginFrame.setVisible(false);
             }
@@ -46,11 +46,19 @@ public class Login {
         login.accediButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Home Home = new Home(loginFrame, controller);
-                loginFrame.setVisible(false);
+                try {
+                    if (controller.checkUtente(login.campoEmail.getText(), login.campoPassword.getText())) {
+                        JOptionPane.showMessageDialog(null, "Accesso effettuato correttamente.");
+                        login.campoEmail.setText("");
+                        login.campoPassword.setText("");
+                        Home Home = new Home(loginFrame, controller);
+                        loginFrame.setVisible(false);
+                    }
+                } catch (RuntimeException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
-
 
     }
 }

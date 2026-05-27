@@ -1,5 +1,7 @@
 package gui;
 
+import controller.Controller;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -11,12 +13,12 @@ public class Supermercato {
     private JButton conadButton;
     private JButton sole365Button;
     private JButton desparButton;
-    private JLabel tornaHome;
+    private JLabel tornaHomeS;
 
 
     //costruttore
-    public Supermercato(JPanel supermercatoPanel, JButton conadButton, JButton sole365Button, JButton desparButton) {
-        frameSupermercato = new JFrame("Home");
+    public Supermercato(JFrame homeFrame, Controller controller) {
+        frameSupermercato = new JFrame("Supermercati");
         frameSupermercato.setContentPane(supermercatoPanel);
         frameSupermercato.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameSupermercato.pack();
@@ -24,23 +26,21 @@ public class Supermercato {
 
         //per la grandezza della finestra
         frameSupermercato.setResizable(false);
-        frameSupermercato.setSize(400, 400);
+        frameSupermercato.setSize(450, 450);
         frameSupermercato.setLocationRelativeTo(null);
         frameSupermercato.setVisible(true);
 
-        tornaHome.setCursor (new Cursor(Cursor.HAND_CURSOR)); //cambia il cursore
+        //Jlabel cliccabile, per tornare dalla pagina dei supermercati alla home
+        tornaHomeS.setCursor (new Cursor(Cursor.HAND_CURSOR)); //cambia il cursore
 
+        tornaHomeS.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked (MouseEvent e) {
+                homeFrame.setVisible (true) ;
+                frameSupermercato.setVisible (false);
 
-        //DA RIVEDERE PER IL PULSANTE JLABEL DA SUPERMERCATO A HOME
-        //tornaHome.addMouseListener(new MouseAdapter() {
-         //   @Override
-           // public void mouseClicked (MouseEvent e) {
-                //frameHome.setVisible(true);
-              //  frameSupermercato.setVisible(false);
-        //    }
-       // }); modifica
-
-
+            }
+        });
 
     }
 

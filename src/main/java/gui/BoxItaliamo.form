@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="gui.BoxItaliamo">
+  <grid id="27dc6" binding="boxItaliamo" layout-manager="GridLayoutManager" row-count="8" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties>
+      <background color="-7078009"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="27d7c" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="20" style="1"/>
+          <foreground color="-14312656"/>
+          <text value="Italiamo | Via Giacomo Leopardi 52 (Na)"/>
+        </properties>
+      </component>
+      <component id="330b1" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <foreground color="-13947600"/>
+          <text value="Ritiro: 19:00 - 22:30"/>
+        </properties>
+      </component>
+      <component id="eb29f" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <foreground color="-13947600"/>
+          <text value="Prezzo originale: €15,00"/>
+        </properties>
+      </component>
+      <component id="8262f" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <foreground color="-13947600"/>
+          <text value="Prezzo scontato: €6,00"/>
+        </properties>
+      </component>
+      <component id="b497" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <foreground color="-13947600"/>
+          <text value="Grandezza box: Media"/>
+        </properties>
+      </component>
+      <component id="e6b1" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <foreground color="-13947600"/>
+          <text value="Ristorante italiano "/>
+        </properties>
+      </component>
+      <component id="e58bc" class="javax.swing.JButton" binding="acquistaItaliamo">
+        <constraints>
+          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-7078009"/>
+          <text value="Acquista"/>
+        </properties>
+      </component>
+      <component id="e7cbe" class="javax.swing.JLabel" binding="ristItaliamo">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <foreground color="-14312656"/>
+          <text value="←Ristoranti"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
