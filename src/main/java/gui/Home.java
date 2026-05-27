@@ -15,6 +15,8 @@ public class Home {
     private JButton ristoranteButton;
     private JButton supermercatoButton;
     private JLabel returnLogin;
+    private JButton button1;
+    private JButton button2;
     private JFrame frameHome;
     private Controller controller;
 
