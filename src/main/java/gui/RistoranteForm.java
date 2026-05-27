@@ -20,7 +20,6 @@ public class RistoranteForm {
     private JButton giapponeseButton;
     private JLabel tornaHomeR;
 
-
     //costruttore
     public RistoranteForm(JFrame frameHome, Controller controller) {
 
@@ -30,22 +29,48 @@ public class RistoranteForm {
         frameRistorante.pack();
         frameRistorante.setVisible(true);
 
-       //per la grandezza della finestra
-        frameRistorante.setResizable(false);
-        frameRistorante.setSize(450, 450);
-        frameRistorante.setLocationRelativeTo(null);
+        frameRistorante.setResizable(false); //non cambia dimensione
+        frameRistorante.setSize(450, 450); //grandezza della finestra
+        frameRistorante.setLocationRelativeTo(null); //finestra si apre al centro
         frameRistorante.setVisible(true);
 
+        //bottone da ristorante a italiamo
+        italianoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BoxItaliamo italiamo = new BoxItaliamo(frameRistorante, controller);
+                frameRistorante.setVisible(false);
+            }
+        });
+
+        //bottone da ristorante a guacamole
+        messicanoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BoxGuacamole italiamo = new BoxGuacamole(frameRistorante, controller);
+                frameRistorante.setVisible(false);
+            }
+        });
+
+        //bottone da ristorante a tokyo
+        giapponeseButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BoxTokyo italiamo = new BoxTokyo(frameRistorante, controller);
+                frameRistorante.setVisible(false);
+            }
+        });
+
         //Jlabel cliccabile, per tornare dalla pagina dei ristoranti alla home
-        tornaHomeR.setCursor (new Cursor(Cursor.HAND_CURSOR)); //cambia il cursore
+        tornaHomeR.setCursor(new Cursor(Cursor.HAND_CURSOR)); //cambia il cursore
 
         tornaHomeR.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        frameHome.setVisible (true) ;
-                     frameRistorante.setVisible (false);
-                     }
-                });
-    }
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                frameHome.setVisible(true);
+                frameRistorante.setVisible(false);
+            }
+        });
 
-                }
+    }
+}

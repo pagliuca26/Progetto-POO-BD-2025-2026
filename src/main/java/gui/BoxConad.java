@@ -1,6 +1,11 @@
 package gui;
 
+import controller.Controller;
+
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class BoxConad {
     private static JFrame frameConad;
@@ -10,7 +15,7 @@ public class BoxConad {
     private JLabel supConad;
 
     //costruttore
-    public BoxConad(JPanel boxConad, JPanel boxConadd, JButton acquistaConad, JLabel supConad) {
+    public BoxConad(JFrame frameSupermercato, Controller controller) {
 
         frameConad = new JFrame("Conad");
         frameConad.setContentPane(boxConad);
@@ -18,10 +23,21 @@ public class BoxConad {
         frameConad.pack();
         frameConad.setVisible(true);
 
-//per la grandezza della finestra
-        frameConad.setResizable(false);
-        frameConad.setSize(450, 450);
-        frameConad.setLocationRelativeTo(null);
+        frameConad.setResizable(false); //non cambia dimensione
+        frameConad.setSize(450, 450);//grandezza della finestra
+        frameConad.setLocationRelativeTo(null);//finestra si apre al centro
         frameConad.setVisible(true);
+
+        //JLable cliccabile, per tortare alla scelta dei supemercati
+        supConad.setCursor (new Cursor(Cursor.HAND_CURSOR)) ;
+
+        supConad.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked (MouseEvent e) {
+                frameSupermercato.setVisible (true) ;
+                frameConad.setVisible(false);
+            }
+        });
+
     }
 }

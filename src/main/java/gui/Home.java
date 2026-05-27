@@ -20,6 +20,7 @@ public class Home {
     private JFrame frameHome;
     private Controller controller;
 
+    //costruttore
     public Home(JFrame loginFrame, Controller controller) {
         frameHome = new JFrame("Home");
         frameHome.setContentPane(homePanel);
@@ -27,13 +28,13 @@ public class Home {
         frameHome.pack();
         frameHome.setVisible(true);
 
-        frameHome.setResizable(false);
-        frameHome.setSize(450, 450);
-        frameHome.setLocationRelativeTo(null);
+        frameHome.setResizable(false); //non cambia dimensione
+        frameHome.setSize(450, 450); //grandezza della finestra
+        frameHome.setLocationRelativeTo(null); //finestra si apre al centro
         frameHome.setVisible(true);
 
 
-         // JLable cliccabile
+        //JLable cliccabile, per passare dalla pagina home a quella di login
         returnLogin.setCursor (new Cursor(Cursor.HAND_CURSOR)) ;
 
         returnLogin.addMouseListener(new MouseAdapter() {
@@ -62,8 +63,8 @@ public class Home {
                 frameHome.setVisible(false);
             }
         });
-    }
 
+    }
 }
 
 

@@ -1,6 +1,11 @@
 package gui;
 
+import controller.Controller;
+
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class BoxGuacamole {
     private static JFrame frameGuacamole;
@@ -9,7 +14,7 @@ public class BoxGuacamole {
     private JButton acquistaGuacamole;
 
    //costruttore
-    public BoxGuacamole(JPanel boxGuacamole, JLabel ristGuacamole, JButton acquistaGuacamole) {
+    public BoxGuacamole(JFrame frameRistorante, Controller controller) {
 
         frameGuacamole = new JFrame("Guacamole");
         frameGuacamole.setContentPane(boxGuacamole);
@@ -17,11 +22,22 @@ public class BoxGuacamole {
         frameGuacamole.pack();
         frameGuacamole.setVisible(true);
 
-//per la grandezza della finestra
-        frameGuacamole.setResizable(false);
-        frameGuacamole.setSize(450, 450);
-        frameGuacamole.setLocationRelativeTo(null);
+        frameGuacamole.setResizable(false); //non cambia dimensione
+        frameGuacamole.setSize(450, 450);//grandezza della finestra
+        frameGuacamole.setLocationRelativeTo(null);//finestra si apre al centro
         frameGuacamole.setVisible(true);
-    }
 
+        //JLable cliccabile, per tortare alla scelta dei ristoranti
+        ristGuacamole.setCursor (new Cursor(Cursor.HAND_CURSOR)) ;
+
+        ristGuacamole.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked (MouseEvent e) {
+                frameRistorante.setVisible (true) ;
+                frameGuacamole.setVisible(false);
+
+            }
+        });
+
+    }
 }

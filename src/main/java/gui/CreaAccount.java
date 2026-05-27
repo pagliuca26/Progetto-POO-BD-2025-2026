@@ -21,10 +21,9 @@ public class CreaAccount {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
 
-        //size fissa
-        frame.setResizable(false);
-        frame.setLocationRelativeTo(null);
-        frame.setSize(450,450);
+        frame.setResizable(false); //non cambia dimensione
+        frame.setLocationRelativeTo(null); //finestra si apre al centro
+        frame.setSize(450,450); //grandezza della finestra
         frame.setVisible(true);
 
         //gestone pulsante torna alla pagina di login

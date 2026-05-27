@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class BoxItaliamo {
     private static JFrame frameItaliamo;
@@ -13,8 +15,8 @@ public class BoxItaliamo {
     private JLabel ristItaliamo;
     private JButton acquistaItaliamo;
 
-//costruttore
-    public BoxItaliamo(JFrame loginFrame, Controller controller) {
+    //costruttore
+    public BoxItaliamo(JFrame frameRistorante, Controller controller) {
 
         frameItaliamo = new JFrame("Italiamo");
         frameItaliamo.setContentPane(boxItaliamo);
@@ -22,13 +24,23 @@ public class BoxItaliamo {
         frameItaliamo.pack();
         frameItaliamo.setVisible(true);
 
-        //per la grandezza della finestra
-        frameItaliamo.setResizable(false);
-        frameItaliamo.setSize(450, 450);
-        frameItaliamo.setLocationRelativeTo(null);
+        frameItaliamo.setResizable(false); //non cambia dimensione
+        frameItaliamo.setSize(450, 450); //grandezza della finestra
+        frameItaliamo.setLocationRelativeTo(null); //finestra si apre al centro
         frameItaliamo.setVisible(true);
 
+        //JLable cliccabile, per tortare alla scelta dei ristoranti
+        ristItaliamo.setCursor (new Cursor(Cursor.HAND_CURSOR)) ;
+
+        ristItaliamo.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked (MouseEvent e) {
+                frameRistorante.setVisible (true) ;
+                frameItaliamo.setVisible(false);
+            }
+        });
+
 
     }
-    }
+}
 

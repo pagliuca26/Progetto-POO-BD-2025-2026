@@ -16,7 +16,6 @@ public class Login {
     private JLabel nomeApp;
     private JPasswordField campoPassword;
 
-
     public static void main(String[] args) {
         Controller controller= new Controller();
         Login login = new Login();
@@ -25,10 +24,9 @@ public class Login {
         loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         loginFrame.pack();
 
-        //size fissa, deve andare prima di setVisiblie
-        loginFrame.setResizable(false);
-        loginFrame.setSize(450,450);
-        loginFrame.setLocationRelativeTo(null);
+        loginFrame.setResizable(false); //non cambia dimensione
+        loginFrame.setSize(450,450); //grandezza della finestra
+        loginFrame.setLocationRelativeTo(null); //finestra si apre al centro
         loginFrame.setVisible(true);
 
         //gestione pulsante account
