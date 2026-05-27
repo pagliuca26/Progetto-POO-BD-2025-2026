@@ -27,7 +27,7 @@ public class BoxSole365 {
         frameSole365.setLocationRelativeTo(null); //finestra si apre al centro
         frameSole365.setVisible(true);
 
-        //JLable cliccabile, per tortare alla scelta dei supemercati
+        //JLable cliccabile, per tornare alla scelta dei supemercati
         supSole365.setCursor (new Cursor(Cursor.HAND_CURSOR)) ;
 
         supSole365.addMouseListener(new MouseAdapter() {

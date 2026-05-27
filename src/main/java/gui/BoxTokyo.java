@@ -27,7 +27,7 @@ public class BoxTokyo {
         frameTokyo.setLocationRelativeTo(null); //finestra si apre al centro
         frameTokyo.setVisible(true);
 
-        //JLable cliccabile, per tortare alla scelta dei ristoranti
+        //JLable cliccabile, per tornare alla scelta dei ristoranti
         ristTokyo.setCursor (new Cursor(Cursor.HAND_CURSOR)) ;
 
         ristTokyo.addMouseListener(new MouseAdapter() {

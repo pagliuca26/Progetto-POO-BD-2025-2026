@@ -17,7 +17,6 @@ public class Controller {
 
     public void aggiungiUtente(Utente utente) {listaUtenti.add(utente);}
 
-
     public boolean checkUtente(String campoEmail, String campoPassword){
         if(campoEmail.isBlank()) throw new ExceptionEmail("Il campo email è vuoto.");
         if (campoPassword.isBlank()) throw new ExceptionEmail("Il campo password è vuoto.");
