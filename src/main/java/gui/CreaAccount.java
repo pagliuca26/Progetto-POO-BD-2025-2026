@@ -22,8 +22,9 @@ public class CreaAccount {
         frame.pack();
 
         frame.setResizable(false); //non cambia dimensione
-        frame.setLocationRelativeTo(null); //finestra si apre al centro
         frame.setSize(450,450); //grandezza della finestra
+        frame.setLocationRelativeTo(null); //finestra si apre al centro
+
         frame.setVisible(true);
 
         //gestone pulsante torna alla pagina di login

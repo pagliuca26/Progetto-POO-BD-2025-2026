@@ -10,8 +10,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 
-
-
 public class RistoranteForm {
     private static JFrame frameRistorante;
     private JPanel ristorantePanel;

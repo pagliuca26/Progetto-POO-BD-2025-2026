@@ -4,6 +4,8 @@ import controller.Controller;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -12,6 +14,8 @@ public class BoxTokyo {
     private JPanel boxTokyo;
     private JButton acquistaTokyo;
     private JLabel ristTokyo;
+    private JLabel qntDispTokyo;
+    private int quantitàDisponibileTokyo = 7;
 
     //costruttore
     public BoxTokyo(JFrame frameRistorante, Controller controller) {
@@ -37,5 +41,28 @@ public class BoxTokyo {
                 frameTokyo.setVisible(false);
             }
         });
+
+        //Quantità che diminuisce col bottone acquista
+        qntDispTokyo.setText("Quantità disponibile: " + quantitàDisponibileTokyo);
+
+        acquistaTokyo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (quantitàDisponibileTokyo > 0) { //controllo condizionale: verifica se ci sono ancora box disponibili (maggiore di zero)
+                    quantitàDisponibileTokyo--;    //decrementa di 1 il valore della variabile intera che tiene il conto delle box
+
+                    qntDispTokyo.setText("Quantità disponibile: " + quantitàDisponibileTokyo); // Aggiorna la scritta DIRETTAMENTE sulla pagina
+
+                    // POP-UP 1: Finestra di successo dell'acquisto
+                    JOptionPane.showMessageDialog(null, "Acquisto effettuato con successo!");
+                } else {     //se la condizione dell if è falsa (ovvero la quantità è uguale a zero)
+                    // POP-UP 2: Finestra di errore: la quantità è 0
+                    JOptionPane.showMessageDialog(null, "Errore: Le Box per questo punto vendita sono terminate!",  "Box Terminate",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+                }
+            }
+        });
+
     }
 }

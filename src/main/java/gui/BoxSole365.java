@@ -6,12 +6,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class BoxSole365 {
     private static JFrame frameSole365;
     private JPanel boxSole365;
     private JButton acquistaSole365;
     private JLabel supSole365;
+    private JLabel qntDispSole;
+    private int quantitàDisponibileSole = 5; //numero di partenza finto x il test
 
     //costruttore
     public BoxSole365(JFrame frameSupermercato, Controller controller) {
@@ -37,5 +41,29 @@ public class BoxSole365 {
                 frameSole365.setVisible(false);
             }
         });
+
+        //quantità che diminuisce col bottone acquista
+        qntDispSole.setText("Quantità disponibile: " + quantitàDisponibileSole);
+
+        acquistaSole365.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (quantitàDisponibileSole > 0) { //controllo condizionale: verifica se ci sono ancora box disponibili (maggiore di zero)
+                    quantitàDisponibileSole--;    //decrementa di 1 il valore della variabile intera che tiene il conto delle box
+
+                    qntDispSole.setText("Quantità disponibile: " + quantitàDisponibileSole); // Aggiorna la scritta DIRETTAMENTE sulla pagina
+
+                    // POP-UP 1: Finestra di successo dell'acquisto
+                    JOptionPane.showMessageDialog(null, "Acquisto effettuato con successo!");
+                } else {     //se la condizione dell if è falsa (ovvero la quantità è uguale a zero)
+                    // POP-UP 2: Finestra di errore: la quantità è 0
+                    JOptionPane.showMessageDialog(null, "Errore: Le Box per questo punto vendita sono terminate!",  "Box Terminate",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+                }
+            }
+        });
+
+
     }
 }

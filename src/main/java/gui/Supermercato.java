@@ -17,6 +17,12 @@ public class Supermercato {
     private JButton desparButton;
     private JLabel tornaHomeS;
 
+
+    //all'inizio sono 'null' (vuote) perché l'utente non ci ha ancora cliccato; quando si apre un supermercato per la prima volta lo si crea, mentre le volte successive riapriamo lo stesso senza azzerare i numeri delle box.
+    private BoxConad conad = null;
+    private BoxSole365 sole365 = null;
+    private BoxDespar despar = null;
+
     //costruttore
     public Supermercato(JFrame homeFrame, Controller controller) {
         frameSupermercato = new JFrame("Supermercati");
@@ -38,6 +44,8 @@ public class Supermercato {
                 frameSupermercato.setVisible(false);
             }
         });
+
+
 
         //bottone da ristorante a sole365
         sole365Button.addActionListener(new ActionListener() {

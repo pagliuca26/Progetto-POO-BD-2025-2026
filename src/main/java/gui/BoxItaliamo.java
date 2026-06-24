@@ -14,6 +14,8 @@ public class BoxItaliamo {
     private JPanel boxItaliamo;
     private JLabel ristItaliamo;
     private JButton acquistaItaliamo;
+    private JLabel qntDispItaliamo;
+    private int quantitàDisponibileItaliamo = 10;
 
     //costruttore
     public BoxItaliamo(JFrame frameRistorante, Controller controller) {
@@ -39,6 +41,29 @@ public class BoxItaliamo {
                 frameItaliamo.setVisible(false);
             }
         });
+
+        //Quantità che diminuisce col bottone acquista
+        qntDispItaliamo.setText("Quantità disponibile: " + quantitàDisponibileItaliamo);
+
+        acquistaItaliamo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (quantitàDisponibileItaliamo > 0) { //controllo condizionale: verifica se ci sono ancora box disponibili (maggiore di zero)
+                    quantitàDisponibileItaliamo--;    //decrementa di 1 il valore della variabile intera che tiene il conto delle box
+
+                    qntDispItaliamo.setText("Quantità disponibile: " + quantitàDisponibileItaliamo); // Aggiorna la scritta DIRETTAMENTE sulla pagina
+
+                    // POP-UP 1: Finestra di successo dell'acquisto
+                    JOptionPane.showMessageDialog(null, "Acquisto effettuato con successo!");
+                } else {     //se la condizione dell if è falsa (ovvero la quantità è uguale a zero)
+                    // POP-UP 2: Finestra di errore: la quantità è 0
+                    JOptionPane.showMessageDialog(null, "Errore: Le Box per questo punto vendita sono terminate!",  "Box Terminate",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+                }
+            }
+        });
+
 
 
     }
