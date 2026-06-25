@@ -18,7 +18,8 @@ public class Supermercato {
     private JLabel tornaHomeS;
 
 
-    //all'inizio sono 'null' (vuote) perché l'utente non ci ha ancora cliccato; quando si apre un supermercato per la prima volta lo si crea, mentre le volte successive riapriamo lo stesso senza azzerare i numeri delle box.
+    //variabili per salvare le pagine dei supermercati. All'inizio sono null (vuote) così al primo click creiamo la finestra,
+    //mentre i click successivi riaprono quella vecchia senza resettare le boxriapriamo lo stesso senza azzerare i numeri delle box.
     private BoxConad conad = null;
     private BoxSole365 sole365 = null;
     private BoxDespar despar = null;
@@ -40,27 +41,37 @@ public class Supermercato {
         conadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                BoxConad conad = new BoxConad(frameSupermercato, controller);
+                if (conad == null) {
+                    conad = new BoxConad(frameSupermercato, controller);
+                } else {
+                    BoxConad.getFrameConad().setVisible(true);
+                }
                 frameSupermercato.setVisible(false);
             }
         });
 
-
-
-        //bottone da ristorante a sole365
+        //bottone da supermercato a sole365
         sole365Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                BoxSole365 sole365 = new BoxSole365(frameSupermercato, controller);
+                if (sole365 == null) {
+                    sole365 = new BoxSole365(frameSupermercato, controller);
+                } else {
+                    BoxSole365.getFrameSole365().setVisible(true);
+                }
                 frameSupermercato.setVisible(false);
             }
         });
 
-        //bottone da ristorante a despar
+        //bottone da supermercato a despar
         desparButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                BoxDespar despar = new BoxDespar(frameSupermercato, controller);
+                if (despar == null) {
+                    despar = new BoxDespar(frameSupermercato, controller);
+                } else {
+                    BoxDespar.getFrameDespar().setVisible(true);
+                }
                 frameSupermercato.setVisible(false);
             }
         });
@@ -75,6 +86,10 @@ public class Supermercato {
                 frameSupermercato.setVisible (false);
             }
         });
+    }
 
+    // Metodo getter per far recuperare alla Home lo stesso frame dei supermercati
+    public static JFrame getFrameSupermercato() {
+        return frameSupermercato;
     }
 }

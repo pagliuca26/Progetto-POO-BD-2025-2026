@@ -51,7 +51,7 @@ public class BoxItaliamo {
                 if (quantitàDisponibileItaliamo > 0) { //controllo condizionale: verifica se ci sono ancora box disponibili (maggiore di zero)
                     quantitàDisponibileItaliamo--;    //decrementa di 1 il valore della variabile intera che tiene il conto delle box
 
-                    qntDispItaliamo.setText("Quantità disponibile: " + quantitàDisponibileItaliamo); // Aggiorna la scritta DIRETTAMENTE sulla pagina
+                    qntDispItaliamo.setText("Quantità disponibile: " + quantitàDisponibileItaliamo); //aggiorna la scritta sulla pagina
 
                     // POP-UP 1: Finestra di successo dell'acquisto
                     JOptionPane.showMessageDialog(null, "Acquisto effettuato con successo!");
@@ -63,9 +63,12 @@ public class BoxItaliamo {
                 }
             }
         });
-
-
-
     }
+
+    //metodo getter per accedere al frame privato ed evitare il reset dei dati
+    public static JFrame getFrameItaliano() {
+        return frameItaliamo;
+    }
+
 }
 

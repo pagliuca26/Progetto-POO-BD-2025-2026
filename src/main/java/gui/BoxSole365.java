@@ -63,7 +63,10 @@ public class BoxSole365 {
                 }
             }
         });
+    }
 
-
+    //metodo getter per accedere al frame privato ed evitare il reset dei dati
+    public static JFrame getFrameSole365() {
+        return frameSole365;
     }
 }

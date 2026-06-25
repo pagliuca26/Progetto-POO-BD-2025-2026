@@ -64,7 +64,11 @@ public class BoxConad {
                 }
             }
         });
+    }
 
+    //metodo getter per accedere al frame privato ed evitare il reset dei dati
+    public static JFrame getFrameConad() {
+        return frameConad;
     }
 }
 

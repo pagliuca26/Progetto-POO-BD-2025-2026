@@ -20,6 +20,10 @@ public class Home {
     private JFrame frameHome;
     private Controller controller;
 
+    // Variabili per salvare le pagine principali così non si resettano quando torni alla home
+    private Supermercato paginaSupermercato = null;
+    private RistoranteForm paginaRistorante = null;
+
     //costruttore
     public Home(JFrame loginFrame, Controller controller) {
         frameHome = new JFrame("Home");
@@ -50,7 +54,13 @@ public class Home {
         ristoranteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                RistoranteForm ristorante = new RistoranteForm(frameHome, controller);
+                if (paginaRistorante == null) {
+                    // Prima volta
+                    paginaRistorante = new RistoranteForm(frameHome, controller);
+                } else {
+                    // Volte successive
+                    RistoranteForm.getFrameRistorante().setVisible(true);
+                }
                 frameHome.setVisible(false);
             }
         });
@@ -59,7 +69,13 @@ public class Home {
         supermercatoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Supermercato supermercato = new Supermercato (frameHome, controller);
+                if (paginaSupermercato == null) {
+                    // Prima volta: la creiamo da zero
+                    paginaSupermercato = new Supermercato(frameHome, controller);
+                } else {
+                    // Volte successive: riapriamo quella esistente con tutti i dati salvati
+                    Supermercato.getFrameSupermercato().setVisible(true);
+                }
                 frameHome.setVisible(false);
             }
         });

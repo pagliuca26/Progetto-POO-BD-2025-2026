@@ -18,6 +18,12 @@ public class RistoranteForm {
     private JButton giapponeseButton;
     private JLabel tornaHomeR;
 
+    //variabili per salvare le pagine dei ristoranti. All'inizio sono null (vuote) così al primo click creiamo la finestra,
+    //mentre i click successivi riaprono quella vecchia senza resettare le box.
+    private BoxTokyo tokyo = null;
+    private BoxGuacamole guacamole = null;
+    private BoxItaliamo italiamo = null;
+
     //costruttore
     public RistoranteForm(JFrame frameHome, Controller controller) {
 
@@ -36,7 +42,11 @@ public class RistoranteForm {
         italianoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                BoxItaliamo italiamo = new BoxItaliamo(frameRistorante, controller);
+                if (italiamo == null) {
+                    italiamo = new BoxItaliamo(frameRistorante, controller);
+                } else {
+                    BoxItaliamo.getFrameItaliano().setVisible(true);
+                }
                 frameRistorante.setVisible(false);
             }
         });
@@ -45,7 +55,11 @@ public class RistoranteForm {
         messicanoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                BoxGuacamole italiamo = new BoxGuacamole(frameRistorante, controller);
+                if (guacamole == null) {
+                    guacamole = new BoxGuacamole(frameRistorante, controller);
+                } else {
+                    BoxGuacamole.getFrameGuacamole().setVisible(true);
+                }
                 frameRistorante.setVisible(false);
             }
         });
@@ -54,7 +68,13 @@ public class RistoranteForm {
         giapponeseButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                BoxTokyo italiamo = new BoxTokyo(frameRistorante, controller);
+                if (tokyo == null) {
+                    // Se è null, la creiamo per la prima volta
+                    tokyo = new BoxTokyo(frameRistorante, controller);
+                } else {
+                    // Se esiste già, riprendiamo quella vecchia senza resettare le box
+                    BoxTokyo.getFrameTokyo().setVisible(true);
+                }
                 frameRistorante.setVisible(false);
             }
         });
@@ -69,6 +89,10 @@ public class RistoranteForm {
                 frameRistorante.setVisible(false);
             }
         });
+    }
 
+    // Metodo getter per far recuperare alla Home lo stesso frame dei ristoranti
+    public static JFrame getFrameRistorante() {
+        return frameRistorante;
     }
 }

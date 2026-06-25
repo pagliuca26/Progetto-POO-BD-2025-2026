@@ -63,6 +63,10 @@ public class BoxTokyo {
                 }
             }
         });
+    }
 
+    //metodo getter per accedere al frame privato ed evitare il reset dei dati
+    public static JFrame getFrameTokyo() {
+        return frameTokyo;
     }
 }

@@ -64,7 +64,10 @@ public class BoxDespar {
                 }
             }
         });
+    }
 
-
+    //metodo getter per accedere al frame privato ed evitare il reset dei dati
+    public static JFrame getFrameDespar() {
+        return frameDespar;
     }
 }
