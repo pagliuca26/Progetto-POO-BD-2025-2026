@@ -15,7 +15,7 @@ public class Home {
     private JButton ristoranteButton;
     private JButton supermercatoButton;
     private JLabel returnLogin;
-    private JButton preferitiHome;
+    private JButton prenotazioneButton;
     private JButton impHome;
     private JFrame frameHome;
     private Controller controller;
@@ -23,6 +23,7 @@ public class Home {
     // Variabili per salvare le pagine principali così non si resettano quando torni alla home
     private Supermercato paginaSupermercato = null;
     private RistoranteForm paginaRistorante = null;
+    private Prenotazione paginaPrenotazione = null;
 
     //costruttore
     public Home(JFrame loginFrame, Controller controller) {
@@ -75,6 +76,21 @@ public class Home {
                 } else {
                     // Volte successive: riapriamo quella esistente con tutti i dati salvati
                     Supermercato.getFrameSupermercato().setVisible(true);
+                }
+                frameHome.setVisible(false);
+            }
+        });
+
+        //bottone dalla home alle prenotazioni
+        prenotazioneButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (paginaPrenotazione == null) {
+                    //prima volta
+                    paginaPrenotazione = new Prenotazione(frameHome, controller);
+                } else {
+                    //volte successive
+                    Prenotazione.getFramePrenotazione().setVisible(true);
                 }
                 frameHome.setVisible(false);
             }

@@ -91,7 +91,7 @@ public class RistoranteForm {
         });
     }
 
-    // Metodo getter per far recuperare alla Home lo stesso frame dei ristoranti
+    //metodo getter per far recuperare alla Home lo stesso frame dei ristoranti
     public static JFrame getFrameRistorante() {
         return frameRistorante;
     }

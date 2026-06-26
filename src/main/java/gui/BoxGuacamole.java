@@ -43,7 +43,7 @@ public class BoxGuacamole {
             }
         });
 
-        //Quantità che diminuisce col bottone acquista
+        /*//Quantità che diminuisce col bottone acquista
         qntDispGuacamole.setText("Quantità disponibile: " + quantitàDisponibileGuacamole);
 
         acquistaGuacamole.addActionListener(new ActionListener() {
@@ -56,6 +56,8 @@ public class BoxGuacamole {
 
                     // POP-UP 1: Finestra di successo dell'acquisto
                     JOptionPane.showMessageDialog(null, "Acquisto effettuato con successo!");
+                    int quantitaPresa = 7 - quantitàDisponibileGuacamole;
+                    Home.getaginaPrenotazione().aggiornaPrenotazione("Guacamole", quantitaPresa);
                 } else {     //se la condizione dell if è falsa (ovvero la quantità è uguale a zero)
                     // POP-UP 2: Finestra di errore: la quantità è 0
                     JOptionPane.showMessageDialog(null, "Errore: Le Box per questo punto vendita sono terminate!",  "Box Terminate",
@@ -63,11 +65,11 @@ public class BoxGuacamole {
                     );
                 }
             }
-        });
+        });*/
     }
 
-    //metodo getter per accedere al frame privato ed evitare il reset dei dati
+    /*//metodo getter per accedere al frame privato ed evitare il reset dei dati
     public static JFrame getFrameGuacamole() {
         return frameGuacamole;
-    }
+    }/*
 }
