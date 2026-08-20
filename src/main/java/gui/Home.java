@@ -20,10 +20,10 @@ public class Home {
     private JFrame frameHome;
     private Controller controller;
 
-    // Variabili per salvare le pagine principali così non si resettano quando torni alla home
+    //variabili per salvare le pagine principali così non si resettano quando torni alla home
     private Supermercato paginaSupermercato = null;
     private RistoranteForm paginaRistorante = null;
-    private Prenotazione paginaPrenotazione = null;
+    private static Prenotazione paginaPrenotazione = null;
 
     //costruttore
     public Home(JFrame loginFrame, Controller controller) {
@@ -95,7 +95,11 @@ public class Home {
                 frameHome.setVisible(false);
             }
         });
+    }
 
+    //metodo getter per far accedere le altre classi alla schermata prenotazioni
+    public static Prenotazione getPaginaPrenotazione() {
+        return paginaPrenotazione;
     }
 }
 
