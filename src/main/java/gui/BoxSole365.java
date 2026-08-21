@@ -15,7 +15,7 @@ public class BoxSole365 {
     private JButton acquistaSole365;
     private JLabel supSole365;
     private JLabel qntDispSole;
-    private int quantitàDisponibileSole = 5; //numero di partenza finto x il test
+    private static int quantitàDisponibileSole = 5; //numero di partenza finto x il test
 
     //costruttore
     public BoxSole365(JFrame frameSupermercato, Controller controller) {
@@ -53,6 +53,9 @@ public class BoxSole365 {
 
                     qntDispSole.setText("Quantità disponibile: " + quantitàDisponibileSole); // Aggiorna la scritta DIRETTAMENTE sulla pagina
 
+                    int quantitaPresa = 5 - quantitàDisponibileSole;
+                    Home.getPaginaPrenotazione().aggiornaPrenotazione("Sole365", quantitaPresa);
+
                     // POP-UP 1: Finestra di successo dell'acquisto
                     JOptionPane.showMessageDialog(null, "Acquisto effettuato con successo!");
                 } else {     //se la condizione dell if è falsa (ovvero la quantità è uguale a zero)
@@ -68,5 +71,17 @@ public class BoxSole365 {
     //metodo getter per accedere al frame privato ed evitare il reset dei dati
     public static JFrame getFrameSole365() {
         return frameSole365;
+    }
+
+    public static void aumentaDisponibile() {
+        quantitàDisponibileSole++;
+    }
+
+    public static int getDisponibile() {
+        return quantitàDisponibileSole;
+    }
+
+    public void aggiornaLabelDisponibile() {
+        qntDispSole.setText("Quantità disponibile: " + quantitàDisponibileSole);
     }
 }

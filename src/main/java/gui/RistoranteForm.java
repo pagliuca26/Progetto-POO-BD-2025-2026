@@ -47,6 +47,7 @@ public class RistoranteForm {
                 } else {
                     BoxItaliamo.getFrameItaliano().setVisible(true);
                 }
+                italiamo.aggiornaLabelDisponibile();
                 frameRistorante.setVisible(false);
             }
         });
@@ -60,6 +61,7 @@ public class RistoranteForm {
                 } else {
                     BoxGuacamole.getFrameGuacamole().setVisible(true);
                 }
+                guacamole.aggiornaLabelDisponibile();
                 frameRistorante.setVisible(false);
             }
         });
@@ -75,6 +77,7 @@ public class RistoranteForm {
                     // Se esiste già, riprendiamo quella vecchia senza resettare le box
                     BoxTokyo.getFrameTokyo().setVisible(true);
                 }
+                tokyo.aggiornaLabelDisponibile();
                 frameRistorante.setVisible(false);
             }
         });

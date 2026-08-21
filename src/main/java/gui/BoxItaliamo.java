@@ -15,7 +15,7 @@ public class BoxItaliamo {
     private JLabel ristItaliamo;
     private JButton acquistaItaliamo;
     private JLabel qntDispItaliamo;
-    private int quantitàDisponibileItaliamo = 10;
+    private static int quantitàDisponibileItaliamo = 10;
 
     //costruttore
     public BoxItaliamo(JFrame frameRistorante, Controller controller) {
@@ -53,6 +53,9 @@ public class BoxItaliamo {
 
                     qntDispItaliamo.setText("Quantità disponibile: " + quantitàDisponibileItaliamo); //aggiorna la scritta sulla pagina
 
+                    int quantitaPresa = 10 - quantitàDisponibileItaliamo;
+                    Home.getPaginaPrenotazione().aggiornaPrenotazione("Italiamo", quantitaPresa);
+
                     // POP-UP 1: Finestra di successo dell'acquisto
                     JOptionPane.showMessageDialog(null, "Acquisto effettuato con successo!");
                 } else {     //se la condizione dell if è falsa (ovvero la quantità è uguale a zero)
@@ -68,6 +71,18 @@ public class BoxItaliamo {
     //metodo getter per accedere al frame privato ed evitare il reset dei dati
     public static JFrame getFrameItaliano() {
         return frameItaliamo;
+    }
+
+    public static void aumentaDisponibile() {
+        quantitàDisponibileItaliamo++;
+    }
+
+    public static int getDisponibile() {
+        return quantitàDisponibileItaliamo;
+    }
+
+    public void aggiornaLabelDisponibile() {
+        qntDispItaliamo.setText("Quantità disponibile: " + quantitàDisponibileItaliamo);
     }
 
 }

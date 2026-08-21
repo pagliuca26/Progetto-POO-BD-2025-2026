@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Prenotazione {
     private static JFrame framePrenotazione;
@@ -38,7 +40,7 @@ public class Prenotazione {
         framePrenotazione.setResizable(false); //non cambia dimensione
         framePrenotazione.setSize(450, 450); //grandezza della finestra
         framePrenotazione.setLocationRelativeTo(null); //finestra si apre al centro
-        framePrenotazione.setVisible(true);
+        framePrenotazione.setVisible(false);
 
         //Jlabel cliccabile, per tornare dalla pagina delle prenotazioni alla home
         tornaHomeP.setCursor(new Cursor(Cursor.HAND_CURSOR)); //cambia il cursore
@@ -65,6 +67,135 @@ public class Prenotazione {
         annullaSole.setVisible(false);
         annullaDespar.setVisible(false);
         annullaConad.setVisible(false);
+
+        elencoR.setVisible(false);
+        elencoS.setVisible(false);
+
+        //evento Annulla Despar
+        annullaDespar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BoxDespar.aumentaDisponibile();
+
+                int quantitaRimasta = 9 - BoxDespar.getDisponibile();
+
+                if (quantitaRimasta > 0) {
+                    desparNPrenotazioni.setText("Despar: " + quantitaRimasta + " box");
+                } else {
+                    desparNPrenotazioni.setVisible(false);
+                    annullaDespar.setVisible(false);
+                }
+
+                if (!conadNPrenotazioni.isVisible() && !desparNPrenotazioni.isVisible() && !soleNPrenotazioni.isVisible()) {
+                    elencoS.setVisible(false);
+                }
+            }
+        });
+
+        //evento Annulla Conad
+        annullaConad.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BoxConad.aumentaDisponibile();
+
+                int quantitaRimasta = 7 - BoxConad.getDisponibile();
+
+                if (quantitaRimasta > 0) {
+                    conadNPrenotazioni.setText("Conad: " + quantitaRimasta + " box");
+                } else {
+                    conadNPrenotazioni.setVisible(false);
+                    annullaConad.setVisible(false);
+                }
+
+                if (!conadNPrenotazioni.isVisible() && !desparNPrenotazioni.isVisible() && !soleNPrenotazioni.isVisible()) {
+                    elencoS.setVisible(false);
+                }
+            }
+        });
+
+        //evento Annulla Sole365
+        annullaSole.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BoxSole365.aumentaDisponibile();
+
+                int quantitaRimasta = 5 - BoxSole365.getDisponibile();
+
+                if (quantitaRimasta > 0) {
+                    soleNPrenotazioni.setText("Sole365: " + quantitaRimasta + " box");
+                } else {
+                    soleNPrenotazioni.setVisible(false);
+                    annullaSole.setVisible(false);
+                }
+
+                if (!conadNPrenotazioni.isVisible() && !desparNPrenotazioni.isVisible() && !soleNPrenotazioni.isVisible()) {
+                    elencoS.setVisible(false);
+                }
+            }
+        });
+
+        //evento Annulla Italiamo
+        annullaItaliamo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BoxItaliamo.aumentaDisponibile();
+
+                int quantitaRimasta = 10 - BoxItaliamo.getDisponibile();
+
+                if (quantitaRimasta > 0) {
+                    italiamoNPrenotazioni.setText("Italiamo: " + quantitaRimasta + " box");
+                } else {
+                    italiamoNPrenotazioni.setVisible(false);
+                    annullaItaliamo.setVisible(false);
+                }
+
+                if (!guacamoleNPrenotazioni.isVisible() && !italiamoNPrenotazioni.isVisible() && !tokyoNPrenotazioni.isVisible()) {
+                    elencoR.setVisible(false);
+                }
+            }
+        });
+
+        //evento Annulla Guacamole
+        annullaGuacamole.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BoxGuacamole.aumentaDisponibile();
+
+                int quantitaRimasta = 6 - BoxGuacamole.getDisponibile();
+
+                if (quantitaRimasta > 0) {
+                    guacamoleNPrenotazioni.setText("Guacamole: " + quantitaRimasta + " box");
+                } else {
+                    guacamoleNPrenotazioni.setVisible(false);
+                    annullaGuacamole.setVisible(false);
+                }
+
+                if (!guacamoleNPrenotazioni.isVisible() && !italiamoNPrenotazioni.isVisible() && !tokyoNPrenotazioni.isVisible()) {
+                    elencoR.setVisible(false);
+                }
+            }
+        });
+
+        //evento Annulla Tokyo
+        annullaTokyo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                BoxTokyo.aumentaDisponibile();
+
+                int quantitaRimasta = 7 - BoxTokyo.getDisponibile();
+
+                if (quantitaRimasta > 0) {
+                    tokyoNPrenotazioni.setText("Tokyo: " + quantitaRimasta + " box");
+                } else {
+                    tokyoNPrenotazioni.setVisible(false);
+                    annullaTokyo.setVisible(false);
+                }
+
+                if (!guacamoleNPrenotazioni.isVisible() && !italiamoNPrenotazioni.isVisible() && !tokyoNPrenotazioni.isVisible()) {
+                    elencoR.setVisible(false);
+                }
+            }
+        });
     }
 
     //metodo getter per far recuperare alla Home lo stesso frame delle prenotazioni
@@ -74,38 +205,53 @@ public class Prenotazione {
 
     //metodo per aggiornare i contatori delle box prenotate
     //l'operatore == confronta i riferimenti in memoria (le istanze), mentre .equals() verifica il reale contenuto testuale delle stringhe
-    public void aggiornaPrenotazione(String negozio, int quantitaAcquistata) {
+    public void aggiornaPrenotazione (String negozio, int quantitaAcquistata) {
 
-        if (negozio.equals("Italiano")) {
-            italiamoNPrenotazioni.setText("Italiano: " + quantitaAcquistata);
-            italiamoNPrenotazioni.setVisible(true);
-            annullaItaliamo.setVisible(true);
-        } else if (negozio.equals("Guacamole")) {
-            guacamoleNPrenotazioni.setText("Guacamole: " + quantitaAcquistata);
+        //facciamo un controllo all'inizio: se è un ristorante mostra elencoR, altrimenti elencoS
+        if (negozio.equals("Guacamole") || negozio.equals("Italiamo") || negozio.equals("Tokyo")) {
+            elencoR.setVisible(true);
+        } else {
+            elencoS.setVisible(true);
+        }
+
+        //poi controlliamo quali e quante box sono state acquistate per farle uscire all'interno della pagina
+        if (negozio.equals("Guacamole")) {
+            guacamoleNPrenotazioni.setText("Guacamole: " + quantitaAcquistata + " box");
             guacamoleNPrenotazioni.setVisible(true);
             annullaGuacamole.setVisible(true);
-        } else if (negozio.equals("Tokyo")) {
-            tokyoNPrenotazioni.setText("Tokyo: " + quantitaAcquistata);
+        }
+
+        if (negozio.equals("Tokyo")) {
+            tokyoNPrenotazioni.setText("Tokyo: " + quantitaAcquistata + " box");
             tokyoNPrenotazioni.setVisible(true);
             annullaTokyo.setVisible(true);
-        } else if (negozio.equals("Sole365")) {
-            soleNPrenotazioni.setText("Sole365: " + quantitaAcquistata);
-            soleNPrenotazioni.setVisible(true);
-            annullaSole.setVisible(true);
-        } else if (negozio.equals("Despar")) {
-            desparNPrenotazioni.setText("Despar: " + quantitaAcquistata);
+        }
+
+        if (negozio.equals("Italiamo")) {
+            italiamoNPrenotazioni.setText("Italiamo: " + quantitaAcquistata + " box");
+            italiamoNPrenotazioni.setVisible(true);
+            annullaItaliamo.setVisible(true);
+        }
+
+        if (negozio.equals("Despar")) {
+            desparNPrenotazioni.setText("Despar: " + quantitaAcquistata + " box");
             desparNPrenotazioni.setVisible(true);
             annullaDespar.setVisible(true);
-        } else if (negozio.equals("Conad")) {
-            conadNPrenotazioni.setText("Conad: " + quantitaAcquistata);
+        }
+
+        if (negozio.equals("Conad")) {
+            conadNPrenotazioni.setText("Conad: " + quantitaAcquistata + " box");
             conadNPrenotazioni.setVisible(true);
             annullaConad.setVisible(true);
         }
 
-        // Aggiornano la grafica del pannello per mostrare subito le modifiche
-        prenotazionePanel.revalidate();
-        prenotazionePanel.repaint();
-
+        if (negozio.equals("Sole365")){
+            soleNPrenotazioni.setText("Sole365: " + quantitaAcquistata + " box");
+            soleNPrenotazioni.setVisible(true);
+            annullaSole.setVisible(true);
+        }
     }
+
+
 
 }

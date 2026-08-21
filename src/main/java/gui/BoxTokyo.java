@@ -15,7 +15,7 @@ public class BoxTokyo {
     private JButton acquistaTokyo;
     private JLabel ristTokyo;
     private JLabel qntDispTokyo;
-    private int quantitàDisponibileTokyo = 7;
+    private static int quantitàDisponibileTokyo = 7;
 
     //costruttore
     public BoxTokyo(JFrame frameRistorante, Controller controller) {
@@ -53,6 +53,9 @@ public class BoxTokyo {
 
                     qntDispTokyo.setText("Quantità disponibile: " + quantitàDisponibileTokyo); // Aggiorna la scritta DIRETTAMENTE sulla pagina
 
+                    int quantitaPresa = 7 - quantitàDisponibileTokyo;
+                    Home.getPaginaPrenotazione().aggiornaPrenotazione("Tokyo", quantitaPresa);
+
                     // POP-UP 1: Finestra di successo dell'acquisto
                     JOptionPane.showMessageDialog(null, "Acquisto effettuato con successo!");
                 } else {     //se la condizione dell if è falsa (ovvero la quantità è uguale a zero)
@@ -68,5 +71,17 @@ public class BoxTokyo {
     //metodo getter per accedere al frame privato ed evitare il reset dei dati
     public static JFrame getFrameTokyo() {
         return frameTokyo;
+    }
+
+    public static void aumentaDisponibile() {
+        quantitàDisponibileTokyo++;
+    }
+
+    public static int getDisponibile() {
+        return quantitàDisponibileTokyo;
+    }
+
+    public void aggiornaLabelDisponibile() {
+        qntDispTokyo.setText("Quantità disponibile: " + quantitàDisponibileTokyo);
     }
 }

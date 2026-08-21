@@ -16,7 +16,7 @@ public class BoxConad {
     private JButton acquistaConad;
     private JLabel supConad;
     private JLabel qntDispConad;
-    private int quantitàDisponibileConad = 7;
+    private static int quantitàDisponibileConad = 7;
 
     //costruttore
     public BoxConad(JFrame frameSupermercato, Controller controller) {
@@ -52,12 +52,15 @@ public class BoxConad {
                 if (quantitàDisponibileConad > 0) { //controllo condizionale: verifica se ci sono ancora box disponibili (maggiore di zero)
                     quantitàDisponibileConad--;    //decrementa di 1 il valore della variabile intera che tiene il conto delle box
 
-                    qntDispConad.setText("Quantità disponibile: " + quantitàDisponibileConad); // Aggiorna la scritta DIRETTAMENTE sulla pagina
+                    qntDispConad.setText("Quantità disponibile: " + quantitàDisponibileConad); //Aggiorna la scritta direttamente sulla pagina
 
-                    // POP-UP 1: Finestra di successo dell'acquisto
+                    int quantitaPresa = 7 - quantitàDisponibileConad;
+                    Home.getPaginaPrenotazione().aggiornaPrenotazione("Conad", quantitaPresa);
+
+                    //POP-UP 1: Finestra di successo dell'acquisto
                     JOptionPane.showMessageDialog(null, "Acquisto effettuato con successo!");
                 } else {     //se la condizione dell if è falsa (ovvero la quantità è uguale a zero)
-                    // POP-UP 2: Finestra di errore: la quantità è 0
+                    //POP-UP 2: Finestra di errore: la quantità è 0
                     JOptionPane.showMessageDialog(null, "Errore: Le Box per questo punto vendita sono terminate!",  "Box Terminate",
                             JOptionPane.ERROR_MESSAGE
                     );
@@ -69,6 +72,18 @@ public class BoxConad {
     //metodo getter per accedere al frame privato ed evitare il reset dei dati
     public static JFrame getFrameConad() {
         return frameConad;
+    }
+
+    public static void aumentaDisponibile() {
+        quantitàDisponibileConad++;
+    }
+
+    public static int getDisponibile() {
+        return quantitàDisponibileConad;
+    }
+
+    public void aggiornaLabelDisponibile() {
+        qntDispConad.setText("Quantità disponibile: " + quantitàDisponibileConad);
     }
 }
 

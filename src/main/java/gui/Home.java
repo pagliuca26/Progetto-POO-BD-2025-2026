@@ -25,6 +25,7 @@ public class Home {
     private RistoranteForm paginaRistorante = null;
     private static Prenotazione paginaPrenotazione = null;
 
+
     //costruttore
     public Home(JFrame loginFrame, Controller controller) {
         frameHome = new JFrame("Home");
@@ -37,6 +38,8 @@ public class Home {
         frameHome.setSize(450, 450); //grandezza della finestra
         frameHome.setLocationRelativeTo(null); //finestra si apre al centro
         frameHome.setVisible(true);
+
+        paginaPrenotazione = new Prenotazione(frameHome, controller);
 
 
         //JLable cliccabile, per passare dalla pagina home a quella di login

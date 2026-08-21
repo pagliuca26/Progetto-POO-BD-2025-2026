@@ -16,7 +16,7 @@ public class BoxGuacamole {
     private JLabel ristGuacamole;
     private JButton acquistaGuacamole;
     private JLabel qntDispGuacamole;
-    private int quantitàDisponibileGuacamole = 6;
+    private static int quantitàDisponibileGuacamole = 6;
 
     //costruttore
     public BoxGuacamole(JFrame frameRistorante, Controller controller) {
@@ -54,12 +54,12 @@ public class BoxGuacamole {
 
                     qntDispGuacamole.setText("Quantità disponibile: " + quantitàDisponibileGuacamole); // Aggiorna la scritta DIRETTAMENTE sulla pagina
 
+                    int quantitaPresa = 6 - quantitàDisponibileGuacamole;
+                    Home.getPaginaPrenotazione().aggiornaPrenotazione("Guacamole", quantitaPresa);
+
+
                     //POP-UP 1: Finestra di successo dell'acquisto
                     JOptionPane.showMessageDialog(null, "Acquisto effettuato con successo!");
-
-                    //invio del dato alla schermata prenotazioni
-                    int quantitaPresa = 7 - quantitàDisponibileGuacamole;
-                    Home.getPaginaPrenotazione().aggiornaPrenotazione("Guacamole", quantitaPresa);
                 } else {     //se la condizione dell if è falsa (ovvero la quantità è uguale a zero)
                     //POP-UP 2: Finestra di errore: la quantità è 0
                     JOptionPane.showMessageDialog(null, "Errore: Le Box per questo punto vendita sono terminate!",  "Box Terminate",
@@ -72,5 +72,18 @@ public class BoxGuacamole {
 
         //metodo getter per accedere al frame privato ed evitare il reset dei dati
         public static JFrame getFrameGuacamole () { return frameGuacamole; }
+
+    public static void aumentaDisponibile() {
+        quantitàDisponibileGuacamole++;
     }
+
+    public static int getDisponibile() {
+        return quantitàDisponibileGuacamole;
+    }
+
+    public void aggiornaLabelDisponibile() {
+        qntDispGuacamole.setText("Quantità disponibile: " + quantitàDisponibileGuacamole);
+    }
+
+}
 

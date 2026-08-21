@@ -16,7 +16,7 @@ public class BoxDespar {
     private JButton acquistaDespar;
     private JLabel supDespar;
     private JLabel qntDispDespar;
-    private int quantitàDisponibileDespar = 9;
+    private static int quantitàDisponibileDespar = 9;
 
     //costruttore
     public BoxDespar(JFrame frameSupermercato, Controller controller) {
@@ -54,6 +54,9 @@ public class BoxDespar {
 
                     qntDispDespar.setText("Quantità disponibile: " + quantitàDisponibileDespar); // Aggiorna la scritta DIRETTAMENTE sulla pagina
 
+                    int quantitaPresa = 9 - quantitàDisponibileDespar;
+                    Home.getPaginaPrenotazione().aggiornaPrenotazione("Despar", quantitaPresa);
+
                     // POP-UP 1: Finestra di successo dell'acquisto
                     JOptionPane.showMessageDialog(null, "Acquisto effettuato con successo!");
                 } else {     //se la condizione dell if è falsa (ovvero la quantità è uguale a zero)
@@ -69,5 +72,17 @@ public class BoxDespar {
     //metodo getter per accedere al frame privato ed evitare il reset dei dati
     public static JFrame getFrameDespar() {
         return frameDespar;
+    }
+
+    public static void aumentaDisponibile() {
+        quantitàDisponibileDespar++;
+    }
+
+    public static int getDisponibile() {
+        return quantitàDisponibileDespar;
+    }
+
+    public void aggiornaLabelDisponibile() {
+        qntDispDespar.setText("Quantità disponibile: " + quantitàDisponibileDespar);
     }
 }

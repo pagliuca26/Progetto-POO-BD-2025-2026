@@ -46,6 +46,7 @@ public class Supermercato {
                 } else {
                     BoxConad.getFrameConad().setVisible(true);
                 }
+                conad.aggiornaLabelDisponibile();
                 frameSupermercato.setVisible(false);
             }
         });
@@ -59,6 +60,7 @@ public class Supermercato {
                 } else {
                     BoxSole365.getFrameSole365().setVisible(true);
                 }
+                sole365.aggiornaLabelDisponibile();
                 frameSupermercato.setVisible(false);
             }
         });
@@ -72,6 +74,7 @@ public class Supermercato {
                 } else {
                     BoxDespar.getFrameDespar().setVisible(true);
                 }
+                despar.aggiornaLabelDisponibile();
                 frameSupermercato.setVisible(false);
             }
         });
