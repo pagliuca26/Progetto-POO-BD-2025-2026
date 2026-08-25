@@ -12,8 +12,16 @@ import java.awt.event.ActionEvent;
 public class Prenotazione {
     private static JFrame framePrenotazione;
     private JPanel prenotazionePanel;
-    private JLabel tornaHomeP;
+    private JButton button1;
+    private JButton button2;
+    private JButton button3;
+    private JButton button4;
+    private JButton button5;
+    private JButton button6;
+    private JLabel tornaHomePrenotazione;
     private JLabel introduzione;
+    private JLabel iconaPrenotazione;
+    private JLabel benvenutoPrenotazione;
     private JLabel elencoR;
     private JLabel elencoS;
     private JLabel italiamoNPrenotazioni;
@@ -43,9 +51,9 @@ public class Prenotazione {
         framePrenotazione.setVisible(false);
 
         //Jlabel cliccabile, per tornare dalla pagina delle prenotazioni alla home
-        tornaHomeP.setCursor(new Cursor(Cursor.HAND_CURSOR)); //cambia il cursore
+        tornaHomePrenotazione.setCursor(new Cursor(Cursor.HAND_CURSOR)); //cambia il cursore
 
-        tornaHomeP.addMouseListener(new MouseAdapter() {
+        tornaHomePrenotazione.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 frameHome.setVisible(true);
@@ -253,5 +261,7 @@ public class Prenotazione {
     }
 
 
-
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+    }
 }
