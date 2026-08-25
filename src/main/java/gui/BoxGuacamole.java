@@ -70,12 +70,10 @@ public class BoxGuacamole {
         });
     }
 
-        //metodo getter per accedere al frame privato ed evitare il reset dei dati
-        public static JFrame getFrameGuacamole () { return frameGuacamole; }
+    //metodo getter per accedere al frame privato ed evitare il reset dei dati
+    public static JFrame getFrameGuacamole () { return frameGuacamole; }
 
-    public static void aumentaDisponibile() {
-        quantitàDisponibileGuacamole++;
-    }
+    public static void aumentaDisponibile() { quantitàDisponibileGuacamole++; }
 
     public static int getDisponibile() {
         return quantitàDisponibileGuacamole;

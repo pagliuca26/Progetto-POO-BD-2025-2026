@@ -11,6 +11,9 @@ public class CreaAccount {
     private JButton accountCreato;
     private JPasswordField creaPassword;
     private JLabel tornaLogin;
+    private JLabel carrelloCreaAcc;
+    private JTextField textField1;
+    private JTextField textField2;
     private JLabel tornaAccedi;
 
     //costruttore
