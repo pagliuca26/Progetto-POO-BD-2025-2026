@@ -12,8 +12,10 @@ public class CreaAccount {
     private JPasswordField creaPassword;
     private JLabel tornaLogin;
     private JLabel carrelloCreaAcc;
-    private JTextField textField1;
-    private JTextField textField2;
+    private JTextField creaNome;
+    private JTextField creaCognome;
+    private JLabel nome;
+    private JLabel cognome;
     private JLabel tornaAccedi;
 
     //costruttore
@@ -48,7 +50,9 @@ public class CreaAccount {
                 try{
                     String email = creaEmail.getText();
                     String password = creaPassword.getText();
-                    controller.creaUtente(email, password);
+                    String nome = creaNome.getText();
+                    String cognome = creaCognome.getText();
+                    controller.creaUtente(email, password, nome, cognome);
                     JOptionPane.showMessageDialog(null, "Account creato con successo!");
 
                     //torna alla pagina di login

@@ -34,9 +34,11 @@ public class Controller {
 
 
       //Eccezioni per crea account
-    public void creaUtente (String email, String password) throws RuntimeException {
+    public void creaUtente (String email, String password, String nome, String cognome) throws RuntimeException {
            if (email.isBlank()) throw new ExceptionEmail("Il campo email è vuoto.");
            if (password.isBlank()) throw new ExceptionPassword("Il campo password è vuoto.");
+           if (nome.isBlank()) throw new ExceptionNome("Il campo nome è vuoto.");
+           if (cognome.isBlank()) throw new ExceptionCognome("Il campo cognome è vuoto.");
 
            for (Utente u: listaUtenti){
                if (u.getEmail().equals(email)){
