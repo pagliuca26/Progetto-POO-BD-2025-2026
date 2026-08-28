@@ -36,6 +36,8 @@ public class Prenotazione {
     private JButton annullaSole;
     private JButton annullaConad;
     private JButton annullaDespar;
+    private JLabel iconaP;
+    private JLabel benvenutoP;
 
     //costruttore
     public Prenotazione(JFrame frameHome, Controller controller) {

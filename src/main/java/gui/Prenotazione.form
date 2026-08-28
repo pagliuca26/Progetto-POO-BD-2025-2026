@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="gui.Prenotazione">
-  <grid id="27dc6" binding="prenotazionePanel" layout-manager="GridLayoutManager" row-count="10" column-count="8" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="prenotazionePanel" layout-manager="GridLayoutManager" row-count="12" column-count="8" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
       <xy x="20" y="35" width="570" height="570"/>
@@ -27,7 +27,7 @@
       </component>
       <component id="6905c" class="javax.swing.JLabel" binding="elencoS">
         <constraints>
-          <grid row="6" column="0" row-span="1" col-span="8" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="8" column="0" row-span="1" col-span="8" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="SUPERMERCATI"/>
@@ -35,7 +35,7 @@
       </component>
       <component id="d827c" class="javax.swing.JLabel" binding="italiamoNPrenotazioni">
         <constraints>
-          <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Italiamo: "/>
@@ -43,7 +43,7 @@
       </component>
       <component id="b3546" class="javax.swing.JLabel" binding="guacamoleNPrenotazioni">
         <constraints>
-          <grid row="4" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="6" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Guacamole: "/>
@@ -51,7 +51,7 @@
       </component>
       <component id="1fa42" class="javax.swing.JLabel" binding="tokyoNPrenotazioni">
         <constraints>
-          <grid row="5" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="7" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Tokyo: "/>
@@ -59,7 +59,7 @@
       </component>
       <component id="61ce" class="javax.swing.JLabel" binding="soleNPrenotazioni">
         <constraints>
-          <grid row="7" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="9" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Sole365:"/>
@@ -67,7 +67,7 @@
       </component>
       <component id="8ba0b" class="javax.swing.JLabel" binding="desparNPrenotazioni">
         <constraints>
-          <grid row="8" column="0" row-span="1" col-span="7" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="10" column="0" row-span="1" col-span="7" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Despar:"/>
@@ -75,7 +75,7 @@
       </component>
       <component id="44abb" class="javax.swing.JLabel" binding="conadNPrenotazioni">
         <constraints>
-          <grid row="9" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="11" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Conad:"/>
@@ -83,7 +83,7 @@
       </component>
       <component id="faf56" class="javax.swing.JButton" binding="annullaItaliamo">
         <constraints>
-          <grid row="3" column="2" row-span="1" col-span="6" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="2" row-span="1" col-span="6" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Annulla"/>
@@ -91,7 +91,7 @@
       </component>
       <component id="88825" class="javax.swing.JButton" binding="annullaGuacamole">
         <constraints>
-          <grid row="4" column="3" row-span="1" col-span="5" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="6" column="3" row-span="1" col-span="5" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Annulla"/>
@@ -99,7 +99,7 @@
       </component>
       <component id="a08e7" class="javax.swing.JButton" binding="annullaTokyo">
         <constraints>
-          <grid row="5" column="4" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="7" column="4" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Annulla"/>
@@ -107,7 +107,7 @@
       </component>
       <component id="d2f48" class="javax.swing.JButton" binding="annullaSole">
         <constraints>
-          <grid row="7" column="5" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="9" column="5" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Annulla"/>
@@ -115,7 +115,7 @@
       </component>
       <component id="211da" class="javax.swing.JButton" binding="annullaConad">
         <constraints>
-          <grid row="9" column="6" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="11" column="6" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Annulla"/>
@@ -123,7 +123,7 @@
       </component>
       <component id="e160f" class="javax.swing.JButton" binding="annullaDespar">
         <constraints>
-          <grid row="8" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="10" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Annulla"/>
@@ -131,10 +131,27 @@
       </component>
       <component id="82d03" class="javax.swing.JLabel" binding="elencoR">
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="8" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="4" column="0" row-span="1" col-span="8" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="RISTORANTI"/>
+        </properties>
+      </component>
+      <component id="74ca6" class="javax.swing.JLabel" binding="iconaP">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="8" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <icon value="iconaP-removebg.png"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="be79d" class="javax.swing.JLabel" binding="benvenutoP">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="8" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Benvenuto, "/>
         </properties>
       </component>
     </children>
