@@ -12,16 +12,8 @@ import java.awt.event.ActionEvent;
 public class Prenotazione {
     private static JFrame framePrenotazione;
     private JPanel prenotazionePanel;
-    private JButton acquistaButton;
-    private JButton button2;
-    private JButton button3;
-    private JButton button4;
-    private JButton button5;
-    private JButton button6;
     private JLabel tornaHomePrenotazione;
     private JLabel introduzione;
-    private JLabel iconaPrenotazione;
-    private JLabel benvenutoPrenotazione;
     private JLabel elencoR;
     private JLabel elencoS;
     private JLabel italiamoNPrenotazioni;

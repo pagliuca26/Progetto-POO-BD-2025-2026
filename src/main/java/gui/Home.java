@@ -97,6 +97,12 @@ private static Impostazioni paginaImpostazioni = null;
                 frameHome.setVisible(false);
             }
         });
+
+
+    }
+
+    public static Prenotazione getPaginaPrenotazione() {
+        return paginaPrenotazione;
     }
 }
 /*
