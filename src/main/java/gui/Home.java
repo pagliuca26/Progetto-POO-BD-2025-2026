@@ -24,7 +24,7 @@ public class Home {
     private Supermercato paginaSupermercato = null;
     private RistoranteForm paginaRistorante = null;
     private static Prenotazione paginaPrenotazione = null;
-
+private static Impostazioni paginaImpostazioni = null;
 
     //costruttore
     public Home(JFrame loginFrame, Controller controller) {
@@ -37,10 +37,9 @@ public class Home {
         frameHome.setResizable(false); //non cambia dimensione
         frameHome.setSize(450, 450); //grandezza della finestra
         frameHome.setLocationRelativeTo(null); //finestra si apre al centro
-        frameHome.setVisible(true);
+        frameHome.setVisible(true);paginaPrenotazione = new Prenotazione(frameHome, controller);
 
-        paginaPrenotazione = new Prenotazione(frameHome, controller);
-
+ //paginaImpostazioni = new Impostazioni (frameHome, controller);
 
         //JLable cliccabile, per passare dalla pagina home a quella di login
         returnLogin.setCursor (new Cursor(Cursor.HAND_CURSOR)) ;
@@ -99,18 +98,42 @@ public class Home {
             }
         });
     }
+}
+/*
+//bottone da home a impostazioni
+impHome.addActionListener(new ActionListener () {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (paginaImpostazioni == null) {
+                paginaImpostazioni = new Impostazioni(frameHome, controller);
+            } else {
+                Impostazioni.getFrameImpostazioni().setVisible(true);
+            }
+            frameHome.setVisible(false);
+        }
+    });
 
-    //metodo getter per far accedere le altre classi alla schermata prenotazioni
-    public static Prenotazione getPaginaPrenotazione() {
-        return paginaPrenotazione;
-    }
+
+
+
+
+
+
+
+
+
+        //metodo getter per far accedere le altre classi alla schermata prenotazioni
+        public static Prenotazione getPaginaPrenotazione() {
+            return paginaPrenotazione;
+        }
+}
+
+
+//metodo getter di impostazioni
+public static Impostazioni getFrameImpostazioni() {
+return paginaImpostazioni;
 }
 
 
 
-
-
-
-
-
-
+*/

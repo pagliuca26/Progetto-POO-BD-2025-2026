@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 public class Prenotazione {
     private static JFrame framePrenotazione;
     private JPanel prenotazionePanel;
-    private JButton button1;
+    private JButton acquistaButton;
     private JButton button2;
     private JButton button3;
     private JButton button4;
