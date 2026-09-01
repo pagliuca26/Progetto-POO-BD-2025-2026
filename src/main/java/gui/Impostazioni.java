@@ -55,8 +55,6 @@ public class Impostazioni {
             System.err.println("Impossibile caricare l'immagine di sfondo.");
         }
 
-
-
         //JLable cliccabile, per passare dalla pagina impostazioni a quella di home
         tornaHomeImpostazioni.setCursor (new Cursor(Cursor.HAND_CURSOR)) ;
 
