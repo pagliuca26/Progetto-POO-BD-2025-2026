@@ -69,7 +69,7 @@ public class Impostazioni {
             eliminaAccountButton.setOpaque(false);
             tornaHomeImpostazioni.setOpaque(false);
             salvaModificheButton.setOpaque(false);
-            
+
 
         //JLable cliccabile, per passare dalla pagina impostazioni a quella di home
         tornaHomeImpostazioni.setCursor (new Cursor(Cursor.HAND_CURSOR)) ;
