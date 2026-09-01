@@ -31,7 +31,6 @@ public class Impostazioni {
 
     private static Impostazioni paginaImpostazioni = null;
 
-
     //costruttore
     public Impostazioni(JFrame frameHome, Controller controller) {
         frameImpostazioni = new JFrame("Impostazioni");
@@ -44,7 +43,7 @@ public class Impostazioni {
         frameImpostazioni.setSize(450, 450); //grandezza della finestra
         frameImpostazioni.setLocationRelativeTo(null);
 
-        // Aggiunge l'immagine di sfondo
+        // Aggiungo l'immagine di sfondo al form
         try {
             java.awt.Image img = javax.imageio.ImageIO.read(new java.io.File("src/sfondo_per_impostazioni.png"));
             ImageIcon iconaSfondo = new ImageIcon(img);
@@ -56,19 +55,6 @@ public class Impostazioni {
             System.err.println("Impossibile caricare l'immagine di sfondo.");
         }
 
-// Rendo trasparenti le etichette e i campi in modo che si veda lo sfondo dietro
-            scegliAvatarLabel.setOpaque(false);
-            modificaNomeLabel.setOpaque(false);
-            modificaCognome.setOpaque(false);
-            emailModificaLabel.setOpaque(false);
-            modificaPasswordLabel.setOpaque(false);
-            emailModificaLabel.setOpaque(false);
-            impostazioniPanel.setOpaque(false);
-            avatarFemminileRadioButton.setOpaque(false);
-            avatarMaschileRadioButton.setOpaque(false);
-            eliminaAccountButton.setOpaque(false);
-            tornaHomeImpostazioni.setOpaque(false);
-            salvaModificheButton.setOpaque(false);
 
 
         //JLable cliccabile, per passare dalla pagina impostazioni a quella di home
