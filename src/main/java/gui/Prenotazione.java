@@ -254,6 +254,14 @@ public class Prenotazione {
         }
     }
 
+    // metodo per cambiare l'immagine dell'avatar quando lo scelgo nelle impostazioni
+    public void cambiaAvatar(String nomeFile) {
+        // creo la nuova icona con l'immagine passata
+        ImageIcon icona = new ImageIcon(nomeFile);
+        // imposto l'icona sulla label dell'avatar
+        introduzione.setIcon(icona);
+    }
+
 
     private void createUIComponents() {
         // TODO: place custom component creation code here

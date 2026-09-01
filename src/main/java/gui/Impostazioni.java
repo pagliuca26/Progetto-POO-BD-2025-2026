@@ -5,10 +5,11 @@ import model.Utente;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.SQLException;
+
 
 public class Impostazioni {
     private static JFrame frameImpostazioni;
@@ -27,7 +28,6 @@ public class Impostazioni {
     private JTextField modificaEmail;
     private JLabel modificaEmailLabel;
     private JLabel passwordAttualeLabel;
-    private JTextField laTuaPassword;
     private JButton salvaModificheButton;
     private JButton eliminaAccountButton;
     private JRadioButton avatarMaschileRadioButton;
@@ -58,106 +58,30 @@ public class Impostazioni {
             public void mouseClicked (MouseEvent e) {
                 frameHome.setVisible (true) ;
                 frameImpostazioni.setVisible (false);
-
             }
         });
+
+            // Creo il gruppo per permettere di selezionare uno o l'altro
+            ButtonGroup gruppoAvatar = new ButtonGroup();
+            gruppoAvatar.add(avatarMaschileRadioButton);
+            gruppoAvatar.add(avatarFemminileRadioButton);
+
+            // Gestione del pulsante Salva Modifiche
+            salvaModificheButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (avatarMaschileRadioButton.isSelected()) {
+                        controller.setAvatarSelezionato("man-avatar.png");
+                    } else if (avatarFemminileRadioButton.isSelected()) {
+                        controller.setAvatarSelezionato("woman-avatar.png");
+                    }
+
+                    JOptionPane.showMessageDialog(null, "Avatar aggiornato correttamente!");
+                }
+            });
     }
-}
 
-     /*
-     // Gestione del pulsante Salva Modifiche
-     salvaModificheButton.addActionListener(e -> {
-         try {
-             // 1. Leggiamo i testi inseriti nei tuoi campi
-             String nuovoNome = moficaNome.getText();
-             String nuovoCognome = modificaCognome.getText();
-             String nuovaEmail = modificaEmail.getText();
-             String nuovaPassword = laTuaPassword.getText();
-
-             // 2. Controllo dei RadioButton per l'avatar
-             String avatarScelto = "";
-             if (avatarMaschileRadioButton.isSelected()) {
-                 avatarScelto = "maschio";
-             } else if (avatarFemminileRadioButton.isSelected()) {
-                 avatarScelto = "femmina";
-             }
-
-             // 3. Chiamata al controller per aggiornare il database
-             // 3. Modifichiamo direttamente l'utente attualmente loggato
-             Utente utenteCorrente = controller.getUtenteAttuale();
-             if (utenteCorrente != null) {
-                 if (!nuovoNome.isEmpty()) {
-                     utenteCorrente.setNome(nuovoNome); // o il nome del metodo che usi nel modello Utente
-                 }
-                 if (!nuovoCognome.isEmpty()) {
-                     utenteCorrente.setCognome(nuovoCognome);
-                 }
-                 // Se hai i metodi set per email, password e avatar, aggiornali qui
-             }
-
-             // 4. Aggiorniamo subito le etichette grafiche dei dati attuali
-             if (!nuovoNome.isEmpty()) {
-                 nomeAttuale.setText(nuovoNome);
-             }
-             if (!nuovoCognome.isEmpty()) {
-                 cognomeAttuale.setText(nuovoCognome);
-             }
-
-             // 5. Messaggio di conferma pulito
-             JOptionPane.showMessageDialog(null,
-                     "Modifiche salvate con successo!",
-                     "Successo",
-                     JOptionPane.INFORMATION_MESSAGE);
-
-             // Puliamo i campi di input
-             moficaNome.setText("");
-             modificaCognome.setText("");
-             modificaEmail.setText("");
-             laTuaPassword.setText("");
-
-         } catch (SQLException ex) {
-             JOptionPane.showMessageDialog(null,
-                     "Errore nel database: " + ex.getMessage(),
-                     "Errore",
-                     JOptionPane.ERROR_MESSAGE);
-             ex.printStackTrace();
-         } catch (Exception ex) {
-             JOptionPane.showMessageDialog(null,
-                     "Errore: " + ex.getMessage(),
-                     "Errore",
-                     JOptionPane.ERROR_MESSAGE);
-         }
-     });
- }
-
-
-    //creo gruppo per legare i due radio button
- //   ButtonGroup gruppoAvatar = new ButtonGroup();
- //   gruppoAvatar.add(avatarMaschileRadioButton);
- /*   gruppoAvatar.add(avatarFemminileRadioButton);
-
-    salvaModificheButton.addActionListener(new ActionListener()) {
-        @Override
-        public void actionPerformed (ActionEvent e){
-        //verifichiamo l'avatar che è stato selezionato
-        String avatarScelto = "";
-        if (avatarMaschileRadioButton.isSelected()) {
-                    avatarScelto = "maschio";
-        } else if (avatarFemminileRadioButton.isSelected()) {
-            avatarScelto = "femmina";
-        }
-        JOptionPane.showMessageDialog (null, "Avatar selezionato: " + avatarScelto);
-
-    }
-    };
-
+    public JFrame getFrameImpostazioni() { return frameImpostazioni; }
 
 }
 
-// metodo getter
-public static Impostazioni getFrameImpostazioni (){
-return paginaImpostazioni;
-}
-}
-
-*/

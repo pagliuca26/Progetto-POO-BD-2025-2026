@@ -42,14 +42,11 @@ public class Home {
         //paginaImpostazioni = new Impostazioni (frameHome, controller);
 
         //JLable cliccabile, per passare dalla pagina home a quella di login
-        returnLogin.setCursor (new Cursor(Cursor.HAND_CURSOR)) ;
-
         returnLogin.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked (MouseEvent e) {
-                loginFrame.setVisible (true) ;
-                frameHome.setVisible (false);
-
+            public void mouseClicked(MouseEvent e) {
+                loginFrame.setVisible(true);
+                frameHome.setVisible(false);
             }
         });
 
@@ -98,6 +95,21 @@ public class Home {
             }
         });
 
+        //bottone da home a impostazioni
+        impHome.addActionListener(new ActionListener () {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (paginaImpostazioni == null) {
+                    //prima volta
+                    paginaImpostazioni = new Impostazioni(frameHome, controller);
+                } else {
+                    //volte successive
+                    paginaImpostazioni.getFrameImpostazioni().setVisible(true);
+                }
+                frameHome.setVisible(false);
+            }
+        });
+
 
     }
 
@@ -105,19 +117,6 @@ public class Home {
         return paginaPrenotazione;
     }
 }
-/*
-//bottone da home a impostazioni
-impHome.addActionListener(new ActionListener () {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (paginaImpostazioni == null) {
-                paginaImpostazioni = new Impostazioni(frameHome, controller);
-            } else {
-                Impostazioni.getFrameImpostazioni().setVisible(true);
-            }
-            frameHome.setVisible(false);
-        }
-    });
 
 
 
@@ -128,7 +127,9 @@ impHome.addActionListener(new ActionListener () {
 
 
 
-        //metodo getter per far accedere le altre classi alla schermata prenotazioni
+
+
+      /*  //metodo getter per far accedere le altre classi alla schermata prenotazioni
         public static Prenotazione getPaginaPrenotazione() {
             return paginaPrenotazione;
         }

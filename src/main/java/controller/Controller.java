@@ -32,9 +32,8 @@ public class Controller {
         throw new ExceptionEmail("Utente non trovato.");
     }
 
-
       //Eccezioni per crea account
-    public void creaUtente (String email, String password, String nome, String cognome) throws RuntimeException {
+      public void creaUtente (String email, String password, String nome, String cognome) throws RuntimeException {
            if (email.isBlank()) throw new ExceptionEmail("Il campo email è vuoto.");
            if (password.isBlank()) throw new ExceptionPassword("Il campo password è vuoto.");
            if (nome.isBlank()) throw new ExceptionNome("Il campo nome è vuoto.");
@@ -62,5 +61,14 @@ public class Controller {
     public ArrayList<Utente> getListaUtenti(){
         return listaUtenti;
     }
+
+    //variabile per memorizzare l'avatar
+    private String avatarSelezionato = "iconaP-removebg";
+
+    //metodo per impostare l'avatar scelto
+    public void setAvatarSelezionato(String avatar) { this.avatarSelezionato = avatar; }
+
+    //metodo per recuperare l'avatar scelto
+    public String getAvatarSelezionato() { return this.avatarSelezionato; }
 
 }
