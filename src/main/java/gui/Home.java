@@ -24,7 +24,7 @@ public class Home {
     private Supermercato paginaSupermercato = null;
     private RistoranteForm paginaRistorante = null;
     private static Prenotazione paginaPrenotazione = null;
-private static Impostazioni paginaImpostazioni = null;
+    private static Impostazioni paginaImpostazioni = null;
 
     //costruttore
     public Home(JFrame loginFrame, Controller controller) {
@@ -39,7 +39,7 @@ private static Impostazioni paginaImpostazioni = null;
         frameHome.setLocationRelativeTo(null); //finestra si apre al centro
         frameHome.setVisible(true);paginaPrenotazione = new Prenotazione(frameHome, controller);
 
- //paginaImpostazioni = new Impostazioni (frameHome, controller);
+        //paginaImpostazioni = new Impostazioni (frameHome, controller);
 
         //JLable cliccabile, per passare dalla pagina home a quella di login
         returnLogin.setCursor (new Cursor(Cursor.HAND_CURSOR)) ;

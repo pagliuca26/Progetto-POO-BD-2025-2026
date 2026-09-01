@@ -4,7 +4,10 @@ import controller.Controller;
 import model.Utente;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 
 public class Impostazioni {
@@ -32,22 +35,34 @@ public class Impostazioni {
     private JLabel scegliAvatarLabel;
     private JPanel impostazioniPanel;
 
-    private static Impostazioni paginaImpostazioni = null ; }
+    private static Impostazioni paginaImpostazioni = null;
 
 
-/*
-    //costruttore della classe
- public Impostazioni(JFrame frameHome, Controller controller) {
-     //per finestra
-     frameImpostazioni = new JFrame("Impostazioni");
-     frameImpostazioni.setContentPane(impostazioniPanel);
-     frameImpostazioni.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-     frameImpostazioni.pack();
-     frameImpostazioni.setVisible(true);
+    //costruttore
+    public Impostazioni(JFrame frameHome, Controller controller) {
+        frameImpostazioni = new JFrame("Impostazioni");
+        frameImpostazioni.setContentPane(impostazioniPanel);
+        frameImpostazioni.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameImpostazioni.pack();
+        frameImpostazioni.setVisible(true);
 
-     frameImpostazioni.setResizable(false); //non cambia dimensione
-     frameImpostazioni.setSize(450, 450); //grandezza della finestra
-     frameImpostazioni.setLocationRelativeTo(null);
+        frameImpostazioni.setResizable(false); //non cambia dimensione
+        frameImpostazioni.setSize(450, 450); //grandezza della finestra
+        frameImpostazioni.setLocationRelativeTo(null);
+
+        //JLable cliccabile, per passare dalla pagina impostazioni a quella di home
+        tornaHomeImpostazioni.setCursor (new Cursor(Cursor.HAND_CURSOR)) ;
+
+        tornaHomeImpostazioni.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked (MouseEvent e) {
+                frameHome.setVisible (true) ;
+                frameImpostazioni.setVisible (false);
+
+            }
+        });
+    }
+}
 
      /*
      // Gestione del pulsante Salva Modifiche
