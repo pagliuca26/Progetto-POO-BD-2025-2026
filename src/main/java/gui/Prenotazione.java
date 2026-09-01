@@ -44,6 +44,12 @@ public class Prenotazione {
         framePrenotazione.setLocationRelativeTo(null); //finestra si apre al centro
         framePrenotazione.setVisible(false);
 
+        //imposto la scritta di benvenuto dinamica con il nome dell'utente loggato
+        benvenutoP.setText(controller.getSaluto() + controller.getUtenteAttuale().getNome());
+
+        // imposto l'avatar scelto salvato nel controller
+        cambiaAvatar(controller.getAvatarSelezionato());
+
         //Jlabel cliccabile, per tornare dalla pagina delle prenotazioni alla home
         tornaHomePrenotazione.setCursor(new Cursor(Cursor.HAND_CURSOR)); //cambia il cursore
 
@@ -52,6 +58,7 @@ public class Prenotazione {
             public void mouseClicked(MouseEvent e) {
                 frameHome.setVisible(true);
                 framePrenotazione.setVisible(false);
+
             }
         });
 
@@ -254,12 +261,17 @@ public class Prenotazione {
         }
     }
 
-    // metodo per cambiare l'immagine dell'avatar quando lo scelgo nelle impostazioni
+    // metodo per cambiare l'immagine dell'avatar
     public void cambiaAvatar(String nomeFile) {
-        // creo la nuova icona con l'immagine passata
-        ImageIcon icona = new ImageIcon(nomeFile);
-        // imposto l'icona sulla label dell'avatar
-        introduzione.setIcon(icona);
+        if (nomeFile != null && getClass().getResource("/" + nomeFile) != null) {
+            ImageIcon icona = new ImageIcon(getClass().getResource("/" + nomeFile));
+            iconaP.setIcon(icona);
+        }
+    }
+
+    //metodo per aggiornare la scritta del saluto
+    public void aggiornaSaluto(Controller controller) {
+        benvenutoP.setText(controller.getSaluto() + controller.getUtenteAttuale().getNome());
     }
 
 

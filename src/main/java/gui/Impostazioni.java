@@ -50,6 +50,8 @@ public class Impostazioni {
         frameImpostazioni.setSize(450, 450); //grandezza della finestra
         frameImpostazioni.setLocationRelativeTo(null);
 
+
+
         //JLable cliccabile, per passare dalla pagina impostazioni a quella di home
         tornaHomeImpostazioni.setCursor (new Cursor(Cursor.HAND_CURSOR)) ;
 
@@ -59,6 +61,8 @@ public class Impostazioni {
                 frameHome.setVisible (true) ;
                 frameImpostazioni.setVisible (false);
             }
+
+
         });
 
             // Creo il gruppo per permettere di selezionare uno o l'altro

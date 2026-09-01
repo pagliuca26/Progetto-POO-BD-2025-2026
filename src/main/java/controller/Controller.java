@@ -7,68 +7,78 @@ import java.util.ArrayList;
 
 public class Controller {
     private ArrayList<Utente> listaUtenti;
-    //per eccezione
+    //variabile per memorizzare l'utente loggato
     private Utente utenteAttuale = null;
+    //variabile per memorizzare l'avatar
+    private String avatarSelezionato = "iconaP-removebg";
 
     public Controller() {
-
         listaUtenti = new ArrayList<>();
     }
 
-    public void aggiungiUtente(Utente utente) {listaUtenti.add(utente);}
+    public void aggiungiUtente(Utente utente) {
+        listaUtenti.add(utente);
+    }
 
-    public boolean checkUtente(String campoEmail, String campoPassword){
-        if(campoEmail.isBlank()) throw new ExceptionEmail("Il campo email è vuoto.");
+    public boolean checkUtente(String campoEmail, String campoPassword) {
+        if (campoEmail.isBlank()) throw new ExceptionEmail("Il campo email è vuoto.");
         if (campoPassword.isBlank()) throw new ExceptionEmail("Il campo password è vuoto.");
 
-        for (Utente u : listaUtenti ){
-            if (u.getEmail().equals(campoEmail) && u.getPassword().equals(campoPassword)){
-    u.setAccessoEffettuato(true);
-    utenteAttuale = u;
-    return true;
-
+        for (Utente u : listaUtenti) {
+            if (u.getEmail().equals(campoEmail) && u.getPassword().equals(campoPassword)) {
+                u.setAccessoEffettuato(true);
+                utenteAttuale = u;
+                return true;
             }
         }
         throw new ExceptionEmail("Utente non trovato.");
     }
 
-      //Eccezioni per crea account
-      public void creaUtente (String email, String password, String nome, String cognome) throws RuntimeException {
-           if (email.isBlank()) throw new ExceptionEmail("Il campo email è vuoto.");
-           if (password.isBlank()) throw new ExceptionPassword("Il campo password è vuoto.");
-           if (nome.isBlank()) throw new ExceptionNome("Il campo nome è vuoto.");
-           if (cognome.isBlank()) throw new ExceptionCognome("Il campo cognome è vuoto.");
+    //eccezioni per crea account
+    public void creaUtente(String email, String password, String nome, String cognome) throws RuntimeException {
+        if (email.isBlank()) throw new ExceptionEmail("Il campo email è vuoto.");
+        if (password.isBlank()) throw new ExceptionPassword("Il campo password è vuoto.");
+        if (nome.isBlank()) throw new ExceptionNome("Il campo nome è vuoto.");
+        if (cognome.isBlank()) throw new ExceptionCognome("Il campo cognome è vuoto.");
 
-           for (Utente u: listaUtenti){
-               if (u.getEmail().equals(email)){
-                   throw new ExceptionEmailUguale("Email già esistente.");
-
-               }
+        for (Utente u : listaUtenti) {
+            if (u.getEmail().equals(email)) {
+                throw new ExceptionEmailUguale("Email già esistente.");
+            }
         }
 
-           Utente utente = new Utente(email,password);
-           listaUtenti.add(utente);
+        Utente utente = new Utente(email, password, nome, cognome);
+        listaUtenti.add(utente);
     }
- public Utente getUtenteAttuale() {
+
+    public Utente getUtenteAttuale() {
         return utenteAttuale;
- }
+    }
 
     public void esciUtente() {
         this.utenteAttuale.setAccessoEffettuato(false);
         this.utenteAttuale = null;
     }
 
-    public ArrayList<Utente> getListaUtenti(){
+    public ArrayList<Utente> getListaUtenti() {
         return listaUtenti;
     }
 
-    //variabile per memorizzare l'avatar
-    private String avatarSelezionato = "iconaP-removebg";
-
     //metodo per impostare l'avatar scelto
-    public void setAvatarSelezionato(String avatar) { this.avatarSelezionato = avatar; }
+    public void setAvatarSelezionato(String avatar) {
+        this.avatarSelezionato = avatar;
+    }
 
     //metodo per recuperare l'avatar scelto
-    public String getAvatarSelezionato() { return this.avatarSelezionato; }
+    public String getAvatarSelezionato() {
+        return this.avatarSelezionato;
+    }
 
+    //metodo per restituire il saluto in base all'avatar
+    public String getSaluto() {
+        if (avatarSelezionato != null && avatarSelezionato.equals("woman-avatar.png")) {
+            return "Benvenuta ";
+        }
+        return "Benvenuto ";
+    }
 }

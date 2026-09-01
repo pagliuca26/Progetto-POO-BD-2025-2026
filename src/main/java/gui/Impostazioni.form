@@ -31,7 +31,9 @@
       </component>
       <component id="df73e" class="javax.swing.JLabel" binding="nomeAttuale">
         <constraints>
-          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="80" height="17"/>
+          </grid>
         </constraints>
         <properties>
           <text value="Il tuo nome:"/>
@@ -39,7 +41,9 @@
       </component>
       <component id="b8d02" class="javax.swing.JLabel" binding="modificaNomeLabel">
         <constraints>
-          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="80" height="17"/>
+          </grid>
         </constraints>
         <properties>
           <text value="Modifica nome:"/>
@@ -47,7 +51,7 @@
       </component>
       <component id="70fef" class="javax.swing.JTextField" binding="moficaNome">
         <constraints>
-          <grid row="4" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="9" fill="1" indent="0" use-parent-layout="false">
+          <grid row="4" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="9" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
@@ -65,7 +69,9 @@
       </component>
       <component id="afb33" class="javax.swing.JLabel" binding="modoficaCognomeLabel">
         <constraints>
-          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="80" height="17"/>
+          </grid>
         </constraints>
         <properties>
           <text value="Modifica cognome:"/>
@@ -81,7 +87,9 @@
       </component>
       <component id="3a8d9" class="javax.swing.JLabel" binding="emailAttualeLabel">
         <constraints>
-          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="80" height="17"/>
+          </grid>
         </constraints>
         <properties>
           <text value="La tua email:"/>
@@ -99,7 +107,9 @@
       </component>
       <component id="4919b" class="javax.swing.JLabel" binding="modificaEmailLabel">
         <constraints>
-          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="80" height="17"/>
+          </grid>
         </constraints>
         <properties>
           <text value="Modifica email: "/>
@@ -115,7 +125,9 @@
       </component>
       <component id="e0ab9" class="javax.swing.JLabel" binding="passwordAttualeLabel">
         <constraints>
-          <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="80" height="17"/>
+          </grid>
         </constraints>
         <properties>
           <text value="La tua password: "/>
@@ -135,7 +147,7 @@
       <component id="c218a" class="javax.swing.JRadioButton" binding="avatarMaschileRadioButton">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
-            <preferred-size width="320" height="21"/>
+            <preferred-size width="-1" height="21"/>
           </grid>
         </constraints>
         <properties>
@@ -143,12 +155,14 @@
           <hideActionText value="false"/>
           <icon value="man-avatar.png"/>
           <opaque value="false"/>
-          <text value="Avatar maschile"/>
+          <text value="maschio"/>
         </properties>
       </component>
       <component id="88055" class="javax.swing.JLabel" binding="scegliAvatarLabel">
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="80" height="17"/>
+          </grid>
         </constraints>
         <properties>
           <foreground color="-12655316"/>
@@ -165,21 +179,11 @@
           <text value="Elimina account"/>
         </properties>
       </component>
-      <component id="9cff0" class="javax.swing.JRadioButton" binding="avatarFemminileRadioButton" default-binding="true">
-        <constraints>
-          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <enabled value="true"/>
-          <foreground color="-2792987"/>
-          <icon value="woman-avatar.png"/>
-          <opaque value="false"/>
-          <text value="Avatar femminile"/>
-        </properties>
-      </component>
       <component id="5702d" class="javax.swing.JLabel" binding="cognomeAttuale">
         <constraints>
-          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="80" height="17"/>
+          </grid>
         </constraints>
         <properties>
           <text value="Il tuo cognome:"/>
@@ -193,6 +197,18 @@
         </constraints>
         <properties>
           <text value=""/>
+        </properties>
+      </component>
+      <component id="9cff0" class="javax.swing.JRadioButton" binding="avatarFemminileRadioButton" default-binding="true">
+        <constraints>
+          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <enabled value="true"/>
+          <foreground color="-2792987"/>
+          <icon value="woman-avatar.png"/>
+          <opaque value="false"/>
+          <text value="femmina"/>
         </properties>
       </component>
     </children>

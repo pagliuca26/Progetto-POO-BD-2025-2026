@@ -39,7 +39,6 @@ public class Home {
         frameHome.setLocationRelativeTo(null); //finestra si apre al centro
         frameHome.setVisible(true);paginaPrenotazione = new Prenotazione(frameHome, controller);
 
-        //paginaImpostazioni = new Impostazioni (frameHome, controller);
 
         //JLable cliccabile, per passare dalla pagina home a quella di login
         returnLogin.addMouseListener(new MouseAdapter() {
@@ -88,7 +87,9 @@ public class Home {
                     //prima volta
                     paginaPrenotazione = new Prenotazione(frameHome, controller);
                 } else {
-                    //volte successive
+                    // volte successive
+                    paginaPrenotazione.cambiaAvatar(controller.getAvatarSelezionato());
+                    paginaPrenotazione.aggiornaSaluto(controller);
                     Prenotazione.getFramePrenotazione().setVisible(true);
                 }
                 frameHome.setVisible(false);
