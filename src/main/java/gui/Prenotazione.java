@@ -30,9 +30,11 @@ public class Prenotazione {
     private JButton annullaDespar;
     private JLabel iconaP;
     private JLabel benvenutoP;
+    private Controller controller;
 
     //costruttore
     public Prenotazione(JFrame frameHome, Controller controller) {
+        this.controller = controller;
         framePrenotazione = new JFrame("Prenotazioni");
         framePrenotazione.setContentPane(prenotazionePanel);
         framePrenotazione.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -99,6 +101,7 @@ public class Prenotazione {
             @Override
             public void actionPerformed(ActionEvent e) {
                 BoxDespar.aumentaDisponibile();
+                controller.annullaPrenotazioneDB(1);
 
                 int quantitaRimasta = 9 - BoxDespar.getDisponibile();
 
@@ -120,6 +123,7 @@ public class Prenotazione {
             @Override
             public void actionPerformed(ActionEvent e) {
                 BoxConad.aumentaDisponibile();
+                controller.annullaPrenotazioneDB(2);
 
                 int quantitaRimasta = 7 - BoxConad.getDisponibile();
 
@@ -141,6 +145,7 @@ public class Prenotazione {
             @Override
             public void actionPerformed(ActionEvent e) {
                 BoxSole365.aumentaDisponibile();
+                controller.annullaPrenotazioneDB(3);
 
                 int quantitaRimasta = 5 - BoxSole365.getDisponibile();
 
@@ -162,6 +167,7 @@ public class Prenotazione {
             @Override
             public void actionPerformed(ActionEvent e) {
                 BoxItaliamo.aumentaDisponibile();
+                controller.annullaPrenotazioneDB(3);
 
                 int quantitaRimasta = 10 - BoxItaliamo.getDisponibile();
 
@@ -183,6 +189,7 @@ public class Prenotazione {
             @Override
             public void actionPerformed(ActionEvent e) {
                 BoxGuacamole.aumentaDisponibile();
+                controller.annullaPrenotazioneDB(5);
 
                 int quantitaRimasta = 6 - BoxGuacamole.getDisponibile();
 
@@ -204,6 +211,7 @@ public class Prenotazione {
             @Override
             public void actionPerformed(ActionEvent e) {
                 BoxTokyo.aumentaDisponibile();
+                controller.annullaPrenotazioneDB(6);
 
                 int quantitaRimasta = 7 - BoxTokyo.getDisponibile();
 

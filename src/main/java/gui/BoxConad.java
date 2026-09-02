@@ -70,6 +70,9 @@ public class BoxConad {
                     int quantitaPresa = 7 - quantitàDisponibileConad;
                     Home.getPaginaPrenotazione().aggiornaPrenotazione("Conad", quantitaPresa);
 
+                    //salviamo l'acquisto nel db per la box di conad
+                    controller.acquistaBoxDB(2);
+
                     //POP-UP 1: Finestra di successo dell'acquisto
                     JOptionPane.showMessageDialog(null, "Acquisto effettuato con successo!");
                 } else {     //se la condizione dell if è falsa (ovvero la quantità è uguale a zero)

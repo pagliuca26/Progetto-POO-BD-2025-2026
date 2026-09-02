@@ -69,6 +69,9 @@ public class BoxItaliamo {
                     int quantitaPresa = 10 - quantitàDisponibileItaliamo;
                     Home.getPaginaPrenotazione().aggiornaPrenotazione("Italiamo", quantitaPresa);
 
+                    //salviamo l'acquisto nel db per la box di italiamo
+                    controller.acquistaBoxDB(4);
+
                     // POP-UP 1: Finestra di successo dell'acquisto
                     JOptionPane.showMessageDialog(null, "Acquisto effettuato con successo!");
                 } else {     //se la condizione dell if è falsa (ovvero la quantità è uguale a zero)

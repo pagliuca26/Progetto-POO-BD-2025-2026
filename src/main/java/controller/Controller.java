@@ -11,6 +11,8 @@ public class Controller {
     private Utente utenteAttuale = null;
     //variabile per memorizzare l'avatar
     private String avatarSelezionato = "iconaP-removebg";
+    private dao.UtenteDAO utenteDAO = new implementazionePostgresDAO.UtentePostgresDAO();
+    private dao.PrenotazioneDAO prenotazioneDAO = new implementazionePostgresDAO.PrenotazionePostgresDAO();
 
     public Controller() {
         listaUtenti = new ArrayList<>();
@@ -24,13 +26,17 @@ public class Controller {
         if (campoEmail.isBlank()) throw new ExceptionEmail("Il campo email è vuoto.");
         if (campoPassword.isBlank()) throw new ExceptionEmail("Il campo password è vuoto.");
 
-        for (Utente u : listaUtenti) {
-            if (u.getEmail().equals(campoEmail) && u.getPassword().equals(campoPassword)) {
-                u.setAccessoEffettuato(true);
-                utenteAttuale = u;
+        try {
+            Utente utenteTrovato = utenteDAO.login(campoEmail, campoPassword);
+            if (utenteTrovato != null) {
+                utenteTrovato.setAccessoEffettuato(true);
+                this.utenteAttuale = utenteTrovato;
                 return true;
             }
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
         }
+
         throw new ExceptionEmail("Utente non trovato.");
     }
 
@@ -41,14 +47,15 @@ public class Controller {
         if (nome.isBlank()) throw new ExceptionNome("Il campo nome è vuoto.");
         if (cognome.isBlank()) throw new ExceptionCognome("Il campo cognome è vuoto.");
 
-        for (Utente u : listaUtenti) {
-            if (u.getEmail().equals(email)) {
-                throw new ExceptionEmailUguale("Email già esistente.");
+        Utente nuovo = new Utente(email, password, nome, cognome);
+        try {
+            boolean inserito = utenteDAO.registraUtente(nuovo);
+            if (inserito) {
+                listaUtenti.add(nuovo);
             }
+        } catch (java.sql.SQLException e) {
+            throw new ExceptionEmailUguale("Email già esistente o errore nel database.");
         }
-
-        Utente utente = new Utente(email, password, nome, cognome);
-        listaUtenti.add(utente);
     }
 
     public Utente getUtenteAttuale() {
@@ -99,4 +106,40 @@ public class Controller {
             }
         }
     }
+
+    //metodo chiamato dalla GUI per annullare una prenotazione memorizzata nel database
+    public boolean annullaPrenotazioneDB(int idBox) {
+        if (utenteAttuale == null) return false;
+        try {
+            return prenotazioneDAO.annullaPrenotazione(idBox, utenteAttuale.getEmail());
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    //metodo chiamato quando l'utente acquista una box da una schermata del punto vendita
+    public boolean acquistaBoxDB(int idBox) {
+        //se non c'è nessun utente loggato, l'acquisto non può procedere
+        if (utenteAttuale == null) {
+            return false;
+        }
+
+        try {
+            //genera un codice casuale univoco per il ritiro della box
+            String codiceUnivoco = "BOX-" + System.currentTimeMillis();
+
+            //crea l'oggetto Prenotazione impostando il codice appena generato
+            model.Prenotazione nuovaPrenotazione = new model.Prenotazione(codiceUnivoco);
+            nuovaPrenotazione.setStato("ATTIVA");
+
+            //inserisce la prenotazione nel DB Postgres (attiverà il trigger SQL per scalare la quantità)
+            return prenotazioneDAO.inserisciPrenotazione(nuovaPrenotazione, utenteAttuale.getEmail(), idBox);
+        } catch (java.sql.SQLException e) {
+            //stampa l'errore SQL in console nel caso di problemi con il DB
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }

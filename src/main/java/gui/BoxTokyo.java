@@ -70,6 +70,9 @@ public class BoxTokyo {
                     int quantitaPresa = 7 - quantitàDisponibileTokyo;
                     Home.getPaginaPrenotazione().aggiornaPrenotazione("Tokyo", quantitaPresa);
 
+                    //salviamo l'acquisto nel db per la box di tokyo
+                    controller.acquistaBoxDB(6);
+
                     // POP-UP 1: Finestra di successo dell'acquisto
                     JOptionPane.showMessageDialog(null, "Acquisto effettuato con successo!");
                 } else {     //se la condizione dell if è falsa (ovvero la quantità è uguale a zero)

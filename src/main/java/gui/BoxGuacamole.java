@@ -69,6 +69,9 @@ public class BoxGuacamole {
                     int quantitaPresa = 6 - quantitàDisponibileGuacamole;
                     Home.getPaginaPrenotazione().aggiornaPrenotazione("Guacamole", quantitaPresa);
 
+                    //salviamo l'acquisto nel db per la box di guacamole
+                    controller.acquistaBoxDB(5);
+
 
                     //POP-UP 1: Finestra di successo dell'acquisto
                     JOptionPane.showMessageDialog(null, "Acquisto effettuato con successo!");
