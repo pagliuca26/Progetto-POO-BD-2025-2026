@@ -32,6 +32,18 @@ public class BoxGuacamole {
         frameGuacamole.setLocationRelativeTo(null);//finestra si apre al centro
         frameGuacamole.setVisible(true);
 
+        // Aggiungo l'immagine di sfondo al form
+        try {
+            java.awt.Image img = javax.imageio.ImageIO.read(new java.io.File("src/sfondo_per_guacamole.png"));
+            ImageIcon iconaSfondo = new ImageIcon(img);
+            JLabel labelSfondo = new JLabel(iconaSfondo);
+            labelSfondo.setBounds(0, 0, 450, 450);
+            boxGuacamole.add(labelSfondo, Integer.valueOf(0));
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Impossibile caricare l'immagine di sfondo.");
+        }
+
         //JLable cliccabile, per tortare alla scelta dei ristoranti
         ristGuacamole.setCursor(new Cursor(Cursor.HAND_CURSOR));
 

@@ -31,6 +31,18 @@ public class BoxItaliamo {
         frameItaliamo.setLocationRelativeTo(null); //finestra si apre al centro
         frameItaliamo.setVisible(true);
 
+        // Aggiungo l'immagine di sfondo al form
+        try {
+            java.awt.Image img = javax.imageio.ImageIO.read(new java.io.File("src/sfondo_per_italiamo.png"));
+            ImageIcon iconaSfondo = new ImageIcon(img);
+            JLabel labelSfondo = new JLabel(iconaSfondo);
+            labelSfondo.setBounds(0, 0, 450, 450);
+            boxItaliamo.add(labelSfondo, Integer.valueOf(0));
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Impossibile caricare l'immagine di sfondo.");
+        }
+
         //JLable cliccabile, per tortare alla scelta dei ristoranti
         ristItaliamo.setCursor (new Cursor(Cursor.HAND_CURSOR)) ;
 

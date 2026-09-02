@@ -44,6 +44,18 @@ public class Prenotazione {
         framePrenotazione.setLocationRelativeTo(null); //finestra si apre al centro
         framePrenotazione.setVisible(false);
 
+        // Aggiungo l'immagine di sfondo al form
+        try {
+            java.awt.Image img = javax.imageio.ImageIO.read(new java.io.File("src/sfondo_prenotazione_java.png"));
+            ImageIcon iconaSfondo = new ImageIcon(img);
+            JLabel labelSfondo = new JLabel(iconaSfondo);
+            labelSfondo.setBounds(0, 0, 450, 450);
+            prenotazionePanel.add(labelSfondo, Integer.valueOf(0));
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Impossibile caricare l'immagine di sfondo.");
+        }
+
         //imposto la scritta di benvenuto dinamica con il nome dell'utente loggato
         benvenutoP.setText(controller.getSaluto() + controller.getUtenteAttuale().getNome());
 
