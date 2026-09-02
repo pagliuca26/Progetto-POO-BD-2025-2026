@@ -81,4 +81,22 @@ public class Controller {
         }
         return "Benvenuto ";
     }
+
+    //metodo per aggiornare i dati dell'utente attuale
+    public void aggiornaDatiUtente(String nuovoNome, String nuovoCognome, String nuovaEmail, String nuovaPassword) {
+        if (utenteAttuale != null) {
+            if (!nuovoNome.isBlank()) {
+                utenteAttuale.setNome(nuovoNome);
+            }
+            if (!nuovoCognome.isBlank()) {
+                utenteAttuale.setCognome(nuovoCognome);
+            }
+            if (!nuovaEmail.isBlank()) {
+                utenteAttuale.setEmail(nuovaEmail);
+            }
+            if (!nuovaPassword.isBlank()) {
+                utenteAttuale.setPassword(nuovaPassword);
+            }
+        }
+    }
 }

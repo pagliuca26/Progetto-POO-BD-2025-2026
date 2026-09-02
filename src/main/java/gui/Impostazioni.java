@@ -69,12 +69,12 @@ public class Impostazioni {
 
         });
 
-            // Creo il gruppo per permettere di selezionare uno o l'altro
+            //creo il gruppo per permettere di selezionare uno o l'altro
             ButtonGroup gruppoAvatar = new ButtonGroup();
             gruppoAvatar.add(avatarMaschileRadioButton);
             gruppoAvatar.add(avatarFemminileRadioButton);
 
-            // Gestione del pulsante Salva Modifiche
+            //gestione del pulsante salva sodifiche
             salvaModificheButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
