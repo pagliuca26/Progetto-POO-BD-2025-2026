@@ -32,6 +32,8 @@ public class BoxDespar {
         frameDespar.setLocationRelativeTo(null); //finestra si apre al centro
         frameDespar.setVisible(true);
 
+        /*
+
         // Aggiungo l'immagine di sfondo al form
         try {
             java.awt.Image img = javax.imageio.ImageIO.read(new java.io.File("src/sfondo_per_despar.png"));
@@ -43,7 +45,7 @@ public class BoxDespar {
             e.printStackTrace();
             System.err.println("Impossibile caricare l'immagine di sfondo.");
         }
-
+*/
 
         //JLable cliccabile, per tortare alla scelta dei supemercati
         supDespar.setCursor (new Cursor(Cursor.HAND_CURSOR)) ;

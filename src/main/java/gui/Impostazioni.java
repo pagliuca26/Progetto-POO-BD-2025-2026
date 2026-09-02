@@ -43,6 +43,7 @@ public class Impostazioni {
         frameImpostazioni.setSize(450, 450); //grandezza della finestra
         frameImpostazioni.setLocationRelativeTo(null);
 
+        /*
         // Aggiungo l'immagine di sfondo al form
         try {
             java.awt.Image img = javax.imageio.ImageIO.read(new java.io.File("src/sfondo_per_impostazioni.png"));
@@ -54,7 +55,7 @@ public class Impostazioni {
             e.printStackTrace();
             System.err.println("Impossibile caricare l'immagine di sfondo.");
         }
-
+*/
         //JLable cliccabile, per passare dalla pagina impostazioni a quella di home
         tornaHomeImpostazioni.setCursor (new Cursor(Cursor.HAND_CURSOR)) ;
 

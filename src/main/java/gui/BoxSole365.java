@@ -31,6 +31,8 @@ public class BoxSole365 {
         frameSole365.setLocationRelativeTo(null); //finestra si apre al centro
         frameSole365.setVisible(true);
 
+
+        /*
         // Aggiungo l'immagine di sfondo al form
         try {
             java.awt.Image img = javax.imageio.ImageIO.read(new java.io.File("src/sfondo_per_sole365.png"));
@@ -42,7 +44,7 @@ public class BoxSole365 {
             e.printStackTrace();
             System.err.println("Impossibile caricare l'immagine di sfondo.");
         }
-
+*/
         //JLable cliccabile, per tornare alla scelta dei supemercati
         supSole365.setCursor (new Cursor(Cursor.HAND_CURSOR)) ;
 

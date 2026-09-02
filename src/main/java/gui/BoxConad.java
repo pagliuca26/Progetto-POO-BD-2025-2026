@@ -32,6 +32,7 @@ public class BoxConad {
         frameConad.setLocationRelativeTo(null);//finestra si apre al centro
         frameConad.setVisible(true);
 
+        /*
         // Aggiungo l'immagine di sfondo al form
         try {
             java.awt.Image img = javax.imageio.ImageIO.read(new java.io.File("src/sfondo_per_conad.png"));
@@ -43,7 +44,7 @@ public class BoxConad {
             e.printStackTrace();
             System.err.println("Impossibile caricare l'immagine di sfondo.");
         }
-
+*/
         //JLable cliccabile, per tortare alla scelta dei supemercati
         supConad.setCursor (new Cursor(Cursor.HAND_CURSOR)) ;
 
