@@ -56,7 +56,7 @@ public class BoxSole365 {
             }
         });
 
-        //quantità che diminuisce col bottone acquista
+        //Quantità che diminuisce col bottone acquista
         qntDispSole.setText("Quantità disponibile: " + quantitàDisponibileSole);
 
         acquistaSole365.addActionListener(new ActionListener() {
@@ -68,15 +68,22 @@ public class BoxSole365 {
                     qntDispSole.setText("Quantità disponibile: " + quantitàDisponibileSole); // Aggiorna la scritta DIRETTAMENTE sulla pagina
 
                     int quantitaPresa = 5 - quantitàDisponibileSole;
-                    Home.getPaginaPrenotazione().aggiornaPrenotazione("Sole365", quantitaPresa);
 
-                    //salviamo l'acquisto nel db per la box di sole365
-                    controller.acquistaBoxDB(3);
+                    //salva l'acquisto nel db e recupera il codice univoco generato
+                    String codiceRitiro = controller.acquistaBoxDB(4);
 
-                    // POP-UP 1: Finestra di successo dell'acquisto
-                    JOptionPane.showMessageDialog(null, "Acquisto effettuato con successo!");
+                    //aggiorna la pagina Prenotazioni passando anche il codice univoco
+                    Home.getPaginaPrenotazione().aggiornaPrenotazione("Sole365", quantitaPresa, codiceRitiro);
+
+                    //mostra il popup di conferma con il codice univoco
+                    JOptionPane.showMessageDialog(
+                            frameSole365,
+                            "Acquisto effettuato con successo!\nCodice di ritiro: " + codiceRitiro,
+                            "Prenotazione Confermata",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
                 } else {     //se la condizione dell if è falsa (ovvero la quantità è uguale a zero)
-                    // POP-UP 2: Finestra di errore: la quantità è 0
+                    //POP-UP 2: Finestra di errore: la quantità è 0
                     JOptionPane.showMessageDialog(null, "Errore: Le Box per questo punto vendita sono terminate!",  "Box Terminate",
                             JOptionPane.ERROR_MESSAGE
                     );

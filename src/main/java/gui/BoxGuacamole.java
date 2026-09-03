@@ -55,7 +55,7 @@ public class BoxGuacamole {
             }
         });
 
-        //Quantità che diminuisce col bottone acquista
+        //quantità che diminuisce col bottone acquista
         qntDispGuacamole.setText("Quantità disponibile: " + quantitàDisponibileGuacamole);
 
         acquistaGuacamole.addActionListener(new ActionListener() {
@@ -67,14 +67,20 @@ public class BoxGuacamole {
                     qntDispGuacamole.setText("Quantità disponibile: " + quantitàDisponibileGuacamole); // Aggiorna la scritta DIRETTAMENTE sulla pagina
 
                     int quantitaPresa = 6 - quantitàDisponibileGuacamole;
-                    Home.getPaginaPrenotazione().aggiornaPrenotazione("Guacamole", quantitaPresa);
 
-                    //salviamo l'acquisto nel db per la box di guacamole
-                    controller.acquistaBoxDB(5);
+                    //salva l'acquisto nel db e recupera il codice univoco generato
+                    String codiceRitiro = controller.acquistaBoxDB(5);
 
+                    //aggiorna la pagina Prenotazioni passando anche il codice univoco
+                    Home.getPaginaPrenotazione().aggiornaPrenotazione("Guacamole", quantitaPresa, codiceRitiro);
 
-                    //POP-UP 1: Finestra di successo dell'acquisto
-                    JOptionPane.showMessageDialog(null, "Acquisto effettuato con successo!");
+                    //mostra il popup di conferma con il codice univoco
+                    JOptionPane.showMessageDialog(
+                            frameGuacamole,
+                            "Acquisto effettuato con successo!\nCodice di ritiro: " + codiceRitiro,
+                            "Prenotazione Confermata",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
                 } else {     //se la condizione dell if è falsa (ovvero la quantità è uguale a zero)
                     //POP-UP 2: Finestra di errore: la quantità è 0
                     JOptionPane.showMessageDialog(null, "Errore: Le Box per questo punto vendita sono terminate!",  "Box Terminate",

@@ -96,134 +96,158 @@ public class Prenotazione {
         elencoR.setVisible(false);
         elencoS.setVisible(false);
 
-        //evento Annulla Despar
+        //evento annulla despar
         annullaDespar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                BoxDespar.aumentaDisponibile();
-                controller.annullaPrenotazioneDB(1);
+                if (confermaAnnullamento()) {
+                    BoxDespar.aumentaDisponibile();
+                    controller.annullaPrenotazioneDB(1);
 
-                int quantitaRimasta = 9 - BoxDespar.getDisponibile();
+                    int quantitaRimasta = 9 - BoxDespar.getDisponibile();
 
-                if (quantitaRimasta > 0) {
-                    desparNPrenotazioni.setText("Despar: " + quantitaRimasta + " box");
-                } else {
-                    desparNPrenotazioni.setVisible(false);
-                    annullaDespar.setVisible(false);
-                }
+                    if (quantitaRimasta > 0) {
+                        String testoAttuale = desparNPrenotazioni.getText();
+                        String pezzoCodice = testoAttuale.substring(testoAttuale.indexOf("<br>"));
+                        desparNPrenotazioni.setText("<html>Despar: " + quantitaRimasta + " box" + pezzoCodice);
+                    } else {
+                        desparNPrenotazioni.setVisible(false);
+                        annullaDespar.setVisible(false);
+                    }
 
-                if (!conadNPrenotazioni.isVisible() && !desparNPrenotazioni.isVisible() && !soleNPrenotazioni.isVisible()) {
-                    elencoS.setVisible(false);
+                    if (!conadNPrenotazioni.isVisible() && !desparNPrenotazioni.isVisible() && !soleNPrenotazioni.isVisible()) {
+                        elencoS.setVisible(false);
+                    }
                 }
             }
         });
 
-        //evento Annulla Conad
+        //evento annulla conad
         annullaConad.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                BoxConad.aumentaDisponibile();
-                controller.annullaPrenotazioneDB(2);
+                if (confermaAnnullamento()) {
+                    BoxConad.aumentaDisponibile();
+                    controller.annullaPrenotazioneDB(2);
 
-                int quantitaRimasta = 7 - BoxConad.getDisponibile();
+                    int quantitaRimasta = 7 - BoxConad.getDisponibile();
 
-                if (quantitaRimasta > 0) {
-                    conadNPrenotazioni.setText("Conad: " + quantitaRimasta + " box");
-                } else {
-                    conadNPrenotazioni.setVisible(false);
-                    annullaConad.setVisible(false);
-                }
+                    if (quantitaRimasta > 0) {
+                        String testoAttuale = conadNPrenotazioni.getText();
+                        String pezzoCodice = testoAttuale.substring(testoAttuale.indexOf("<br>"));
+                        conadNPrenotazioni.setText("<html>Conad: " + quantitaRimasta + " box" + pezzoCodice);
+                    } else {
+                        conadNPrenotazioni.setVisible(false);
+                        annullaConad.setVisible(false);
+                    }
 
-                if (!conadNPrenotazioni.isVisible() && !desparNPrenotazioni.isVisible() && !soleNPrenotazioni.isVisible()) {
-                    elencoS.setVisible(false);
+                    if (!conadNPrenotazioni.isVisible() && !desparNPrenotazioni.isVisible() && !soleNPrenotazioni.isVisible()) {
+                        elencoS.setVisible(false);
+                    }
                 }
             }
         });
 
-        //evento Annulla Sole365
+        //evento annulla sole365
         annullaSole.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                BoxSole365.aumentaDisponibile();
-                controller.annullaPrenotazioneDB(3);
+                if (confermaAnnullamento()) {
+                    BoxSole365.aumentaDisponibile();
+                    controller.annullaPrenotazioneDB(3);
 
-                int quantitaRimasta = 5 - BoxSole365.getDisponibile();
+                    int quantitaRimasta = 5 - BoxSole365.getDisponibile();
 
-                if (quantitaRimasta > 0) {
-                    soleNPrenotazioni.setText("Sole365: " + quantitaRimasta + " box");
-                } else {
-                    soleNPrenotazioni.setVisible(false);
-                    annullaSole.setVisible(false);
-                }
+                    if (quantitaRimasta > 0) {
+                        String testoAttuale = soleNPrenotazioni.getText();
+                        String pezzoCodice = testoAttuale.substring(testoAttuale.indexOf("<br>"));
+                        soleNPrenotazioni.setText("<html>Sole365: " + quantitaRimasta + " box" + pezzoCodice);
+                    } else {
+                        soleNPrenotazioni.setVisible(false);
+                        annullaSole.setVisible(false);
+                    }
 
-                if (!conadNPrenotazioni.isVisible() && !desparNPrenotazioni.isVisible() && !soleNPrenotazioni.isVisible()) {
-                    elencoS.setVisible(false);
+                    if (!conadNPrenotazioni.isVisible() && !desparNPrenotazioni.isVisible() && !soleNPrenotazioni.isVisible()) {
+                        elencoS.setVisible(false);
+                    }
                 }
             }
         });
 
-        //evento Annulla Italiamo
+        //evento annulla italiamo
         annullaItaliamo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                BoxItaliamo.aumentaDisponibile();
-                controller.annullaPrenotazioneDB(3);
+                if (confermaAnnullamento()) {
+                    BoxItaliamo.aumentaDisponibile();
+                    controller.annullaPrenotazioneDB(3);
 
-                int quantitaRimasta = 10 - BoxItaliamo.getDisponibile();
+                    int quantitaRimasta = 10 - BoxItaliamo.getDisponibile();
 
-                if (quantitaRimasta > 0) {
-                    italiamoNPrenotazioni.setText("Italiamo: " + quantitaRimasta + " box");
-                } else {
-                    italiamoNPrenotazioni.setVisible(false);
-                    annullaItaliamo.setVisible(false);
-                }
+                    if (quantitaRimasta > 0) {
+                        String testoAttuale = italiamoNPrenotazioni.getText();
+                        String pezzoCodice = testoAttuale.substring(testoAttuale.indexOf("<br>"));
+                        italiamoNPrenotazioni.setText("<html>Italiamo: " + quantitaRimasta + " box" + pezzoCodice);
+                    } else {
+                        italiamoNPrenotazioni.setVisible(false);
+                        annullaItaliamo.setVisible(false);
+                    }
 
-                if (!guacamoleNPrenotazioni.isVisible() && !italiamoNPrenotazioni.isVisible() && !tokyoNPrenotazioni.isVisible()) {
-                    elencoR.setVisible(false);
+                    if (!guacamoleNPrenotazioni.isVisible() && !italiamoNPrenotazioni.isVisible() && !tokyoNPrenotazioni.isVisible()) {
+                        elencoR.setVisible(false);
+                    }
                 }
             }
         });
 
-        //evento Annulla Guacamole
+        //evento annulla guacamole
         annullaGuacamole.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                BoxGuacamole.aumentaDisponibile();
-                controller.annullaPrenotazioneDB(5);
+                if (confermaAnnullamento()) {
+                    BoxGuacamole.aumentaDisponibile();
+                    controller.annullaPrenotazioneDB(5);
 
-                int quantitaRimasta = 6 - BoxGuacamole.getDisponibile();
+                    int quantitaRimasta = 6 - BoxGuacamole.getDisponibile();
 
-                if (quantitaRimasta > 0) {
-                    guacamoleNPrenotazioni.setText("Guacamole: " + quantitaRimasta + " box");
-                } else {
-                    guacamoleNPrenotazioni.setVisible(false);
-                    annullaGuacamole.setVisible(false);
-                }
+                    if (quantitaRimasta > 0) {
+                        String testoAttuale = guacamoleNPrenotazioni.getText();
+                        String pezzoCodice = testoAttuale.substring(testoAttuale.indexOf("<br>"));
+                        guacamoleNPrenotazioni.setText("<html>Guacamole: " + quantitaRimasta + " box" + pezzoCodice);
+                    } else {
+                        guacamoleNPrenotazioni.setVisible(false);
+                        annullaGuacamole.setVisible(false);
+                    }
 
-                if (!guacamoleNPrenotazioni.isVisible() && !italiamoNPrenotazioni.isVisible() && !tokyoNPrenotazioni.isVisible()) {
-                    elencoR.setVisible(false);
+                    if (!guacamoleNPrenotazioni.isVisible() && !italiamoNPrenotazioni.isVisible() && !tokyoNPrenotazioni.isVisible()) {
+                        elencoR.setVisible(false);
+                    }
                 }
             }
         });
 
-        //evento Annulla Tokyo
+        //evento annulla tokyo
         annullaTokyo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                BoxTokyo.aumentaDisponibile();
-                controller.annullaPrenotazioneDB(6);
+                if (confermaAnnullamento()) {
+                    BoxTokyo.aumentaDisponibile();
+                    controller.annullaPrenotazioneDB(6);
 
-                int quantitaRimasta = 7 - BoxTokyo.getDisponibile();
+                    int quantitaRimasta = 7 - BoxTokyo.getDisponibile();
 
-                if (quantitaRimasta > 0) {
-                    tokyoNPrenotazioni.setText("Tokyo: " + quantitaRimasta + " box");
-                } else {
-                    tokyoNPrenotazioni.setVisible(false);
-                    annullaTokyo.setVisible(false);
-                }
+                    if (quantitaRimasta > 0) {
+                        String testoAttuale = tokyoNPrenotazioni.getText();
+                        String pezzoCodice = testoAttuale.substring(testoAttuale.indexOf("<br>"));
+                        tokyoNPrenotazioni.setText("<html>Tokyo: " + quantitaRimasta + " box" + pezzoCodice);
+                    } else {
+                        tokyoNPrenotazioni.setVisible(false);
+                        annullaTokyo.setVisible(false);
+                    }
 
-                if (!guacamoleNPrenotazioni.isVisible() && !italiamoNPrenotazioni.isVisible() && !tokyoNPrenotazioni.isVisible()) {
-                    elencoR.setVisible(false);
+                    if (!guacamoleNPrenotazioni.isVisible() && !italiamoNPrenotazioni.isVisible() && !tokyoNPrenotazioni.isVisible()) {
+                        elencoR.setVisible(false);
+                    }
                 }
             }
         });
@@ -236,7 +260,7 @@ public class Prenotazione {
 
     //metodo per aggiornare i contatori delle box prenotate
     //l'operatore == confronta i riferimenti in memoria (le istanze), mentre .equals() verifica il reale contenuto testuale delle stringhe
-    public void aggiornaPrenotazione (String negozio, int quantitaAcquistata) {
+    public void aggiornaPrenotazione (String negozio, int quantitaAcquistata, String codiceUnivoco) {
 
         //facciamo un controllo all'inizio: se è un ristorante mostra elencoR, altrimenti elencoS
         if (negozio.equals("Guacamole") || negozio.equals("Italiamo") || negozio.equals("Tokyo")) {
@@ -247,37 +271,37 @@ public class Prenotazione {
 
         //poi controlliamo quali e quante box sono state acquistate per farle uscire all'interno della pagina
         if (negozio.equals("Guacamole")) {
-            guacamoleNPrenotazioni.setText("Guacamole: " + quantitaAcquistata + " box");
+            guacamoleNPrenotazioni.setText("<html>Guacamole: " + quantitaAcquistata + " box<br>Cod: " + codiceUnivoco + "</html>");
             guacamoleNPrenotazioni.setVisible(true);
             annullaGuacamole.setVisible(true);
         }
 
         if (negozio.equals("Tokyo")) {
-            tokyoNPrenotazioni.setText("Tokyo: " + quantitaAcquistata + " box");
+            tokyoNPrenotazioni.setText("<html>Tokyo: " + quantitaAcquistata + " box<br>Cod: " + codiceUnivoco + "</html>");
             tokyoNPrenotazioni.setVisible(true);
             annullaTokyo.setVisible(true);
         }
 
         if (negozio.equals("Italiamo")) {
-            italiamoNPrenotazioni.setText("Italiamo: " + quantitaAcquistata + " box");
+            italiamoNPrenotazioni.setText("<html>Italiamo: " + quantitaAcquistata + " box<br>Cod: " + codiceUnivoco + "</html>");
             italiamoNPrenotazioni.setVisible(true);
             annullaItaliamo.setVisible(true);
         }
 
         if (negozio.equals("Despar")) {
-            desparNPrenotazioni.setText("Despar: " + quantitaAcquistata + " box");
+            desparNPrenotazioni.setText("<html>Despar: " + quantitaAcquistata + " box<br>Cod: " + codiceUnivoco + "</html>");
             desparNPrenotazioni.setVisible(true);
             annullaDespar.setVisible(true);
         }
 
         if (negozio.equals("Conad")) {
-            conadNPrenotazioni.setText("Conad: " + quantitaAcquistata + " box");
+            conadNPrenotazioni.setText("<html>Conad: " + quantitaAcquistata + " box<br>Cod: " + codiceUnivoco + "</html>");
             conadNPrenotazioni.setVisible(true);
             annullaConad.setVisible(true);
         }
 
         if (negozio.equals("Sole365")){
-            soleNPrenotazioni.setText("Sole365: " + quantitaAcquistata + " box");
+            soleNPrenotazioni.setText("<html>Sole365: " + quantitaAcquistata + " box<br>Cod: " + codiceUnivoco + "</html>");
             soleNPrenotazioni.setVisible(true);
             annullaSole.setVisible(true);
         }
@@ -296,8 +320,21 @@ public class Prenotazione {
         benvenutoP.setText(controller.getSaluto() + controller.getUtenteAttuale().getNome());
     }
 
+    //metodo di supporto per chiedere conferma prima di annullare
+    private boolean confermaAnnullamento() {
+        int risposta = JOptionPane.showConfirmDialog(
+                null,
+                "Vuoi annullare la prenotazione?",
+                "Conferma annullamento",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+        );
+        return risposta == JOptionPane.YES_OPTION;
+    }
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
     }
+
+
 }

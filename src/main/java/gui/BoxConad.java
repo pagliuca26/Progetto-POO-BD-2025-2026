@@ -65,16 +65,23 @@ public class BoxConad {
                 if (quantitàDisponibileConad > 0) { //controllo condizionale: verifica se ci sono ancora box disponibili (maggiore di zero)
                     quantitàDisponibileConad--;    //decrementa di 1 il valore della variabile intera che tiene il conto delle box
 
-                    qntDispConad.setText("Quantità disponibile: " + quantitàDisponibileConad); //Aggiorna la scritta direttamente sulla pagina
+                    qntDispConad.setText("Quantità disponibile: " + quantitàDisponibileConad); // Aggiorna la scritta DIRETTAMENTE sulla pagina
 
                     int quantitaPresa = 7 - quantitàDisponibileConad;
-                    Home.getPaginaPrenotazione().aggiornaPrenotazione("Conad", quantitaPresa);
 
-                    //salviamo l'acquisto nel db per la box di conad
-                    controller.acquistaBoxDB(2);
+                    //salva l'acquisto nel db e recupera il codice univoco generato
+                    String codiceRitiro = controller.acquistaBoxDB(2);
 
-                    //POP-UP 1: Finestra di successo dell'acquisto
-                    JOptionPane.showMessageDialog(null, "Acquisto effettuato con successo!");
+                    //aggiorna la pagina Prenotazioni passando anche il codice univoco
+                    Home.getPaginaPrenotazione().aggiornaPrenotazione("Conad", quantitaPresa, codiceRitiro);
+
+                    //mostra il popup di conferma con il codice univoco
+                    JOptionPane.showMessageDialog(
+                            frameConad,
+                            "Acquisto effettuato con successo!\nCodice di ritiro: " + codiceRitiro,
+                            "Prenotazione Confermata",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
                 } else {     //se la condizione dell if è falsa (ovvero la quantità è uguale a zero)
                     //POP-UP 2: Finestra di errore: la quantità è 0
                     JOptionPane.showMessageDialog(null, "Errore: Le Box per questo punto vendita sono terminate!",  "Box Terminate",

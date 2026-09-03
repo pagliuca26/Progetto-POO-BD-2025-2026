@@ -119,10 +119,10 @@ public class Controller {
     }
 
     //metodo chiamato quando l'utente acquista una box da una schermata del punto vendita
-    public boolean acquistaBoxDB(int idBox) {
+    public String acquistaBoxDB(int idBox) {
         //se non c'è nessun utente loggato, l'acquisto non può procedere
         if (utenteAttuale == null) {
-            return false;
+            return null;
         }
 
         try {
@@ -134,11 +134,15 @@ public class Controller {
             nuovaPrenotazione.setStato("ATTIVA");
 
             //inserisce la prenotazione nel DB Postgres (attiverà il trigger SQL per scalare la quantità)
-            return prenotazioneDAO.inserisciPrenotazione(nuovaPrenotazione, utenteAttuale.getEmail(), idBox);
+            boolean inserito = prenotazioneDAO.inserisciPrenotazione(nuovaPrenotazione, utenteAttuale.getEmail(), idBox);
+            if (inserito) {
+                return codiceUnivoco;
+            }
+            return null;
         } catch (java.sql.SQLException e) {
             //stampa l'errore SQL in console nel caso di problemi con il DB
             e.printStackTrace();
-            return false;
+            return null;
         }
     }
 

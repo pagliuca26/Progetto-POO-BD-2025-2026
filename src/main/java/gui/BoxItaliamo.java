@@ -55,7 +55,7 @@ public class BoxItaliamo {
             }
         });
 
-        //Quantità che diminuisce col bottone acquista
+        //quantità che diminuisce col bottone acquista
         qntDispItaliamo.setText("Quantità disponibile: " + quantitàDisponibileItaliamo);
 
         acquistaItaliamo.addActionListener(new ActionListener() {
@@ -64,18 +64,25 @@ public class BoxItaliamo {
                 if (quantitàDisponibileItaliamo > 0) { //controllo condizionale: verifica se ci sono ancora box disponibili (maggiore di zero)
                     quantitàDisponibileItaliamo--;    //decrementa di 1 il valore della variabile intera che tiene il conto delle box
 
-                    qntDispItaliamo.setText("Quantità disponibile: " + quantitàDisponibileItaliamo); //aggiorna la scritta sulla pagina
+                    qntDispItaliamo.setText("Quantità disponibile: " + quantitàDisponibileItaliamo); // Aggiorna la scritta DIRETTAMENTE sulla pagina
 
                     int quantitaPresa = 10 - quantitàDisponibileItaliamo;
-                    Home.getPaginaPrenotazione().aggiornaPrenotazione("Italiamo", quantitaPresa);
 
-                    //salviamo l'acquisto nel db per la box di italiamo
-                    controller.acquistaBoxDB(4);
+                    //salva l'acquisto nel db e recupera il codice univoco generato
+                    String codiceRitiro = controller.acquistaBoxDB(3);
 
-                    // POP-UP 1: Finestra di successo dell'acquisto
-                    JOptionPane.showMessageDialog(null, "Acquisto effettuato con successo!");
+                    //aggiorna la pagina Prenotazioni passando anche il codice univoco
+                    Home.getPaginaPrenotazione().aggiornaPrenotazione("Italiamo", quantitaPresa, codiceRitiro);
+
+                    //mostra il popup di conferma con il codice univoco
+                    JOptionPane.showMessageDialog(
+                            frameItaliamo,
+                            "Acquisto effettuato con successo!\nCodice di ritiro: " + codiceRitiro,
+                            "Prenotazione Confermata",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
                 } else {     //se la condizione dell if è falsa (ovvero la quantità è uguale a zero)
-                    // POP-UP 2: Finestra di errore: la quantità è 0
+                    //POP-UP 2: Finestra di errore: la quantità è 0
                     JOptionPane.showMessageDialog(null, "Errore: Le Box per questo punto vendita sono terminate!",  "Box Terminate",
                             JOptionPane.ERROR_MESSAGE
                     );
