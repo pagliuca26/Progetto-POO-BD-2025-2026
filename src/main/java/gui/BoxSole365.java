@@ -15,6 +15,7 @@ public class BoxSole365 {
     private JButton acquistaSole365;
     private JLabel supSole365;
     private JLabel qntDispSole;
+    private JLabel logoSole;
     private static int quantitàDisponibileSole = 5;
 
     //costruttore

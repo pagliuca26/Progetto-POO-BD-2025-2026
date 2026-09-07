@@ -25,20 +25,19 @@ public class BoxConad {
         frameConad.setContentPane(boxConad);
         frameConad.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameConad.pack();
-        frameConad.setVisible(true);
 
         frameConad.setResizable(false); //non cambia dimensione
-        frameConad.setSize(450, 450);//grandezza della finestra
-        frameConad.setLocationRelativeTo(null);//finestra si apre al centro
+        frameConad.setSize(450, 450); //grandezza della finestra
+        frameConad.setLocationRelativeTo(null); //finestra si apre al centro
         frameConad.setVisible(true);
 
         //JLable cliccabile, per tornare alla scelta dei supermercati
-        supConad.setCursor (new Cursor(Cursor.HAND_CURSOR)) ;
+        supConad.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
         supConad.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked (MouseEvent e) {
-                frameSupermercato.setVisible (true) ;
+            public void mouseClicked(MouseEvent e) {
+                frameSupermercato.setVisible(true);
                 frameConad.setVisible(false);
             }
         });
@@ -71,7 +70,7 @@ public class BoxConad {
                     );
                 } else {     //se la condizione dell if è falsa (ovvero la quantità è uguale a zero)
                     //POP-UP 2: Finestra di errore: la quantità è 0
-                    JOptionPane.showMessageDialog(null, "Errore: Le Box per questo punto vendita sono terminate!",  "Box Terminate",
+                    JOptionPane.showMessageDialog(null, "Errore: Le Box per questo punto vendita sono terminate!", "Box Terminate",
                             JOptionPane.ERROR_MESSAGE
                     );
                 }
@@ -94,23 +93,5 @@ public class BoxConad {
 
     public void aggiornaLabelDisponibile() {
         qntDispConad.setText("Quantità disponibile: " + quantitàDisponibileConad);
-    }
-
-    // Creazione del pannello personalizzato con sfondo disegnato
-    private void createUIComponents() {
-        boxConad = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                java.net.URL url = getClass().getResource("/img/sfondo_per_conad.png");
-                if (url == null) {
-                    url = getClass().getResource("/sfondo_per_conad.png");
-                }
-                if (url != null) {
-                    Image bg = new ImageIcon(url).getImage();
-                    g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
-                }
-            }
-        };
     }
 }

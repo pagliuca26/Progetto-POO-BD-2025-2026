@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="gui.BoxDespar">
-  <grid id="27dc6" binding="boxDespar" custom-create="true" layout-manager="GridLayoutManager" row-count="9" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="boxDespar" layout-manager="GridLayoutManager" row-count="9" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
       <xy x="20" y="20" width="500" height="400"/>
     </constraints>
     <properties>
-      <background color="-10852635"/>
+      <background color="-4922941"/>
+      <enabled value="false"/>
     </properties>
     <border type="none"/>
     <children>
@@ -16,74 +17,92 @@
         </constraints>
         <properties>
           <font size="20" style="1"/>
-          <foreground color="-8249627"/>
+          <foreground color="-16745933"/>
           <text value="Despar | Piazza Libertà 55 (Na)"/>
         </properties>
       </component>
       <component id="251b" class="javax.swing.JLabel">
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <foreground color="-14803426"/>
           <text value="Ritiro: 18:30 - 21:00 "/>
         </properties>
       </component>
       <component id="ed12c" class="javax.swing.JLabel">
         <constraints>
-          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <foreground color="-14803426"/>
           <text value="Prezzo originale: €13,00"/>
         </properties>
       </component>
       <component id="bfe10" class="javax.swing.JLabel">
         <constraints>
-          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <foreground color="-14803426"/>
           <text value="Prezzo scontato: €6,00"/>
         </properties>
       </component>
       <component id="9af69" class="javax.swing.JLabel">
         <constraints>
-          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <foreground color="-14803426"/>
           <text value="Grandezza box: Grande"/>
         </properties>
       </component>
       <component id="7fb28" class="javax.swing.JLabel">
         <constraints>
-          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="6" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <foreground color="-14803426"/>
           <text value="Indicazioni per il ritiro: Cassa 3"/>
         </properties>
       </component>
       <component id="4003" class="javax.swing.JLabel" binding="supDespar">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <foreground color="-6953520"/>
+          <foreground color="-16745933"/>
           <text value="←Supermercati"/>
         </properties>
       </component>
       <component id="b4a04" class="javax.swing.JButton" binding="acquistaDespar">
         <constraints>
-          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="8" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <background color="-10852635"/>
+          <background color="-15435716"/>
+          <borderPainted value="false"/>
+          <focusPainted value="false"/>
+          <rolloverEnabled value="true"/>
           <text value="Acquista"/>
         </properties>
       </component>
       <component id="7443e" class="javax.swing.JLabel" binding="qntDispDespar">
         <constraints>
-          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="7" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <foreground color="-14803426"/>
           <text value="Quantità disponibile"/>
+        </properties>
+      </component>
+      <component id="47535" class="javax.swing.JLabel" binding="logoDespar">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <icon value="img/logoDespar.png"/>
+          <text value=""/>
         </properties>
       </component>
     </children>

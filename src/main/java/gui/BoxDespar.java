@@ -15,6 +15,7 @@ public class BoxDespar {
     private JButton acquistaDespar;
     private JLabel supDespar;
     private JLabel qntDispDespar;
+    private JLabel logoDespar;
     private static int quantitàDisponibileDespar = 9;
 
     //costruttore
@@ -24,26 +25,24 @@ public class BoxDespar {
         frameDespar.setContentPane(boxDespar);
         frameDespar.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameDespar.pack();
-        frameDespar.setVisible(true);
 
         frameDespar.setResizable(false); //non cambia dimensione
         frameDespar.setSize(450, 450); //grandezza della finestra
         frameDespar.setLocationRelativeTo(null); //finestra si apre al centro
         frameDespar.setVisible(true);
 
-        //JLable cliccabile, per tornare alla scelta dei supermercati
-        supDespar.setCursor (new Cursor(Cursor.HAND_CURSOR)) ;
+        //JLabel cliccabile, per tornare alla scelta dei supermercati
+        supDespar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
         supDespar.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked (MouseEvent e) {
-                frameSupermercato.setVisible (true) ;
+            public void mouseClicked(MouseEvent e) {
+                frameSupermercato.setVisible(true);
                 frameDespar.setVisible(false);
             }
         });
 
         //Quantità che diminuisce col bottone acquista
-        qntDispConadOAltro:
         qntDispDespar.setText("Quantità disponibile: " + quantitàDisponibileDespar);
 
         acquistaDespar.addActionListener(new ActionListener() {
@@ -70,7 +69,7 @@ public class BoxDespar {
                             JOptionPane.INFORMATION_MESSAGE
                     );
                 } else {
-                    JOptionPane.showMessageDialog(null, "Errore: Le Box per questo punto vendita sono terminate!",  "Box Terminate",
+                    JOptionPane.showMessageDialog(null, "Errore: Le Box per questo punto vendita sono terminate!", "Box Terminate",
                             JOptionPane.ERROR_MESSAGE
                     );
                 }
@@ -93,23 +92,5 @@ public class BoxDespar {
 
     public void aggiornaLabelDisponibile() {
         qntDispDespar.setText("Quantità disponibile: " + quantitàDisponibileDespar);
-    }
-
-    // Creazione del pannello personalizzato con sfondo disegnato
-    private void createUIComponents() {
-        boxDespar = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                java.net.URL url = getClass().getResource("/img/sfondo_per_despar.png");
-                if (url == null) {
-                    url = getClass().getResource("/sfondo_per_despar.png");
-                }
-                if (url != null) {
-                    Image bg = new ImageIcon(url).getImage();
-                    g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
-                }
-            }
-        };
     }
 }
