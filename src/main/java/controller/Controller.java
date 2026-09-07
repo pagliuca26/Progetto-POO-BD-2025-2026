@@ -83,7 +83,7 @@ public class Controller {
 
     //metodo per restituire il saluto in base all'avatar
     public String getSaluto() {
-        if (avatarSelezionato != null && avatarSelezionato.equals("woman-avatar.png")) {
+        if (avatarSelezionato != null && avatarSelezionato.equals("img/woman-avatar.png")) {
             return "Benvenuta ";
         }
         return "Benvenuto ";

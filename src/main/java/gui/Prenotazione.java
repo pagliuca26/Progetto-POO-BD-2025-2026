@@ -46,20 +46,6 @@ public class Prenotazione {
         framePrenotazione.setLocationRelativeTo(null); //finestra si apre al centro
         framePrenotazione.setVisible(false);
 
-
-        /*
-        // Aggiungo l'immagine di sfondo al form
-        try {
-            java.awt.Image img = javax.imageio.ImageIO.read(new java.io.File("src/sfondo_prenotazione_java.png"));
-            ImageIcon iconaSfondo = new ImageIcon(img);
-            JLabel labelSfondo = new JLabel(iconaSfondo);
-            labelSfondo.setBounds(0, 0, 450, 450);
-            prenotazionePanel.add(labelSfondo, Integer.valueOf(0));
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println("Impossibile caricare l'immagine di sfondo.");
-        }
-*/
         //imposto la scritta di benvenuto dinamica con il nome dell'utente loggato
         benvenutoP.setText(controller.getSaluto() + controller.getUtenteAttuale().getNome());
 
@@ -74,7 +60,6 @@ public class Prenotazione {
             public void mouseClicked(MouseEvent e) {
                 frameHome.setVisible(true);
                 framePrenotazione.setVisible(false);
-
             }
         });
 
@@ -259,17 +244,13 @@ public class Prenotazione {
     }
 
     //metodo per aggiornare i contatori delle box prenotate
-    //l'operatore == confronta i riferimenti in memoria (le istanze), mentre .equals() verifica il reale contenuto testuale delle stringhe
     public void aggiornaPrenotazione (String negozio, int quantitaAcquistata, String codiceUnivoco) {
-
-        //facciamo un controllo all'inizio: se è un ristorante mostra elencoR, altrimenti elencoS
         if (negozio.equals("Guacamole") || negozio.equals("Italiamo") || negozio.equals("Tokyo")) {
             elencoR.setVisible(true);
         } else {
             elencoS.setVisible(true);
         }
 
-        //poi controlliamo quali e quante box sono state acquistate per farle uscire all'interno della pagina
         if (negozio.equals("Guacamole")) {
             guacamoleNPrenotazioni.setText("<html>Guacamole: " + quantitaAcquistata + " box<br>Cod: " + codiceUnivoco + "</html>");
             guacamoleNPrenotazioni.setVisible(true);
@@ -309,9 +290,14 @@ public class Prenotazione {
 
     // metodo per cambiare l'immagine dell'avatar
     public void cambiaAvatar(String nomeFile) {
-        if (nomeFile != null && getClass().getResource("/" + nomeFile) != null) {
-            ImageIcon icona = new ImageIcon(getClass().getResource("/" + nomeFile));
-            iconaP.setIcon(icona);
+        if (nomeFile != null) {
+            java.net.URL url = getClass().getResource("/img/" + nomeFile);
+            if (url == null) {
+                url = getClass().getResource("/" + nomeFile);
+            }
+            if (url != null) {
+                iconaP.setIcon(new ImageIcon(url));
+            }
         }
     }
 
@@ -332,9 +318,21 @@ public class Prenotazione {
         return risposta == JOptionPane.YES_OPTION;
     }
 
+    //creazione del pannello personalizzato con sfondo disegnato
     private void createUIComponents() {
-        // TODO: place custom component creation code here
+        prenotazionePanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                java.net.URL url = getClass().getResource("/img/sfondo_prenotazione_java.png");
+                if (url == null) {
+                    url = getClass().getResource("/sfondo_prenotazione_java.png");
+                }
+                if (url != null) {
+                    Image bg = new ImageIcon(url).getImage();
+                    g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
+                }
+            }
+        };
     }
-
-
 }

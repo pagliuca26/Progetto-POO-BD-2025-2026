@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="gui.Impostazioni">
-  <grid id="27dc6" binding="impostazioniPanel" layout-manager="GridLayoutManager" row-count="9" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="impostazioniPanel" custom-create="true" layout-manager="GridLayoutManager" row-count="9" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
       <xy x="1" y="4" width="780" height="657"/>
@@ -118,7 +118,7 @@
         <properties>
           <foreground color="-15199515"/>
           <hideActionText value="false"/>
-          <icon value="man-avatar.png"/>
+          <icon value="img/man-avatar.png"/>
           <opaque value="false"/>
           <text value="Maschio"/>
         </properties>
@@ -151,7 +151,7 @@
         <properties>
           <enabled value="true"/>
           <foreground color="-2792987"/>
-          <icon value="woman-avatar.png"/>
+          <icon value="img/woman-avatar.png"/>
           <opaque value="false"/>
           <text value="Femmina"/>
         </properties>

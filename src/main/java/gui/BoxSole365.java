@@ -15,12 +15,12 @@ public class BoxSole365 {
     private JButton acquistaSole365;
     private JLabel supSole365;
     private JLabel qntDispSole;
-    private static int quantitàDisponibileSole = 5; //numero di partenza finto x il test
+    private static int quantitàDisponibileSole = 5;
 
     //costruttore
     public BoxSole365(JFrame frameSupermercato, Controller controller) {
 
-        frameSole365= new JFrame("Sole365");
+        frameSole365 = new JFrame("Sole365");
         frameSole365.setContentPane(boxSole365);
         frameSole365.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameSole365.pack();
@@ -31,27 +31,13 @@ public class BoxSole365 {
         frameSole365.setLocationRelativeTo(null); //finestra si apre al centro
         frameSole365.setVisible(true);
 
-
-        /*
-        // Aggiungo l'immagine di sfondo al form
-        try {
-            java.awt.Image img = javax.imageio.ImageIO.read(new java.io.File("src/sfondo_per_sole365.png"));
-            ImageIcon iconaSfondo = new ImageIcon(img);
-            JLabel labelSfondo = new JLabel(iconaSfondo);
-            labelSfondo.setBounds(0, 0, 450, 450);
-            boxSole365.add(labelSfondo, Integer.valueOf(0));
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println("Impossibile caricare l'immagine di sfondo.");
-        }
-*/
-        //JLable cliccabile, per tornare alla scelta dei supemercati
-        supSole365.setCursor (new Cursor(Cursor.HAND_CURSOR)) ;
+        //JLable cliccabile, per tornare alla scelta dei supermercati
+        supSole365.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
         supSole365.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked (MouseEvent e) {
-                frameSupermercato.setVisible (true) ;
+            public void mouseClicked(MouseEvent e) {
+                frameSupermercato.setVisible(true);
                 frameSole365.setVisible(false);
             }
         });
@@ -62,10 +48,10 @@ public class BoxSole365 {
         acquistaSole365.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (quantitàDisponibileSole > 0) { //controllo condizionale: verifica se ci sono ancora box disponibili (maggiore di zero)
-                    quantitàDisponibileSole--;    //decrementa di 1 il valore della variabile intera che tiene il conto delle box
+                if (quantitàDisponibileSole > 0) {
+                    quantitàDisponibileSole--;
 
-                    qntDispSole.setText("Quantità disponibile: " + quantitàDisponibileSole); // Aggiorna la scritta DIRETTAMENTE sulla pagina
+                    qntDispSole.setText("Quantità disponibile: " + quantitàDisponibileSole);
 
                     int quantitaPresa = 5 - quantitàDisponibileSole;
 
@@ -82,8 +68,7 @@ public class BoxSole365 {
                             "Prenotazione Confermata",
                             JOptionPane.INFORMATION_MESSAGE
                     );
-                } else {     //se la condizione dell if è falsa (ovvero la quantità è uguale a zero)
-                    //POP-UP 2: Finestra di errore: la quantità è 0
+                } else {
                     JOptionPane.showMessageDialog(null, "Errore: Le Box per questo punto vendita sono terminate!",  "Box Terminate",
                             JOptionPane.ERROR_MESSAGE
                     );
@@ -107,5 +92,23 @@ public class BoxSole365 {
 
     public void aggiornaLabelDisponibile() {
         qntDispSole.setText("Quantità disponibile: " + quantitàDisponibileSole);
+    }
+
+    // Creazione del pannello personalizzato con sfondo disegnato
+    private void createUIComponents() {
+        boxSole365 = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                java.net.URL url = getClass().getResource("/img/sfondo_per_sole365.png");
+                if (url == null) {
+                    url = getClass().getResource("/sfondo_per_sole365.png");
+                }
+                if (url != null) {
+                    Image bg = new ImageIcon(url).getImage();
+                    g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
+                }
+            }
+        };
     }
 }

@@ -31,27 +31,13 @@ public class BoxTokyo {
         frameTokyo.setLocationRelativeTo(null); //finestra si apre al centro
         frameTokyo.setVisible(true);
 
-        /*
-        // Aggiungo l'immagine di sfondo al form
-        try {
-            java.awt.Image img = javax.imageio.ImageIO.read(new java.io.File("src/sfondo_per_Tokyo.png"));
-            ImageIcon iconaSfondo = new ImageIcon(img);
-            JLabel labelSfondo = new JLabel(iconaSfondo);
-            labelSfondo.setBounds(0, 0, 450, 450);
-            boxTokyo.add(labelSfondo, Integer.valueOf(0));
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println("Impossibile caricare l'immagine di sfondo.");
-        }
-*/
-
         //JLable cliccabile, per tornare alla scelta dei ristoranti
-        ristTokyo.setCursor (new Cursor(Cursor.HAND_CURSOR)) ;
+        ristTokyo.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
         ristTokyo.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked (MouseEvent e) {
-                frameRistorante.setVisible (true) ;
+            public void mouseClicked(MouseEvent e) {
+                frameRistorante.setVisible(true);
                 frameTokyo.setVisible(false);
             }
         });
@@ -62,10 +48,10 @@ public class BoxTokyo {
         acquistaTokyo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (quantitàDisponibileTokyo > 0) { //controllo condizionale: verifica se ci sono ancora box disponibili (maggiore di zero)
-                    quantitàDisponibileTokyo--;    //decrementa di 1 il valore della variabile intera che tiene il conto delle box
+                if (quantitàDisponibileTokyo > 0) {
+                    quantitàDisponibileTokyo--;
 
-                    qntDispTokyo.setText("Quantità disponibile: " + quantitàDisponibileTokyo); // Aggiorna la scritta DIRETTAMENTE sulla pagina
+                    qntDispTokyo.setText("Quantità disponibile: " + quantitàDisponibileTokyo);
 
                     int quantitaPresa = 7 - quantitàDisponibileTokyo;
 
@@ -82,8 +68,7 @@ public class BoxTokyo {
                             "Prenotazione Confermata",
                             JOptionPane.INFORMATION_MESSAGE
                     );
-                } else {     //se la condizione dell if è falsa (ovvero la quantità è uguale a zero)
-                    // POP-UP 2: Finestra di errore: la quantità è 0
+                } else {
                     JOptionPane.showMessageDialog(null, "Errore: Le Box per questo punto vendita sono terminate!",  "Box Terminate",
                             JOptionPane.ERROR_MESSAGE
                     );
@@ -107,5 +92,23 @@ public class BoxTokyo {
 
     public void aggiornaLabelDisponibile() {
         qntDispTokyo.setText("Quantità disponibile: " + quantitàDisponibileTokyo);
+    }
+
+    // Creazione del pannello personalizzato con sfondo disegnato
+    private void createUIComponents() {
+        boxTokyo = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                java.net.URL url = getClass().getResource("/img/sfondo_per_Tokyo.png");
+                if (url == null) {
+                    url = getClass().getResource("/sfondo_per_Tokyo.png");
+                }
+                if (url != null) {
+                    Image bg = new ImageIcon(url).getImage();
+                    g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
+                }
+            }
+        };
     }
 }

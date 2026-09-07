@@ -32,20 +32,7 @@ public class BoxConad {
         frameConad.setLocationRelativeTo(null);//finestra si apre al centro
         frameConad.setVisible(true);
 
-        /*
-        // Aggiungo l'immagine di sfondo al form
-        try {
-            java.awt.Image img = javax.imageio.ImageIO.read(new java.io.File("src/sfondo_per_conad.png"));
-            ImageIcon iconaSfondo = new ImageIcon(img);
-            JLabel labelSfondo = new JLabel(iconaSfondo);
-            labelSfondo.setBounds(0, 0, 450, 450);
-            boxConadd.add(labelSfondo, Integer.valueOf(0));
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println("Impossibile caricare l'immagine di sfondo.");
-        }
-*/
-        //JLable cliccabile, per tortare alla scelta dei supemercati
+        //JLable cliccabile, per tornare alla scelta dei supermercati
         supConad.setCursor (new Cursor(Cursor.HAND_CURSOR)) ;
 
         supConad.addMouseListener(new MouseAdapter() {
@@ -108,6 +95,22 @@ public class BoxConad {
     public void aggiornaLabelDisponibile() {
         qntDispConad.setText("Quantità disponibile: " + quantitàDisponibileConad);
     }
+
+    // Creazione del pannello personalizzato con sfondo disegnato
+    private void createUIComponents() {
+        boxConad = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                java.net.URL url = getClass().getResource("/img/sfondo_per_conad.png");
+                if (url == null) {
+                    url = getClass().getResource("/sfondo_per_conad.png");
+                }
+                if (url != null) {
+                    Image bg = new ImageIcon(url).getImage();
+                    g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
+                }
+            }
+        };
+    }
 }
-
-
