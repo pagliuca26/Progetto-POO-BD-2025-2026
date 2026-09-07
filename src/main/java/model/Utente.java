@@ -1,15 +1,25 @@
 package model;
 
 public class Utente {
+
+    //attributi
+    private int idUtente;
     private String email;
     private String password;
     private String nome;
     private String cognome;
-
-    //per eccezione
     private boolean accessoEffettuato = false;
 
     //costruttore
+    public Utente(int idUtente, String email, String password, String nome, String cognome) {
+        this.idUtente = idUtente;
+        this.email = email;
+        this.password = password;
+        this.nome = nome;
+        this.cognome = cognome;
+    }
+
+    //overloading costruttore
     public Utente(String email, String password, String nome, String cognome) {
         this.email = email;
         this.password = password;
@@ -18,19 +28,51 @@ public class Utente {
     }
 
     //get e set
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
+    public int getIdUtente() {
+        return idUtente;
+    }
 
-    public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = password; }
+    public void setIdUtente(int idUtente) {
+        this.idUtente = idUtente;
+    }
 
-    public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
+    public String getEmail() {
+        return email;
+    }
 
-    public String getCognome() { return cognome; }
-    public void setCognome(String cognome) { this.cognome = cognome; }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-    // get e set accesso effettuato, eccezione
-    public boolean isAccessoEffettuato() { return accessoEffettuato; }
-    public void setAccessoEffettuato(boolean accessoEffettuato) { this.accessoEffettuato = accessoEffettuato; }
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCognome() {
+        return cognome;
+    }
+
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
+    }
+
+    public boolean isAccessoEffettuato() {
+        return accessoEffettuato;
+    }
+
+    public void setAccessoEffettuato(boolean accessoEffettuato) {
+        this.accessoEffettuato = accessoEffettuato;
+    }
 }

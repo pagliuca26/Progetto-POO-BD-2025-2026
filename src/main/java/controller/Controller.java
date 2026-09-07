@@ -89,9 +89,11 @@ public class Controller {
         return "Benvenuto ";
     }
 
-    //metodo per aggiornare i dati dell'utente attuale
-    public void aggiornaDatiUtente(String nuovoNome, String nuovoCognome, String nuovaEmail, String nuovaPassword) {
+    //metodo per aggiornare i dati dell'utente attuale sia in memoria che sul database
+    public boolean aggiornaDatiUtente(String nuovoNome, String nuovoCognome, String nuovaEmail, String nuovaPassword) {
         if (utenteAttuale != null) {
+            String vecchiaEmail = utenteAttuale.getEmail();
+
             if (!nuovoNome.isBlank()) {
                 utenteAttuale.setNome(nuovoNome);
             }
@@ -104,10 +106,18 @@ public class Controller {
             if (!nuovaPassword.isBlank()) {
                 utenteAttuale.setPassword(nuovaPassword);
             }
+
+            try {
+                return utenteDAO.modificaUtente(utenteAttuale, vecchiaEmail);
+            } catch (java.sql.SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
         }
+        return false;
     }
 
-    //metodo chiamato dalla GUI per annullare una prenotazione memorizzata nel database
+    //metodo chiamato dalla gui per annullare una prenotazione memorizzata nel database
     public boolean annullaPrenotazioneDB(int idBox) {
         if (utenteAttuale == null) return false;
         try {
@@ -129,21 +139,36 @@ public class Controller {
             //genera un codice casuale univoco per il ritiro della box
             String codiceUnivoco = "BOX-" + System.currentTimeMillis();
 
-            //crea l'oggetto Prenotazione impostando il codice appena generato
+            //crea l'oggetto prenotazione impostando il codice appena generato
             model.Prenotazione nuovaPrenotazione = new model.Prenotazione(codiceUnivoco);
             nuovaPrenotazione.setStato("ATTIVA");
 
-            //inserisce la prenotazione nel DB Postgres (attiverà il trigger SQL per scalare la quantità)
+            //inserisce la prenotazione nel db postgres (attiverà il trigger sql per scalare la quantità)
             boolean inserito = prenotazioneDAO.inserisciPrenotazione(nuovaPrenotazione, utenteAttuale.getEmail(), idBox);
             if (inserito) {
                 return codiceUnivoco;
             }
             return null;
         } catch (java.sql.SQLException e) {
-            //stampa l'errore SQL in console nel caso di problemi con il DB
+            //stampa l'errore sql in console nel caso di problemi con il db
             e.printStackTrace();
             return null;
         }
     }
 
+    //metodo per eliminare l'account dell'utente attuale dal db
+    public boolean eliminaAccount() {
+        if (utenteAttuale == null) return false;
+        try {
+            boolean eliminato = utenteDAO.eliminaUtente(utenteAttuale.getEmail());
+            if (eliminato) {
+                this.utenteAttuale = null;
+                return true;
+            }
+            return false;
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

@@ -1,20 +1,22 @@
 package model;
 
-import java.time.LocalTime;
-
 public class PuntoVendita {
 
     //attributi
     private int idPuntoVendita;
-    private String nome, indirizzo, orarioRitiro;
+    private String nome;
+    private String indirizzo;
+    private String orarioRitiro;
 
+    //costruttore
     public PuntoVendita(int idPuntoVendita, String nome, String indirizzo, String orarioRitiro) {
         this.idPuntoVendita = idPuntoVendita;
         this.nome = nome;
         this.indirizzo = indirizzo;
         this.orarioRitiro = orarioRitiro;
     }
-    //get and set
+
+    //get e set
     public int getIdPuntoVendita() {
         return idPuntoVendita;
     }
@@ -49,10 +51,6 @@ public class PuntoVendita {
 
     //metodi dal class diagram
     public String fornireIndirizzo() {
-        return " Nome: " + this.nome + ", Indirizzo: " + this.indirizzo + "Orario di ritiro" +this.orarioRitiro; }
-
-
-
-
-
+        return this.indirizzo;
+    }
 }

@@ -2,10 +2,13 @@ package model;
 
 public class Box {
 
-    private double prezzoOriginale, prezzoScontato;
+    //attributi
+    private double prezzoOriginale;
+    private double prezzoScontato;
     private int quantitaDisponibile;
     private String grandezzaBox;
 
+    //costruttore
     public Box(double prezzoOriginale, double prezzoScontato, int quantitaDisponibile, String grandezzaBox) {
         this.prezzoOriginale = prezzoOriginale;
         this.prezzoScontato = prezzoScontato;
@@ -13,6 +16,7 @@ public class Box {
         this.grandezzaBox = grandezzaBox;
     }
 
+    //get e set
     public double getPrezzoOriginale() {
         return prezzoOriginale;
     }

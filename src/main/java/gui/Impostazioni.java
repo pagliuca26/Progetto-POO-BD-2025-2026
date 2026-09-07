@@ -9,25 +9,24 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-
 public class Impostazioni {
     private static JFrame frameImpostazioni;
     private JLabel tornaHomeImpostazioni;
     private JLabel impostazioniName;
-    private JTextField moficaNome;
+    private JTextField modificaNomeTextField;
     private JLabel modificaNomeLabel;
-    private JTextField modificaCognome;
-    private JLabel modoficaCognomeLabel;
-    private JTextField laTuaEmail;
-    private JLabel emailModificaLabel;
-    private JTextField modificaEmail;
+    private JTextField modificaCognomeTextField;
+    private JLabel modificaCognomeLabel;
+    private JTextField modificaEmailTextField;
+    private JLabel modificaEmailLabel;
+    private JTextField modificaPasswordTextField;
+    private JLabel modificaPasswordLabel;
     private JButton salvaModificheButton;
     private JButton eliminaAccountButton;
     private JRadioButton avatarMaschileRadioButton;
     private JRadioButton avatarFemminileRadioButton;
     private JLabel scegliAvatarLabel;
     private JPanel impostazioniPanel;
-    private JLabel modificaPasswordLabel;
 
     private static Impostazioni paginaImpostazioni = null;
 
@@ -39,57 +38,91 @@ public class Impostazioni {
         frameImpostazioni.pack();
         frameImpostazioni.setVisible(true);
 
-        frameImpostazioni.setResizable(false); //non cambia dimensione
-        frameImpostazioni.setSize(450, 450); //grandezza della finestra
+        frameImpostazioni.setResizable(false);
+        frameImpostazioni.setSize(450, 450);
         frameImpostazioni.setLocationRelativeTo(null);
 
-        /*
-        // Aggiungo l'immagine di sfondo al form
-        try {
-            java.awt.Image img = javax.imageio.ImageIO.read(new java.io.File("src/sfondo_per_impostazioni.png"));
-            ImageIcon iconaSfondo = new ImageIcon(img);
-            JLabel labelSfondo = new JLabel(iconaSfondo);
-            labelSfondo.setBounds(0, 0, 450, 450);
-            impostazioniPanel.add(labelSfondo, Integer.valueOf(0));
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println("Impossibile caricare l'immagine di sfondo.");
+        //carica i dati attuali nelle caselle di testo
+        if (controller.getUtenteAttuale() != null) {
+            modificaNomeTextField.setText(controller.getUtenteAttuale().getNome());
+            modificaCognomeTextField.setText(controller.getUtenteAttuale().getCognome());
+            modificaEmailTextField.setText(controller.getUtenteAttuale().getEmail());
         }
-*/
-        //JLable cliccabile, per passare dalla pagina impostazioni a quella di home
-        tornaHomeImpostazioni.setCursor (new Cursor(Cursor.HAND_CURSOR)) ;
+
+        //label cliccabile, per passare dalla pagina impostazioni a quella di home
+        tornaHomeImpostazioni.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
         tornaHomeImpostazioni.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked (MouseEvent e) {
-                frameHome.setVisible (true) ;
-                frameImpostazioni.setVisible (false);
+            public void mouseClicked(MouseEvent e) {
+                frameHome.setVisible(true);
+                frameImpostazioni.setVisible(false);
             }
-
-
         });
 
-            //creo il gruppo per permettere di selezionare uno o l'altro
-            ButtonGroup gruppoAvatar = new ButtonGroup();
-            gruppoAvatar.add(avatarMaschileRadioButton);
-            gruppoAvatar.add(avatarFemminileRadioButton);
+        //creo il gruppo per permettere di selezionare uno o l'altro
+        ButtonGroup gruppoAvatar = new ButtonGroup();
+        gruppoAvatar.add(avatarMaschileRadioButton);
+        gruppoAvatar.add(avatarFemminileRadioButton);
 
-            //gestione del pulsante salva sodifiche
-            salvaModificheButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if (avatarMaschileRadioButton.isSelected()) {
-                        controller.setAvatarSelezionato("man-avatar.png");
-                    } else if (avatarFemminileRadioButton.isSelected()) {
-                        controller.setAvatarSelezionato("woman-avatar.png");
-                    }
-
-                    JOptionPane.showMessageDialog(null, "Avatar aggiornato correttamente!");
+        //gestione del pulsante salva modifiche
+        salvaModificheButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //gestione avatar
+                if (avatarMaschileRadioButton.isSelected()) {
+                    controller.setAvatarSelezionato("man-avatar.png");
+                } else if (avatarFemminileRadioButton.isSelected()) {
+                    controller.setAvatarSelezionato("woman-avatar.png");
                 }
-            });
+
+                //recupero i valori inseriti nei campi di testo
+                String nuovoNome = modificaNomeTextField.getText().trim();
+                String nuovoCognome = modificaCognomeTextField.getText().trim();
+                String nuovaEmail = modificaEmailTextField.getText().trim();
+                String nuovaPassword = modificaPasswordTextField.getText().trim();
+
+                //salvataggio nel database e aggiornamento dell'utente
+                boolean salvato = controller.aggiornaDatiUtente(nuovoNome, nuovoCognome, nuovaEmail, nuovaPassword);
+
+                if (salvato) {
+                    JOptionPane.showMessageDialog(frameImpostazioni, "Modifiche salvate con successo!");
+                    //svuota solo la password dopo il salvataggio
+                    modificaPasswordTextField.setText("");
+                } else {
+                    JOptionPane.showMessageDialog(frameImpostazioni, "Impostazioni aggiornate!");
+                }
+            }
+        });
+
+        //gestione del pulsante elimina account
+        eliminaAccountButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int conferma = JOptionPane.showConfirmDialog(
+                        frameImpostazioni,
+                        "Sei sicuro di voler eliminare definitivamente il tuo account?",
+                        "Conferma eliminazione",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.WARNING_MESSAGE
+                );
+
+                if (conferma == JOptionPane.YES_OPTION) {
+                    boolean rimosso = controller.eliminaAccount();
+                    if (rimosso) {
+                        JOptionPane.showMessageDialog(frameImpostazioni, "Account eliminato con successo.");
+                        frameImpostazioni.dispose();
+                        frameHome.dispose();
+                        new Login();
+                    } else {
+                        JOptionPane.showMessageDialog(frameImpostazioni, "Errore durante l'eliminazione dell'account.", "Errore", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+        });
     }
 
-    public JFrame getFrameImpostazioni() { return frameImpostazioni; }
-
+    public JFrame getFrameImpostazioni() {
+        return frameImpostazioni;
+    }
 }
-

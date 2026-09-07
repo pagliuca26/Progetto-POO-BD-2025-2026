@@ -2,12 +2,22 @@ package model;
 
 public class Prenotazione {
 
-    private String codiceRitiro, stato;
+    //attributi
+    private String codiceRitiro;
+    private String stato;
 
-    public Prenotazione( String codiceRitiro) {
+    //costruttore
+    public Prenotazione(String codiceRitiro) {
         this.codiceRitiro = codiceRitiro;
     }
 
+    //overloading costruttore
+    public Prenotazione(String codiceRitiro, String stato) {
+        this.codiceRitiro = codiceRitiro;
+        this.stato = stato;
+    }
+
+    //get e set
     public String getCodiceRitiro() {
         return codiceRitiro;
     }

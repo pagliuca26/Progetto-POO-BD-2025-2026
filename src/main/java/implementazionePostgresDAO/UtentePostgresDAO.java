@@ -51,4 +51,28 @@ public class UtentePostgresDAO implements UtenteDAO {
         }
         return null;
     }
+
+    @Override
+    public boolean modificaUtente(Utente utente, String vecchiaEmail) throws SQLException {
+        String sql = "UPDATE utente SET email = ?, password = ?, nome = ?, cognome = ? WHERE email = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, utente.getEmail());
+            statement.setString(2, utente.getPassword());
+            statement.setString(3, utente.getNome());
+            statement.setString(4, utente.getCognome());
+            statement.setString(5, vecchiaEmail);
+            return statement.executeUpdate() > 0;
+        }
+    }
+
+    @Override
+    public boolean eliminaUtente(String email) throws SQLException {
+        String sql = "DELETE FROM utente WHERE email = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, email);
+            return statement.executeUpdate() > 0;
+        }
+    }
+
+
 }
