@@ -16,6 +16,7 @@ public class Supermercato {
     private JButton sole365Button;
     private JButton desparButton;
     private JLabel tornaHomeS;
+    private JLabel iconaSupermercato;
 
 
     //variabili per salvare le pagine dei supermercati. All'inizio sono null (vuote) così al primo click creiamo la finestra,

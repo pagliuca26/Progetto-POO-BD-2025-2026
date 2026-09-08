@@ -17,6 +17,8 @@ public class Home {
     private JLabel returnLogin;
     private JButton prenotazioneButton;
     private JButton impHome;
+    private JLabel pizzaHome;
+    private JLabel carrelloHome;
     private JFrame frameHome;
     private Controller controller;
 
