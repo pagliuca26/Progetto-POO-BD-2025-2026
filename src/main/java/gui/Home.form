@@ -93,6 +93,7 @@
           <hideActionText value="true"/>
           <icon value="img/prenotazioniHome.png"/>
           <text value=""/>
+          <toolTipText value="le mie prenotazioni"/>
         </properties>
       </component>
       <component id="d8b15" class="javax.swing.JLabel" binding="carrelloHome">
