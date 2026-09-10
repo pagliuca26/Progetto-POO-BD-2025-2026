@@ -317,22 +317,4 @@ public class Prenotazione {
         );
         return risposta == JOptionPane.YES_OPTION;
     }
-
-    //creazione del pannello personalizzato con sfondo disegnato
-    private void createUIComponents() {
-        prenotazionePanel = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                java.net.URL url = getClass().getResource("/img/sfondo_prenotazione_java.png");
-                if (url == null) {
-                    url = getClass().getResource("/sfondo_prenotazione_java.png");
-                }
-                if (url != null) {
-                    Image bg = new ImageIcon(url).getImage();
-                    g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
-                }
-            }
-        };
-    }
 }

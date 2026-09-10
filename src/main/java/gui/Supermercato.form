@@ -32,6 +32,7 @@
           <background color="-12916"/>
           <borderPainted value="false"/>
           <focusPainted value="false"/>
+          <foreground color="-13816531"/>
           <text value="Sole365 ☀️"/>
         </properties>
       </component>
@@ -43,9 +44,10 @@
           </grid>
         </constraints>
         <properties>
-          <background color="-2952489"/>
+          <background color="-4594493"/>
           <borderPainted value="false"/>
           <focusPainted value="false"/>
+          <foreground color="-13816531"/>
           <text value="Despar 🌳"/>
         </properties>
       </component>
@@ -69,6 +71,7 @@
           <background color="-7018"/>
           <borderPainted value="false"/>
           <focusPainted value="false"/>
+          <foreground color="-13816531"/>
           <text value="Conad 🌼"/>
         </properties>
       </component>

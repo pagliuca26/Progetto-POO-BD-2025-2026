@@ -126,21 +126,5 @@ public class Impostazioni {
         return frameImpostazioni;
     }
 
-    // Creazione del pannello personalizzato con sfondo disegnato
-    private void createUIComponents() {
-        impostazioniPanel = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                java.net.URL url = getClass().getResource("/img/sfondo_per_impostazioni.png");
-                if (url == null) {
-                    url = getClass().getResource("/sfondo_per_impostazioni.png");
-                }
-                if (url != null) {
-                    Image bg = new ImageIcon(url).getImage();
-                    g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
-                }
-            }
-        };
-    }
+
 }

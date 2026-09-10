@@ -15,6 +15,7 @@ public class BoxGuacamole {
     private JLabel ristGuacamole;
     private JButton acquistaGuacamole;
     private JLabel qntDispGuacamole;
+    private JLabel nachosGuacamole;
     private static int quantitàDisponibileGuacamole = 6;
 
     //costruttore
@@ -27,8 +28,8 @@ public class BoxGuacamole {
         frameGuacamole.setVisible(true);
 
         frameGuacamole.setResizable(false); //non cambia dimensione
-        frameGuacamole.setSize(450, 450);//grandezza della finestra
-        frameGuacamole.setLocationRelativeTo(null);//finestra si apre al centro
+        frameGuacamole.setSize(450, 450); //grandezza della finestra
+        frameGuacamole.setLocationRelativeTo(null); //finestra si apre al centro
         frameGuacamole.setVisible(true);
 
         //JLable cliccabile, per tornare alla scelta dei ristoranti
@@ -69,7 +70,7 @@ public class BoxGuacamole {
                             JOptionPane.INFORMATION_MESSAGE
                     );
                 } else {
-                    JOptionPane.showMessageDialog(null, "Errore: Le Box per questo punto vendita sono terminate!",  "Box Terminate",
+                    JOptionPane.showMessageDialog(null, "Errore: Le Box per questo punto vendita sono terminate!", "Box Terminate",
                             JOptionPane.ERROR_MESSAGE
                     );
                 }
@@ -78,7 +79,7 @@ public class BoxGuacamole {
     }
 
     //metodo getter per accedere al frame privato ed evitare il reset dei dati
-    public static JFrame getFrameGuacamole () { return frameGuacamole; }
+    public static JFrame getFrameGuacamole() { return frameGuacamole; }
 
     public static void aumentaDisponibile() { quantitàDisponibileGuacamole++; }
 
@@ -88,23 +89,5 @@ public class BoxGuacamole {
 
     public void aggiornaLabelDisponibile() {
         qntDispGuacamole.setText("Quantità disponibile: " + quantitàDisponibileGuacamole);
-    }
-
-    //creazione del pannello personalizzato con sfondo
-    private void createUIComponents() {
-        boxGuacamole = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                java.net.URL url = getClass().getResource("/img/sfondo_per_guacamole.png");
-                if (url == null) {
-                    url = getClass().getResource("/sfondo_per_guacamole.png");
-                }
-                if (url != null) {
-                    Image bg = new ImageIcon(url).getImage();
-                    g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
-                }
-            }
-        };
     }
 }

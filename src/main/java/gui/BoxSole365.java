@@ -95,21 +95,5 @@ public class BoxSole365 {
         qntDispSole.setText("Quantità disponibile: " + quantitàDisponibileSole);
     }
 
-    // Creazione del pannello personalizzato con sfondo disegnato
-    private void createUIComponents() {
-        boxSole365 = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                java.net.URL url = getClass().getResource("/img/sfondo_per_sole365.png");
-                if (url == null) {
-                    url = getClass().getResource("/sfondo_per_sole365.png");
-                }
-                if (url != null) {
-                    Image bg = new ImageIcon(url).getImage();
-                    g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
-                }
-            }
-        };
-    }
+
 }

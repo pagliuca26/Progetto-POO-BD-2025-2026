@@ -15,6 +15,7 @@ public class BoxTokyo {
     private JButton acquistaTokyo;
     private JLabel ristTokyo;
     private JLabel qntDispTokyo;
+    private JLabel sushiTokyo;
     private static int quantitàDisponibileTokyo = 7;
 
     //costruttore
@@ -94,21 +95,4 @@ public class BoxTokyo {
         qntDispTokyo.setText("Quantità disponibile: " + quantitàDisponibileTokyo);
     }
 
-    // Creazione del pannello personalizzato con sfondo disegnato
-    private void createUIComponents() {
-        boxTokyo = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                java.net.URL url = getClass().getResource("/img/sfondo_per_Tokyo.png");
-                if (url == null) {
-                    url = getClass().getResource("/sfondo_per_Tokyo.png");
-                }
-                if (url != null) {
-                    Image bg = new ImageIcon(url).getImage();
-                    g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
-                }
-            }
-        };
-    }
 }

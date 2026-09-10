@@ -15,6 +15,7 @@ public class BoxItaliamo {
     private JLabel ristItaliamo;
     private JButton acquistaItaliamo;
     private JLabel qntDispItaliamo;
+    private JLabel spaghettiItaliamo;
     private static int quantitàDisponibileItaliamo = 10;
 
     //costruttore
@@ -92,23 +93,5 @@ public class BoxItaliamo {
 
     public void aggiornaLabelDisponibile() {
         qntDispItaliamo.setText("Quantità disponibile: " + quantitàDisponibileItaliamo);
-    }
-
-    // Creazione del pannello personalizzato con sfondo disegnato
-    private void createUIComponents() {
-        boxItaliamo = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                java.net.URL url = getClass().getResource("/img/sfondo_per_italiamo.png");
-                if (url == null) {
-                    url = getClass().getResource("/sfondo_per_italiamo.png");
-                }
-                if (url != null) {
-                    Image bg = new ImageIcon(url).getImage();
-                    g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
-                }
-            }
-        };
     }
 }
