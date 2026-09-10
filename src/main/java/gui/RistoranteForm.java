@@ -17,6 +17,7 @@ public class RistoranteForm {
     private JButton messicanoButton;
     private JButton giapponeseButton;
     private JLabel tornaHomeR;
+    private JLabel piattoRistoranti;
 
     //variabili per salvare le pagine dei ristoranti. All'inizio sono null (vuote) così al primo click creiamo la finestra,
     //mentre i click successivi riaprono quella vecchia senza resettare le box.

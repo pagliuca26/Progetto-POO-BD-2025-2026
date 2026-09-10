@@ -119,6 +119,20 @@ public class Home {
     public static Prenotazione getPaginaPrenotazione() {
         return paginaPrenotazione;
     }
+
+    private void createUIComponents() {
+        final Image backgroundImage = new ImageIcon(getClass().getResource("/img/sfondoHome.png")).getImage();
+
+        homePanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                if (backgroundImage != null) {
+                    g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+                }
+            }
+        };
+    }
 }
 
 
