@@ -61,7 +61,12 @@ INSERT INTO utente (nome, cognome, email, password) VALUES
 ('Riccardo', 'Caccavale', 'riccardo.caccavale@unina.it', '1234'),
 ('Bernardo', 'Breve', 'bernardo.breve@unina.it', '1234');
 
--- decrementa la disponibilita se ci sono box, altrimenti blocca l'inserimento
+-- Allineamento delle sequenze automatiche SERIAL
+SELECT setval('punto_vendita_id_punto_vendita_seq', (SELECT MAX(id_punto_vendita) FROM punto_vendita));
+SELECT setval('box_id_box_seq', (SELECT MAX(id_box) FROM box));
+SELECT setval('utente_id_utente_seq', (SELECT MAX(id_utente) FROM utente));
+
+-- Trigger 1: decrementa disponibilita se ci sono box, altrimenti blocca l'inserimento
 CREATE OR REPLACE FUNCTION trg_decrementa_box()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -83,7 +88,7 @@ BEFORE INSERT ON prenotazione
 FOR EACH ROW
 EXECUTE FUNCTION trg_decrementa_box();
 
--- ripristina la disponibilita quando l'utente annulla la prenotazione
+-- Trigger 2: ripristina disponibilita quando l'utente annulla la prenotazione
 CREATE OR REPLACE FUNCTION trg_ripristina_box()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -103,7 +108,7 @@ AFTER UPDATE ON prenotazione
 FOR EACH ROW
 EXECUTE FUNCTION trg_ripristina_box();
 
--- controlla che i prezzi siano maggiori di zero e che lo sconto sia valido
+-- Trigger 3: controlla che i prezzi siano maggiori di zero e lo sconto valido
 CREATE OR REPLACE FUNCTION trg_check_prezzi_box()
 RETURNS TRIGGER AS $$
 BEGIN

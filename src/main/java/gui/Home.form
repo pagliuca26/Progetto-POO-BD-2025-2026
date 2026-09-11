@@ -16,7 +16,7 @@
         </constraints>
         <properties>
           <font name="Ink Free" size="45" style="1"/>
-          <foreground color="-1973016"/>
+          <foreground color="-11855551"/>
           <text value="Cosa desideri oggi?"/>
         </properties>
       </component>
@@ -25,7 +25,7 @@
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <foreground color="-13162461"/>
+          <foreground color="-11855551"/>
           <text value="←Login"/>
         </properties>
       </component>
@@ -66,12 +66,12 @@
         </constraints>
         <properties>
           <autoscrolls value="false"/>
-          <background color="-1973016"/>
-          <borderPainted value="true"/>
+          <background color="-1"/>
+          <borderPainted value="false"/>
           <contentAreaFilled value="true"/>
           <focusPainted value="false"/>
           <font name="Segoe UI" size="12" style="1"/>
-          <foreground color="-13487566"/>
+          <foreground color="-13813944"/>
           <icon value="img/impostazioniHome.png"/>
           <opaque value="true"/>
           <text value=""/>
@@ -88,12 +88,12 @@
         </constraints>
         <properties>
           <autoscrolls value="false"/>
-          <background color="-1973016"/>
-          <borderPainted value="true"/>
+          <background color="-1"/>
+          <borderPainted value="false"/>
           <contentAreaFilled value="true"/>
           <focusPainted value="false"/>
           <font name="Segoe UI" size="12" style="1"/>
-          <foreground color="-13487566"/>
+          <foreground color="-13813944"/>
           <hideActionText value="true"/>
           <icon value="img/prenotazioniHome.png"/>
           <opaque value="true"/>

@@ -1,40 +1,39 @@
 package gui;
 
 import controller.Controller;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.*;
 
 public class BoxGuacamole {
+
+    //componenti grafici della finestra box guacamole
     private static JFrame frameGuacamole;
     private JPanel boxGuacamole;
     private JLabel ristGuacamole;
     private JButton acquistaGuacamole;
     private JLabel qntDispGuacamole;
     private JLabel nachosGuacamole;
-    private static int quantitàDisponibileGuacamole = 6;
+    private static int quantitaDisponibileGuacamole = 6;
 
-    //costruttore
+    //costruttore della schermata box guacamole
     public BoxGuacamole(JFrame frameRistorante, Controller controller) {
-
         frameGuacamole = new JFrame("Guacamole");
         frameGuacamole.setContentPane(boxGuacamole);
         frameGuacamole.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameGuacamole.pack();
+
+        //impostazioni della finestra
+        frameGuacamole.setResizable(false);
+        frameGuacamole.setSize(450, 450);
+        frameGuacamole.setLocationRelativeTo(null);
         frameGuacamole.setVisible(true);
 
-        frameGuacamole.setResizable(false); //non cambia dimensione
-        frameGuacamole.setSize(450, 450); //grandezza della finestra
-        frameGuacamole.setLocationRelativeTo(null); //finestra si apre al centro
-        frameGuacamole.setVisible(true);
-
-        //JLable cliccabile, per tornare alla scelta dei ristoranti
+        //ritorno alla schermata dei ristoranti
         ristGuacamole.setCursor(new Cursor(Cursor.HAND_CURSOR));
-
         ristGuacamole.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -43,26 +42,26 @@ public class BoxGuacamole {
             }
         });
 
-        //quantità che diminuisce col bottone acquista
-        qntDispGuacamole.setText("Quantità disponibile: " + quantitàDisponibileGuacamole);
+        //inizializzazione del testo di disponibilita
+        qntDispGuacamole.setText("Quantità disponibile: " + quantitaDisponibileGuacamole);
 
+        //gestione click del pulsante acquista
         acquistaGuacamole.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (quantitàDisponibileGuacamole > 0) {
-                    quantitàDisponibileGuacamole--;
+                if (quantitaDisponibileGuacamole > 0) {
+                    quantitaDisponibileGuacamole--;
+                    qntDispGuacamole.setText("Quantità disponibile: " + quantitaDisponibileGuacamole);
 
-                    qntDispGuacamole.setText("Quantità disponibile: " + quantitàDisponibileGuacamole);
+                    int quantitaPresa = 6 - quantitaDisponibileGuacamole;
 
-                    int quantitaPresa = 6 - quantitàDisponibileGuacamole;
-
-                    //salva l'acquisto nel db e recupera il codice univoco generato
+                    //salva lacquisto nel db e ottiene il codice generato
                     String codiceRitiro = controller.acquistaBoxDB(5);
 
-                    //aggiorna la pagina Prenotazioni passando anche il codice univoco
+                    //aggiorna la schermata di riepilogo prenotazioni
                     Home.getPaginaPrenotazione().aggiornaPrenotazione("Guacamole", quantitaPresa, codiceRitiro);
 
-                    //mostra il popup di conferma con il codice univoco
+                    //notifica di conferma con codice di ritiro
                     JOptionPane.showMessageDialog(
                             frameGuacamole,
                             "Acquisto effettuato con successo!\nCodice di ritiro: " + codiceRitiro,
@@ -70,7 +69,10 @@ public class BoxGuacamole {
                             JOptionPane.INFORMATION_MESSAGE
                     );
                 } else {
-                    JOptionPane.showMessageDialog(null, "Errore: Le Box per questo punto vendita sono terminate!", "Box Terminate",
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Errore: Le Box per questo punto vendita sono terminate!",
+                            "Box Terminate",
                             JOptionPane.ERROR_MESSAGE
                     );
                 }
@@ -78,16 +80,23 @@ public class BoxGuacamole {
         });
     }
 
-    //metodo getter per accedere al frame privato ed evitare il reset dei dati
-    public static JFrame getFrameGuacamole() { return frameGuacamole; }
-
-    public static void aumentaDisponibile() { quantitàDisponibileGuacamole++; }
-
-    public static int getDisponibile() {
-        return quantitàDisponibileGuacamole;
+    //restituisce il frame della finestra guacamole
+    public static JFrame getFrameGuacamole() {
+        return frameGuacamole;
     }
 
+    //incrementa il numero di box disponibili a seguito di annullamento
+    public static void aumentaDisponibile() {
+        quantitaDisponibileGuacamole++;
+    }
+
+    //restituisce la quantita attualmente disponibile
+    public static int getDisponibile() {
+        return quantitaDisponibileGuacamole;
+    }
+
+    //aggiorna il testo dell etichetta della disponibilita
     public void aggiornaLabelDisponibile() {
-        qntDispGuacamole.setText("Quantità disponibile: " + quantitàDisponibileGuacamole);
+        qntDispGuacamole.setText("Quantità disponibile: " + quantitaDisponibileGuacamole);
     }
 }

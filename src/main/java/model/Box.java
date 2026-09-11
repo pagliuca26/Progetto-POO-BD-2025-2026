@@ -16,7 +16,7 @@ public class Box {
         this.grandezzaBox = grandezzaBox;
     }
 
-    //get e set
+    //metodi get e set
     public double getPrezzoOriginale() {
         return prezzoOriginale;
     }
@@ -33,6 +33,7 @@ public class Box {
         this.prezzoScontato = prezzoScontato;
     }
 
+    //restituisce la disponibilita residua della box
     public int getQuantitaDisponibile() {
         return quantitaDisponibile;
     }

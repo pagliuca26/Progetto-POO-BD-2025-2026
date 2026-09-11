@@ -1,68 +1,67 @@
 package gui;
 
 import controller.Controller;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.*;
 
 public class BoxItaliamo {
+
+    //componenti grafici della finestra box italiamo
     private static JFrame frameItaliamo;
     private JPanel boxItaliamo;
     private JLabel ristItaliamo;
     private JButton acquistaItaliamo;
     private JLabel qntDispItaliamo;
     private JLabel spaghettiItaliamo;
-    private static int quantitàDisponibileItaliamo = 10;
+    private static int quantitaDisponibileItaliamo = 10;
 
-    //costruttore
+    //costruttore della schermata box italiamo
     public BoxItaliamo(JFrame frameRistorante, Controller controller) {
-
         frameItaliamo = new JFrame("Italiamo");
         frameItaliamo.setContentPane(boxItaliamo);
         frameItaliamo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameItaliamo.pack();
+
+        //impostazioni della finestra
+        frameItaliamo.setResizable(false);
+        frameItaliamo.setSize(450, 450);
+        frameItaliamo.setLocationRelativeTo(null);
         frameItaliamo.setVisible(true);
 
-        frameItaliamo.setResizable(false); //non cambia dimensione
-        frameItaliamo.setSize(450, 450); //grandezza della finestra
-        frameItaliamo.setLocationRelativeTo(null); //finestra si apre al centro
-        frameItaliamo.setVisible(true);
-
-        //JLable cliccabile, per tornare alla scelta dei ristoranti
-        ristItaliamo.setCursor (new Cursor(Cursor.HAND_CURSOR)) ;
-
+        //ritorno alla schermata dei ristoranti
+        ristItaliamo.setCursor(new Cursor(Cursor.HAND_CURSOR));
         ristItaliamo.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked (MouseEvent e) {
-                frameRistorante.setVisible (true) ;
+            public void mouseClicked(MouseEvent e) {
+                frameRistorante.setVisible(true);
                 frameItaliamo.setVisible(false);
             }
         });
 
-        //quantità che diminuisce col bottone acquista
-        qntDispItaliamo.setText("Quantità disponibile: " + quantitàDisponibileItaliamo);
+        //inizializzazione del testo di disponibilita
+        qntDispItaliamo.setText("Quantità disponibile: " + quantitaDisponibileItaliamo);
 
+        //gestione click del pulsante acquista
         acquistaItaliamo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (quantitàDisponibileItaliamo > 0) {
-                    quantitàDisponibileItaliamo--;
+                if (quantitaDisponibileItaliamo > 0) {
+                    quantitaDisponibileItaliamo--;
+                    qntDispItaliamo.setText("Quantità disponibile: " + quantitaDisponibileItaliamo);
 
-                    qntDispItaliamo.setText("Quantità disponibile: " + quantitàDisponibileItaliamo);
+                    int quantitaPresa = 10 - quantitaDisponibileItaliamo;
 
-                    int quantitaPresa = 10 - quantitàDisponibileItaliamo;
+                    //salva lacquisto nel db con id 4 e ottiene il codice generato
+                    String codiceRitiro = controller.acquistaBoxDB(4);
 
-                    //salva l'acquisto nel db e recupera il codice univoco generato
-                    String codiceRitiro = controller.acquistaBoxDB(3);
-
-                    //aggiorna la pagina Prenotazioni passando anche il codice univoco
+                    //aggiorna la schermata di riepilogo prenotazioni
                     Home.getPaginaPrenotazione().aggiornaPrenotazione("Italiamo", quantitaPresa, codiceRitiro);
 
-                    //mostra il popup di conferma con il codice univoco
+                    //notifica di conferma con codice di ritiro
                     JOptionPane.showMessageDialog(
                             frameItaliamo,
                             "Acquisto effettuato con successo!\nCodice di ritiro: " + codiceRitiro,
@@ -70,7 +69,10 @@ public class BoxItaliamo {
                             JOptionPane.INFORMATION_MESSAGE
                     );
                 } else {
-                    JOptionPane.showMessageDialog(null, "Errore: Le Box per questo punto vendita sono terminate!",  "Box Terminate",
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Errore: Le Box per questo punto vendita sono terminate!",
+                            "Box Terminate",
                             JOptionPane.ERROR_MESSAGE
                     );
                 }
@@ -78,20 +80,23 @@ public class BoxItaliamo {
         });
     }
 
-    //metodo getter per accedere al frame privato ed evitare il reset dei dati
+    //restituisce il frame della finestra italiamo
     public static JFrame getFrameItaliano() {
         return frameItaliamo;
     }
 
+    //incrementa il numero di box disponibili a seguito di annullamento
     public static void aumentaDisponibile() {
-        quantitàDisponibileItaliamo++;
+        quantitaDisponibileItaliamo++;
     }
 
+    //restituisce la quantita attualmente disponibile
     public static int getDisponibile() {
-        return quantitàDisponibileItaliamo;
+        return quantitaDisponibileItaliamo;
     }
 
+    //aggiorna il testo dell etichetta della disponibilita
     public void aggiornaLabelDisponibile() {
-        qntDispItaliamo.setText("Quantità disponibile: " + quantitàDisponibileItaliamo);
+        qntDispItaliamo.setText("Quantità disponibile: " + quantitaDisponibileItaliamo);
     }
 }

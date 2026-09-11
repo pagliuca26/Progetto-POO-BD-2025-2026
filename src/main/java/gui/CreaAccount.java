@@ -1,11 +1,16 @@
 package gui;
-import controller.Controller;
 
+import controller.Controller;
+import java.awt.Cursor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
 
 public class CreaAccount {
+
+    //componenti grafici della finestra di registrazione
     private JTextField creaEmail;
     private JPanel creaAccountPanel;
     private JButton accountCreato;
@@ -18,7 +23,7 @@ public class CreaAccount {
     private JLabel cognome;
     private JLabel tornaAccedi;
 
-    //costruttore
+    //costruttore della schermata di registrazione
     public CreaAccount(JFrame loginFrame, Controller controller) {
 
         JFrame frame = new JFrame("Crea un nuovo account ;)");
@@ -26,46 +31,41 @@ public class CreaAccount {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
 
-        frame.setResizable(false); //non cambia dimensione
-        frame.setSize(450,450); //grandezza della finestra
-        frame.setLocationRelativeTo(null); //finestra si apre al centro
-
+        //impostazioni di dimensione e posizione della finestra
+        frame.setResizable(false);
+        frame.setSize(450, 450);
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        //gestone pulsante torna alla pagina di login
-        tornaLogin.setCursor(new Cursor(Cursor.HAND_CURSOR)); //cambia il cursore quando ci passa sopra
-
-        tornaLogin.addMouseListener(new MouseAdapter(){
+        //gestione pulsante torna al login
+        tornaLogin.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        tornaLogin.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e){
+            public void mouseClicked(MouseEvent e) {
                 loginFrame.setVisible(true);
                 frame.setVisible(false);
             }
         });
 
-        //gestione pulsante crea account
+        //gestione pulsante crea account con validazione del controller
         accountCreato.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try{
+                try {
                     String email = creaEmail.getText();
-                    String password = creaPassword.getText();
+                    String password = new String(creaPassword.getPassword());
                     String nome = creaNome.getText();
                     String cognome = creaCognome.getText();
+
                     controller.creaUtente(email, password, nome, cognome);
                     JOptionPane.showMessageDialog(null, "Account creato con successo!");
 
-                    //torna alla pagina di login
                     loginFrame.setVisible(true);
                     frame.setVisible(false);
-                }
-                catch(RuntimeException ex){
+                } catch (RuntimeException ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
-
-
     }
 }
-

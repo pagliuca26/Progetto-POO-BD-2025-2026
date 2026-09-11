@@ -16,7 +16,7 @@
         </constraints>
         <properties>
           <foreground color="-11855551"/>
-          <text value="&lt;-Home"/>
+          <text value="←Home"/>
         </properties>
       </component>
       <component id="9719a" class="javax.swing.JLabel" binding="introduzione">

@@ -2,13 +2,13 @@ package model;
 
 public class PuntoVendita {
 
-    //attributi
+    //attributi del punto vendita
     private int idPuntoVendita;
     private String nome;
     private String indirizzo;
     private String orarioRitiro;
 
-    //costruttore
+    //costruttore per creare il punto vendita
     public PuntoVendita(int idPuntoVendita, String nome, String indirizzo, String orarioRitiro) {
         this.idPuntoVendita = idPuntoVendita;
         this.nome = nome;
@@ -16,7 +16,12 @@ public class PuntoVendita {
         this.orarioRitiro = orarioRitiro;
     }
 
-    //get e set
+    //metodo del diagramma per fornire i dati dell indirizzo
+    public String fornireIndirizzo() {
+        return this.indirizzo;
+    }
+
+    //metodi get e set per id
     public int getIdPuntoVendita() {
         return idPuntoVendita;
     }
@@ -25,6 +30,7 @@ public class PuntoVendita {
         this.idPuntoVendita = idPuntoVendita;
     }
 
+    //metodi get e set per nome
     public String getNome() {
         return nome;
     }
@@ -33,6 +39,7 @@ public class PuntoVendita {
         this.nome = nome;
     }
 
+    //metodi get e set per indirizzo
     public String getIndirizzo() {
         return indirizzo;
     }
@@ -41,16 +48,12 @@ public class PuntoVendita {
         this.indirizzo = indirizzo;
     }
 
+    //metodi get e set per orario ritiro
     public String getOrarioRitiro() {
         return orarioRitiro;
     }
 
     public void setOrarioRitiro(String orarioRitiro) {
         this.orarioRitiro = orarioRitiro;
-    }
-
-    //metodi dal class diagram
-    public String fornireIndirizzo() {
-        return this.indirizzo;
     }
 }

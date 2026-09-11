@@ -2,32 +2,32 @@ package model;
 
 public class Utente {
 
-    //attributi
+    //attributi dell utente
     private int idUtente;
-    private String email;
-    private String password;
     private String nome;
     private String cognome;
+    private String email;
+    private String password;
     private boolean accessoEffettuato = false;
 
-    //costruttore
-    public Utente(int idUtente, String email, String password, String nome, String cognome) {
+    //costruttore senza id utile per la registrazione
+    public Utente(String nome, String cognome, String email, String password) {
+        this.nome = nome;
+        this.cognome = cognome;
+        this.email = email;
+        this.password = password;
+    }
+
+    //costruttore completo utile quando leggiamo i dati dal database
+    public Utente(int idUtente, String nome, String cognome, String email, String password) {
         this.idUtente = idUtente;
-        this.email = email;
-        this.password = password;
         this.nome = nome;
         this.cognome = cognome;
-    }
-
-    //overloading costruttore
-    public Utente(String email, String password, String nome, String cognome) {
         this.email = email;
         this.password = password;
-        this.nome = nome;
-        this.cognome = cognome;
     }
 
-    //get e set
+    //metodi get e set per id utente
     public int getIdUtente() {
         return idUtente;
     }
@@ -36,22 +36,7 @@ public class Utente {
         this.idUtente = idUtente;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
+    //metodi get e set per nome
     public String getNome() {
         return nome;
     }
@@ -60,6 +45,7 @@ public class Utente {
         this.nome = nome;
     }
 
+    //metodi get e set per cognome
     public String getCognome() {
         return cognome;
     }
@@ -68,6 +54,25 @@ public class Utente {
         this.cognome = cognome;
     }
 
+    //metodi get e set per email
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    //metodi get e set per password
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    //metodi get e set per verificare lo stato del login
     public boolean isAccessoEffettuato() {
         return accessoEffettuato;
     }

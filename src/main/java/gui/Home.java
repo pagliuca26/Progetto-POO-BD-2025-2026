@@ -1,16 +1,16 @@
 package gui;
 
 import controller.Controller;
-
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
+import javax.swing.*;
 
 public class Home {
+
+    //componenti grafici della finestra home
     private JPanel homePanel;
     private JButton ristoranteButton;
     private JButton supermercatoButton;
@@ -22,27 +22,35 @@ public class Home {
     private JFrame frameHome;
     private Controller controller;
 
-    //variabili per salvare le pagine principali così non si resettano quando torni alla home
+    //riferimenti alle schermate secondarie per preservarne lo stato
     private Supermercato paginaSupermercato = null;
     private RistoranteForm paginaRistorante = null;
     private static Prenotazione paginaPrenotazione = null;
     private static Impostazioni paginaImpostazioni = null;
 
-    //costruttore
+    //costruttore della schermata home
     public Home(JFrame loginFrame, Controller controller) {
+        this.controller = controller;
+
         frameHome = new JFrame("Home");
         frameHome.setContentPane(homePanel);
         frameHome.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameHome.pack();
+
+        //impostazioni finestra
+        frameHome.setResizable(false);
+        frameHome.setSize(450, 450);
+        frameHome.setLocationRelativeTo(null);
         frameHome.setVisible(true);
 
-        frameHome.setResizable(false); //non cambia dimensione
-        frameHome.setSize(450, 450); //grandezza della finestra
-        frameHome.setLocationRelativeTo(null); //finestra si apre al centro
-        frameHome.setVisible(true);paginaPrenotazione = new Prenotazione(frameHome, controller);
+        //inizializzazione anticipata della pagina prenotazioni per evitare crash agli acquisti
+        if (paginaPrenotazione == null) {
+            paginaPrenotazione = new Prenotazione(frameHome, controller);
+            Prenotazione.getFramePrenotazione().setVisible(false);
+        }
 
-
-        //JLable cliccabile, per passare dalla pagina home a quella di login
+        //ritorno alla pagina di login
+        returnLogin.setCursor(new Cursor(Cursor.HAND_CURSOR));
         returnLogin.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -51,75 +59,63 @@ public class Home {
             }
         });
 
-        //bottone dalla home al ristorante
+        //apertura schermata ristorante
         ristoranteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (paginaRistorante == null) {
-                    // Prima volta
                     paginaRistorante = new RistoranteForm(frameHome, controller);
                 } else {
-                    // Volte successive
                     RistoranteForm.getFrameRistorante().setVisible(true);
                 }
                 frameHome.setVisible(false);
             }
         });
 
-        //bottone dalla home al supermercato
+        //apertura schermata supermercato
         supermercatoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (paginaSupermercato == null) {
-                    // Prima volta: la creiamo da zero
                     paginaSupermercato = new Supermercato(frameHome, controller);
                 } else {
-                    // Volte successive: riapriamo quella esistente con tutti i dati salvati
                     Supermercato.getFrameSupermercato().setVisible(true);
                 }
                 frameHome.setVisible(false);
             }
         });
 
-        //bottone dalla home alle prenotazioni
+        //apertura schermata prenotazioni
         prenotazioneButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (paginaPrenotazione == null) {
-                    //prima volta
-                    paginaPrenotazione = new Prenotazione(frameHome, controller);
-                } else {
-                    // volte successive
-                    paginaPrenotazione.cambiaAvatar(controller.getAvatarSelezionato());
-                    paginaPrenotazione.aggiornaSaluto(controller);
-                    Prenotazione.getFramePrenotazione().setVisible(true);
-                }
+                paginaPrenotazione.cambiaAvatar(controller.getAvatarSelezionato());
+                paginaPrenotazione.aggiornaSaluto(controller);
+                Prenotazione.getFramePrenotazione().setVisible(true);
                 frameHome.setVisible(false);
             }
         });
 
-        //bottone da home a impostazioni
-        impHome.addActionListener(new ActionListener () {
+        //apertura schermata impostazioni
+        impHome.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (paginaImpostazioni == null) {
-                    //prima volta
                     paginaImpostazioni = new Impostazioni(frameHome, controller);
                 } else {
-                    //volte successive
                     paginaImpostazioni.getFrameImpostazioni().setVisible(true);
                 }
                 frameHome.setVisible(false);
             }
         });
-
-
     }
 
+    //restituisce il riferimento alla pagina delle prenotazioni
     public static Prenotazione getPaginaPrenotazione() {
         return paginaPrenotazione;
     }
 
+    //creazione personalizzata dei componenti grafici per lo sfondo
     private void createUIComponents() {
         final Image backgroundImage = new ImageIcon(getClass().getResource("/img/sfondoHome.png")).getImage();
 
@@ -134,30 +130,3 @@ public class Home {
         };
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-      /*  //metodo getter per far accedere le altre classi alla schermata prenotazioni
-        public static Prenotazione getPaginaPrenotazione() {
-            return paginaPrenotazione;
-        }
-}
-
-
-//metodo getter di impostazioni
-public static Impostazioni getFrameImpostazioni() {
-return paginaImpostazioni;
-}
-
-
-
-*/

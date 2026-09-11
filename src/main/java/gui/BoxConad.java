@@ -1,39 +1,39 @@
 package gui;
 
 import controller.Controller;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.*;
 
 public class BoxConad {
+
+    //componenti grafici della finestra box conad
     private static JFrame frameConad;
     private JPanel boxConad;
     private JPanel boxConadd;
     private JButton acquistaConad;
     private JLabel supConad;
     private JLabel qntDispConad;
-    private static int quantitàDisponibileConad = 7;
+    private static int quantitaDisponibileConad = 7;
 
-    //costruttore
+    //costruttore della schermata box conad
     public BoxConad(JFrame frameSupermercato, Controller controller) {
-
         frameConad = new JFrame("Conad");
         frameConad.setContentPane(boxConad);
         frameConad.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameConad.pack();
 
-        frameConad.setResizable(false); //non cambia dimensione
-        frameConad.setSize(450, 450); //grandezza della finestra
-        frameConad.setLocationRelativeTo(null); //finestra si apre al centro
+        //impostazioni della finestra
+        frameConad.setResizable(false);
+        frameConad.setSize(450, 450);
+        frameConad.setLocationRelativeTo(null);
         frameConad.setVisible(true);
 
-        //JLable cliccabile, per tornare alla scelta dei supermercati
+        //ritorno alla schermata dei supermercati
         supConad.setCursor(new Cursor(Cursor.HAND_CURSOR));
-
         supConad.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -42,35 +42,37 @@ public class BoxConad {
             }
         });
 
-        //quantità che diminuisce col bottone acquista
-        qntDispConad.setText("Quantità disponibile: " + quantitàDisponibileConad);
+        //inizializzazione del testo di disponibilita
+        qntDispConad.setText("Quantità disponibile: " + quantitaDisponibileConad);
 
+        //gestione click del pulsante acquista
         acquistaConad.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (quantitàDisponibileConad > 0) { //controllo condizionale: verifica se ci sono ancora box disponibili (maggiore di zero)
-                    quantitàDisponibileConad--;    //decrementa di 1 il valore della variabile intera che tiene il conto delle box
+                if (quantitaDisponibileConad > 0) {
+                    quantitaDisponibileConad--;
+                    qntDispConad.setText("Quantità disponibile: " + quantitaDisponibileConad);
 
-                    qntDispConad.setText("Quantità disponibile: " + quantitàDisponibileConad); // Aggiorna la scritta DIRETTAMENTE sulla pagina
+                    int quantitaPresa = 7 - quantitaDisponibileConad;
 
-                    int quantitaPresa = 7 - quantitàDisponibileConad;
-
-                    //salva l'acquisto nel db e recupera il codice univoco generato
+                    //salva lacquisto nel db e ottiene il codice generato
                     String codiceRitiro = controller.acquistaBoxDB(2);
 
-                    //aggiorna la pagina Prenotazioni passando anche il codice univoco
+                    //aggiorna la schermata di riepilogo prenotazioni
                     Home.getPaginaPrenotazione().aggiornaPrenotazione("Conad", quantitaPresa, codiceRitiro);
 
-                    //mostra il popup di conferma con il codice univoco
+                    //notifica di conferma con codice di ritiro
                     JOptionPane.showMessageDialog(
                             frameConad,
                             "Acquisto effettuato con successo!\nCodice di ritiro: " + codiceRitiro,
                             "Prenotazione Confermata",
                             JOptionPane.INFORMATION_MESSAGE
                     );
-                } else {     //se la condizione dell if è falsa (ovvero la quantità è uguale a zero)
-                    //POP-UP 2: Finestra di errore: la quantità è 0
-                    JOptionPane.showMessageDialog(null, "Errore: Le Box per questo punto vendita sono terminate!", "Box Terminate",
+                } else {
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Errore: Le Box per questo punto vendita sono terminate!",
+                            "Box Terminate",
                             JOptionPane.ERROR_MESSAGE
                     );
                 }
@@ -78,20 +80,23 @@ public class BoxConad {
         });
     }
 
-    //metodo getter per accedere al frame privato ed evitare il reset dei dati
+    //restituisce il frame della finestra conad
     public static JFrame getFrameConad() {
         return frameConad;
     }
 
+    //incrementa il numero di box disponibili a seguito di annullamento
     public static void aumentaDisponibile() {
-        quantitàDisponibileConad++;
+        quantitaDisponibileConad++;
     }
 
+    //restituisce la quantita attualmente disponibile
     public static int getDisponibile() {
-        return quantitàDisponibileConad;
+        return quantitaDisponibileConad;
     }
 
+    //aggiorna il testo dell etichetta della disponibilita
     public void aggiornaLabelDisponibile() {
-        qntDispConad.setText("Quantità disponibile: " + quantitàDisponibileConad);
+        qntDispConad.setText("Quantità disponibile: " + quantitaDisponibileConad);
     }
 }

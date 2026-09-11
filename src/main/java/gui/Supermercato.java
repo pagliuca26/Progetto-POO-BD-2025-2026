@@ -1,15 +1,16 @@
 package gui;
 
 import controller.Controller;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.*;
 
 public class Supermercato {
+
+    //componenti grafici della schermata supermercati
     private static JFrame frameSupermercato;
     private JPanel supermercatoPanel;
     private JButton conadButton;
@@ -18,27 +19,25 @@ public class Supermercato {
     private JLabel tornaHomeS;
     private JLabel iconaSupermercato;
 
-
-    //variabili per salvare le pagine dei supermercati. All'inizio sono null (vuote) così al primo click creiamo la finestra,
-    //mentre i click successivi riaprono quella vecchia senza resettare le boxriapriamo lo stesso senza azzerare i numeri delle box.
+    //istanze delle schermate box per preservare lo stato delle disponibilita
     private BoxConad conad = null;
     private BoxSole365 sole365 = null;
     private BoxDespar despar = null;
 
-    //costruttore
+    //costruttore della schermata selezione supermercati
     public Supermercato(JFrame homeFrame, Controller controller) {
         frameSupermercato = new JFrame("Supermercati");
         frameSupermercato.setContentPane(supermercatoPanel);
         frameSupermercato.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameSupermercato.pack();
+
+        //impostazioni della finestra
+        frameSupermercato.setResizable(false);
+        frameSupermercato.setSize(450, 450);
+        frameSupermercato.setLocationRelativeTo(null);
         frameSupermercato.setVisible(true);
 
-        frameSupermercato.setResizable(false); //non cambia dimensione
-        frameSupermercato.setSize(450, 450); //grandezza della finestra
-        frameSupermercato.setLocationRelativeTo(null); //finestra si apre al centro
-        frameSupermercato.setVisible(true);
-
-        //bottone da supermercato a conad
+        //navigazione verso box conad
         conadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -52,7 +51,7 @@ public class Supermercato {
             }
         });
 
-        //bottone da supermercato a sole365
+        //navigazione verso box sole365
         sole365Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -66,7 +65,7 @@ public class Supermercato {
             }
         });
 
-        //bottone da supermercato a despar
+        //navigazione verso box despar
         desparButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -80,19 +79,18 @@ public class Supermercato {
             }
         });
 
-        //Jlabel cliccabile, per tornare dalla pagina dei supermercati alla home
-        tornaHomeS.setCursor (new Cursor(Cursor.HAND_CURSOR)); //cambia il cursore
-
+        //ritorno alla schermata home
+        tornaHomeS.setCursor(new Cursor(Cursor.HAND_CURSOR));
         tornaHomeS.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked (MouseEvent e) {
-                homeFrame.setVisible (true) ;
-                frameSupermercato.setVisible (false);
+            public void mouseClicked(MouseEvent e) {
+                homeFrame.setVisible(true);
+                frameSupermercato.setVisible(false);
             }
         });
     }
 
-    // Metodo getter per far recuperare alla Home lo stesso frame dei supermercati
+    //restituisce il frame della schermata supermercati
     public static JFrame getFrameSupermercato() {
         return frameSupermercato;
     }

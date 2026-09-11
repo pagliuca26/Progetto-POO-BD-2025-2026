@@ -1,40 +1,39 @@
 package gui;
 
 import controller.Controller;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.*;
 
 public class BoxTokyo {
+
+    //componenti grafici della finestra box tokyo
     private static JFrame frameTokyo;
     private JPanel boxTokyo;
     private JButton acquistaTokyo;
     private JLabel ristTokyo;
     private JLabel qntDispTokyo;
     private JLabel sushiTokyo;
-    private static int quantitàDisponibileTokyo = 7;
+    private static int quantitaDisponibileTokyo = 7;
 
-    //costruttore
+    //costruttore della schermata box tokyo
     public BoxTokyo(JFrame frameRistorante, Controller controller) {
-
         frameTokyo = new JFrame("Tokyo");
         frameTokyo.setContentPane(boxTokyo);
         frameTokyo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameTokyo.pack();
+
+        //impostazioni della finestra
+        frameTokyo.setResizable(false);
+        frameTokyo.setSize(450, 450);
+        frameTokyo.setLocationRelativeTo(null);
         frameTokyo.setVisible(true);
 
-        frameTokyo.setResizable(false); //non cambia dimensione
-        frameTokyo.setSize(450, 450); //grandezza della finestra
-        frameTokyo.setLocationRelativeTo(null); //finestra si apre al centro
-        frameTokyo.setVisible(true);
-
-        //JLable cliccabile, per tornare alla scelta dei ristoranti
+        //ritorno alla schermata dei ristoranti
         ristTokyo.setCursor(new Cursor(Cursor.HAND_CURSOR));
-
         ristTokyo.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -43,26 +42,26 @@ public class BoxTokyo {
             }
         });
 
-        //Quantità che diminuisce col bottone acquista
-        qntDispTokyo.setText("Quantità disponibile: " + quantitàDisponibileTokyo);
+        //inizializzazione del testo di disponibilita
+        qntDispTokyo.setText("Quantità disponibile: " + quantitaDisponibileTokyo);
 
+        //gestione click del pulsante acquista
         acquistaTokyo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (quantitàDisponibileTokyo > 0) {
-                    quantitàDisponibileTokyo--;
+                if (quantitaDisponibileTokyo > 0) {
+                    quantitaDisponibileTokyo--;
+                    qntDispTokyo.setText("Quantità disponibile: " + quantitaDisponibileTokyo);
 
-                    qntDispTokyo.setText("Quantità disponibile: " + quantitàDisponibileTokyo);
+                    int quantitaPresa = 7 - quantitaDisponibileTokyo;
 
-                    int quantitaPresa = 7 - quantitàDisponibileTokyo;
-
-                    //salva l'acquisto nel db e recupera il codice univoco generato
+                    //salva lacquisto nel db con id 6 e ottiene il codice generato
                     String codiceRitiro = controller.acquistaBoxDB(6);
 
-                    //aggiorna la pagina Prenotazioni passando anche il codice univoco
+                    //aggiorna la schermata di riepilogo prenotazioni
                     Home.getPaginaPrenotazione().aggiornaPrenotazione("Tokyo", quantitaPresa, codiceRitiro);
 
-                    //mostra il popup di conferma con il codice univoco
+                    //notifica di conferma con codice di ritiro
                     JOptionPane.showMessageDialog(
                             frameTokyo,
                             "Acquisto effettuato con successo!\nCodice di ritiro: " + codiceRitiro,
@@ -70,7 +69,10 @@ public class BoxTokyo {
                             JOptionPane.INFORMATION_MESSAGE
                     );
                 } else {
-                    JOptionPane.showMessageDialog(null, "Errore: Le Box per questo punto vendita sono terminate!",  "Box Terminate",
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Errore: Le Box per questo punto vendita sono terminate!",
+                            "Box Terminate",
                             JOptionPane.ERROR_MESSAGE
                     );
                 }
@@ -78,21 +80,23 @@ public class BoxTokyo {
         });
     }
 
-    //metodo getter per accedere al frame privato ed evitare il reset dei dati
+    //restituisce il frame della finestra tokyo
     public static JFrame getFrameTokyo() {
         return frameTokyo;
     }
 
+    //incrementa il numero di box disponibili a seguito di annullamento
     public static void aumentaDisponibile() {
-        quantitàDisponibileTokyo++;
+        quantitaDisponibileTokyo++;
     }
 
+    //restituisce la quantita attualmente disponibile
     public static int getDisponibile() {
-        return quantitàDisponibileTokyo;
+        return quantitaDisponibileTokyo;
     }
 
+    //aggiorna il testo dell etichetta della disponibilita
     public void aggiornaLabelDisponibile() {
-        qntDispTokyo.setText("Quantità disponibile: " + quantitàDisponibileTokyo);
+        qntDispTokyo.setText("Quantità disponibile: " + quantitaDisponibileTokyo);
     }
-
 }

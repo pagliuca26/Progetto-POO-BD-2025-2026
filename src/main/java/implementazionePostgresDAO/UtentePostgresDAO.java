@@ -2,25 +2,27 @@ package implementazionePostgresDAO;
 
 import dao.UtenteDAO;
 import database.ConnessioneDatabase;
-import model.Utente;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import model.Utente;
 
 public class UtentePostgresDAO implements UtenteDAO {
 
+    //connessione al database
     private Connection connection;
 
+    //costruttore che recupera l istanza della connessione
     public UtentePostgresDAO() {
         try {
-            this.connection = ConnessioneDatabase.getInstance().connection;
+            this.connection = ConnessioneDatabase.getInstance().getConnection();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("errore connessione utentedao: " + e.getMessage());
         }
     }
 
+    //registra un nuovo utente nel database
     @Override
     public boolean registraUtente(Utente utente) throws SQLException {
         String sql = "INSERT INTO utente (email, password, nome, cognome) VALUES (?, ?, ?, ?)";
@@ -33,6 +35,7 @@ public class UtentePostgresDAO implements UtenteDAO {
         }
     }
 
+    //effettua il login verificando email e password
     @Override
     public Utente login(String email, String password) throws SQLException {
         String sql = "SELECT email, password, nome, cognome FROM utente WHERE email = ? AND password = ?";
@@ -45,13 +48,14 @@ public class UtentePostgresDAO implements UtenteDAO {
                     String pass = rs.getString("password");
                     String nome = rs.getString("nome");
                     String cognome = rs.getString("cognome");
-                    return new Utente(mail, pass, nome, cognome);
+                    return new Utente(nome, cognome, mail, pass);
                 }
             }
         }
         return null;
     }
 
+    //modifica i dati dell utente nel database
     @Override
     public boolean modificaUtente(Utente utente, String vecchiaEmail) throws SQLException {
         String sql = "UPDATE utente SET email = ?, password = ?, nome = ?, cognome = ? WHERE email = ?";
@@ -65,6 +69,7 @@ public class UtentePostgresDAO implements UtenteDAO {
         }
     }
 
+    //elimina l utente dal database
     @Override
     public boolean eliminaUtente(String email) throws SQLException {
         String sql = "DELETE FROM utente WHERE email = ?";
@@ -73,6 +78,4 @@ public class UtentePostgresDAO implements UtenteDAO {
             return statement.executeUpdate() > 0;
         }
     }
-
-
 }

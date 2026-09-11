@@ -1,15 +1,18 @@
 package gui;
 
 import controller.Controller;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Cursor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import java.net.URL;
+import java.util.ArrayList;
+import javax.swing.*;
 
 public class Prenotazione {
+
+    //componenti grafici della finestra prenotazioni
     private static JFrame framePrenotazione;
     private JPanel prenotazionePanel;
     private JLabel tornaHomePrenotazione;
@@ -32,29 +35,30 @@ public class Prenotazione {
     private JLabel benvenutoP;
     private Controller controller;
 
-    //costruttore
+    //costruttore della schermata prenotazioni
     public Prenotazione(JFrame frameHome, Controller controller) {
         this.controller = controller;
         framePrenotazione = new JFrame("Prenotazioni");
         framePrenotazione.setContentPane(prenotazionePanel);
         framePrenotazione.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         framePrenotazione.pack();
-        framePrenotazione.setVisible(true);
 
-        framePrenotazione.setResizable(false); //non cambia dimensione
-        framePrenotazione.setSize(450, 450); //grandezza della finestra
-        framePrenotazione.setLocationRelativeTo(null); //finestra si apre al centro
+        //impostazioni della finestra
+        framePrenotazione.setResizable(false);
+        framePrenotazione.setSize(450, 450);
+        framePrenotazione.setLocationRelativeTo(null);
         framePrenotazione.setVisible(false);
 
-        //imposto la scritta di benvenuto dinamica con il nome dell'utente loggato
-        benvenutoP.setText(controller.getSaluto() + controller.getUtenteAttuale().getNome());
+        //scritta di benvenuto dinamica
+        if (controller.getUtenteAttuale() != null) {
+            benvenutoP.setText(controller.getSaluto() + controller.getUtenteAttuale().getNome());
+        }
 
-        // imposto l'avatar scelto salvato nel controller
+        //impostazione dell avatar selezionato
         cambiaAvatar(controller.getAvatarSelezionato());
 
-        //Jlabel cliccabile, per tornare dalla pagina delle prenotazioni alla home
-        tornaHomePrenotazione.setCursor(new Cursor(Cursor.HAND_CURSOR)); //cambia il cursore
-
+        //ritorno alla schermata home
+        tornaHomePrenotazione.setCursor(new Cursor(Cursor.HAND_CURSOR));
         tornaHomePrenotazione.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -63,7 +67,7 @@ public class Prenotazione {
             }
         });
 
-        //all'inizio nascondiamo tutto per avere la schermata pulita: compariranno solo i luoghi delle box acquistate
+        //inizializzazione visibilita componenti prenotazione
         italiamoNPrenotazioni.setVisible(false);
         guacamoleNPrenotazioni.setVisible(false);
         tokyoNPrenotazioni.setVisible(false);
@@ -81,7 +85,7 @@ public class Prenotazione {
         elencoR.setVisible(false);
         elencoS.setVisible(false);
 
-        //evento annulla despar
+        //gestione annullamento prenotazione despar
         annullaDespar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -107,7 +111,7 @@ public class Prenotazione {
             }
         });
 
-        //evento annulla conad
+        //gestione annullamento prenotazione conad
         annullaConad.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -133,7 +137,7 @@ public class Prenotazione {
             }
         });
 
-        //evento annulla sole365
+        //gestione annullamento prenotazione sole365
         annullaSole.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -159,13 +163,13 @@ public class Prenotazione {
             }
         });
 
-        //evento annulla italiamo
+        //gestione annullamento prenotazione italiamo
         annullaItaliamo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (confermaAnnullamento()) {
                     BoxItaliamo.aumentaDisponibile();
-                    controller.annullaPrenotazioneDB(3);
+                    controller.annullaPrenotazioneDB(4);
 
                     int quantitaRimasta = 10 - BoxItaliamo.getDisponibile();
 
@@ -185,7 +189,7 @@ public class Prenotazione {
             }
         });
 
-        //evento annulla guacamole
+        //gestione annullamento prenotazione guacamole
         annullaGuacamole.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -211,7 +215,7 @@ public class Prenotazione {
             }
         });
 
-        //evento annulla tokyo
+        //gestione annullamento prenotazione tokyo
         annullaTokyo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -236,15 +240,18 @@ public class Prenotazione {
                 }
             }
         });
+
+        //carica le prenotazioni memorizzate nel database
+        caricaPrenotazioniSalvate();
     }
 
-    //metodo getter per far recuperare alla Home lo stesso frame delle prenotazioni
+    //restituisce il frame della pagina prenotazioni
     public static JFrame getFramePrenotazione() {
         return framePrenotazione;
     }
 
-    //metodo per aggiornare i contatori delle box prenotate
-    public void aggiornaPrenotazione (String negozio, int quantitaAcquistata, String codiceUnivoco) {
+    //aggiorna la visualizzazione dei contatori e del codice di ritiro
+    public void aggiornaPrenotazione(String negozio, int quantitaAcquistata, String codiceUnivoco) {
         if (negozio.equals("Guacamole") || negozio.equals("Italiamo") || negozio.equals("Tokyo")) {
             elencoR.setVisible(true);
         } else {
@@ -281,19 +288,20 @@ public class Prenotazione {
             annullaConad.setVisible(true);
         }
 
-        if (negozio.equals("Sole365")){
+        if (negozio.equals("Sole365")) {
             soleNPrenotazioni.setText("<html>Sole365: " + quantitaAcquistata + " box<br>Cod: " + codiceUnivoco + "</html>");
             soleNPrenotazioni.setVisible(true);
             annullaSole.setVisible(true);
         }
     }
 
-    // metodo per cambiare l'immagine dell'avatar
+    //aggiorna l icona dell avatar dell utente
     public void cambiaAvatar(String nomeFile) {
         if (nomeFile != null) {
-            java.net.URL url = getClass().getResource("/img/" + nomeFile);
-            if (url == null) {
-                url = getClass().getResource("/" + nomeFile);
+            String path = nomeFile.startsWith("/") ? nomeFile : "/" + nomeFile;
+            URL url = getClass().getResource(path);
+            if (url == null && !path.startsWith("/img/")) {
+                url = getClass().getResource("/img" + path);
             }
             if (url != null) {
                 iconaP.setIcon(new ImageIcon(url));
@@ -301,12 +309,14 @@ public class Prenotazione {
         }
     }
 
-    //metodo per aggiornare la scritta del saluto
+    //aggiorna il messaggio di benvenuto con i dati della sessione
     public void aggiornaSaluto(Controller controller) {
-        benvenutoP.setText(controller.getSaluto() + controller.getUtenteAttuale().getNome());
+        if (controller.getUtenteAttuale() != null) {
+            benvenutoP.setText(controller.getSaluto() + controller.getUtenteAttuale().getNome());
+        }
     }
 
-    //metodo di supporto per chiedere conferma prima di annullare
+    //mostra il dialogo di conferma annullamento
     private boolean confermaAnnullamento() {
         int risposta = JOptionPane.showConfirmDialog(
                 null,
@@ -316,5 +326,26 @@ public class Prenotazione {
                 JOptionPane.QUESTION_MESSAGE
         );
         return risposta == JOptionPane.YES_OPTION;
+    }
+
+    //carica le prenotazioni registrate sul database all avvio
+    public void caricaPrenotazioniSalvate() {
+        ArrayList<model.Prenotazione> lista = controller.getPrenotazioniAttiveUtente();
+
+        for (model.Prenotazione p : lista) {
+            if (p.getIdBox() == 1) {
+                aggiornaPrenotazione("Despar", 1, p.getCodiceRitiro());
+            } else if (p.getIdBox() == 2) {
+                aggiornaPrenotazione("Conad", 1, p.getCodiceRitiro());
+            } else if (p.getIdBox() == 3) {
+                aggiornaPrenotazione("Sole365", 1, p.getCodiceRitiro());
+            } else if (p.getIdBox() == 4) {
+                aggiornaPrenotazione("Italiamo", 1, p.getCodiceRitiro());
+            } else if (p.getIdBox() == 5) {
+                aggiornaPrenotazione("Guacamole", 1, p.getCodiceRitiro());
+            } else if (p.getIdBox() == 6) {
+                aggiornaPrenotazione("Tokyo", 1, p.getCodiceRitiro());
+            }
+        }
     }
 }

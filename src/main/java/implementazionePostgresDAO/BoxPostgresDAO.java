@@ -2,26 +2,28 @@ package implementazionePostgresDAO;
 
 import dao.BoxDAO;
 import database.ConnessioneDatabase;
-import model.Box;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import model.Box;
 
 public class BoxPostgresDAO implements BoxDAO {
 
+    //connessione al database
     private Connection connection;
 
+    //costruttore che recupera la connessione attiva
     public BoxPostgresDAO() {
         try {
-            this.connection = ConnessioneDatabase.getInstance().connection;
+            this.connection = ConnessioneDatabase.getInstance().getConnection();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("errore connessione boxdao: " + e.getMessage());
         }
     }
 
+    //recupera tutte le box con quantita maggiore di zero
     @Override
     public ArrayList<Box> getBoxDisponibili() throws SQLException {
         ArrayList<Box> lista = new ArrayList<>();
@@ -40,6 +42,7 @@ public class BoxPostgresDAO implements BoxDAO {
         return lista;
     }
 
+    //aggiorna la disponibilita di una specifica box
     @Override
     public boolean aggiornaDisponibilita(int idBox, int nuovaQuantita) throws SQLException {
         String sql = "UPDATE box SET quantita_disponibile = ? WHERE id_box = ?";
@@ -48,5 +51,20 @@ public class BoxPostgresDAO implements BoxDAO {
             statement.setInt(2, idBox);
             return statement.executeUpdate() > 0;
         }
+    }
+
+    //restituisce la quantita disponibile di una determinata box
+    @Override
+    public int getDisponibilitaBox(int idBox) throws SQLException {
+        String sql = "SELECT quantita_disponibile FROM box WHERE id_box = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, idBox);
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("quantita_disponibile");
+                }
+            }
+        }
+        return 0;
     }
 }

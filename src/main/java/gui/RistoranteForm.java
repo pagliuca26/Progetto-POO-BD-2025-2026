@@ -1,16 +1,16 @@
 package gui;
 
 import controller.Controller;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
+import javax.swing.*;
 
 public class RistoranteForm {
+
+    //componenti grafici della schermata ristoranti
     private static JFrame frameRistorante;
     private JPanel ristorantePanel;
     private JButton italianoButton;
@@ -19,27 +19,25 @@ public class RistoranteForm {
     private JLabel tornaHomeR;
     private JLabel piattoRistoranti;
 
-    //variabili per salvare le pagine dei ristoranti. All'inizio sono null (vuote) così al primo click creiamo la finestra,
-    //mentre i click successivi riaprono quella vecchia senza resettare le box.
+    //istanze delle schermate box per preservare lo stato delle disponibilita
     private BoxTokyo tokyo = null;
     private BoxGuacamole guacamole = null;
     private BoxItaliamo italiamo = null;
 
-    //costruttore
+    //costruttore della schermata selezione ristoranti
     public RistoranteForm(JFrame frameHome, Controller controller) {
-
         frameRistorante = new JFrame("Ristoranti");
         frameRistorante.setContentPane(ristorantePanel);
         frameRistorante.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameRistorante.pack();
+
+        //impostazioni della finestra
+        frameRistorante.setResizable(false);
+        frameRistorante.setSize(450, 450);
+        frameRistorante.setLocationRelativeTo(null);
         frameRistorante.setVisible(true);
 
-        frameRistorante.setResizable(false); //non cambia dimensione
-        frameRistorante.setSize(450, 450); //grandezza della finestra
-        frameRistorante.setLocationRelativeTo(null); //finestra si apre al centro
-        frameRistorante.setVisible(true);
-
-        //bottone da ristorante a italiamo
+        //navigazione verso box ristorante italiano
         italianoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -53,7 +51,7 @@ public class RistoranteForm {
             }
         });
 
-        //bottone da ristorante a guacamole
+        //navigazione verso box ristorante messicano
         messicanoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -67,15 +65,13 @@ public class RistoranteForm {
             }
         });
 
-        //bottone da ristorante a tokyo
+        //navigazione verso box ristorante giapponese
         giapponeseButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (tokyo == null) {
-                    // Se è null, la creiamo per la prima volta
                     tokyo = new BoxTokyo(frameRistorante, controller);
                 } else {
-                    // Se esiste già, riprendiamo quella vecchia senza resettare le box
                     BoxTokyo.getFrameTokyo().setVisible(true);
                 }
                 tokyo.aggiornaLabelDisponibile();
@@ -83,9 +79,8 @@ public class RistoranteForm {
             }
         });
 
-        //Jlabel cliccabile, per tornare dalla pagina dei ristoranti alla home
-        tornaHomeR.setCursor(new Cursor(Cursor.HAND_CURSOR)); //cambia il cursore
-
+        //ritorno alla schermata home
+        tornaHomeR.setCursor(new Cursor(Cursor.HAND_CURSOR));
         tornaHomeR.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -95,7 +90,7 @@ public class RistoranteForm {
         });
     }
 
-    //metodo getter per far recuperare alla Home lo stesso frame dei ristoranti
+    //restituisce il frame della schermata ristoranti
     public static JFrame getFrameRistorante() {
         return frameRistorante;
     }

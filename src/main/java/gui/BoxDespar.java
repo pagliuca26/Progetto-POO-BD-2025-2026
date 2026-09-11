@@ -1,39 +1,39 @@
 package gui;
 
 import controller.Controller;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.*;
 
 public class BoxDespar {
+
+    //componenti grafici della finestra box despar
     private static JFrame frameDespar;
     private JPanel boxDespar;
     private JButton acquistaDespar;
     private JLabel supDespar;
     private JLabel qntDispDespar;
     private JLabel logoDespar;
-    private static int quantitàDisponibileDespar = 9;
+    private static int quantitaDisponibileDespar = 9;
 
-    //costruttore
+    //costruttore della schermata box despar
     public BoxDespar(JFrame frameSupermercato, Controller controller) {
-
         frameDespar = new JFrame("Despar");
         frameDespar.setContentPane(boxDespar);
         frameDespar.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameDespar.pack();
 
-        frameDespar.setResizable(false); //non cambia dimensione
-        frameDespar.setSize(450, 450); //grandezza della finestra
-        frameDespar.setLocationRelativeTo(null); //finestra si apre al centro
+        //impostazioni della finestra
+        frameDespar.setResizable(false);
+        frameDespar.setSize(450, 450);
+        frameDespar.setLocationRelativeTo(null);
         frameDespar.setVisible(true);
 
-        //JLabel cliccabile, per tornare alla scelta dei supermercati
+        //ritorno alla schermata dei supermercati
         supDespar.setCursor(new Cursor(Cursor.HAND_CURSOR));
-
         supDespar.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -42,26 +42,26 @@ public class BoxDespar {
             }
         });
 
-        //Quantità che diminuisce col bottone acquista
-        qntDispDespar.setText("Quantità disponibile: " + quantitàDisponibileDespar);
+        //inizializzazione del testo di disponibilita
+        qntDispDespar.setText("Quantità disponibile: " + quantitaDisponibileDespar);
 
+        //gestione click del pulsante acquista
         acquistaDespar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (quantitàDisponibileDespar > 0) {
-                    quantitàDisponibileDespar--;
+                if (quantitaDisponibileDespar > 0) {
+                    quantitaDisponibileDespar--;
+                    qntDispDespar.setText("Quantità disponibile: " + quantitaDisponibileDespar);
 
-                    qntDispDespar.setText("Quantità disponibile: " + quantitàDisponibileDespar);
+                    int quantitaPresa = 9 - quantitaDisponibileDespar;
 
-                    int quantitaPresa = 9 - quantitàDisponibileDespar;
-
-                    //salva l'acquisto nel db e recupera il codice univoco generato
+                    //salva lacquisto nel db e ottiene il codice generato
                     String codiceRitiro = controller.acquistaBoxDB(1);
 
-                    //aggiorna la pagina Prenotazioni passando anche il codice univoco
+                    //aggiorna la schermata di riepilogo prenotazioni
                     Home.getPaginaPrenotazione().aggiornaPrenotazione("Despar", quantitaPresa, codiceRitiro);
 
-                    //mostra il popup di conferma con il codice univoco
+                    //notifica di conferma con codice di ritiro
                     JOptionPane.showMessageDialog(
                             frameDespar,
                             "Acquisto effettuato con successo!\nCodice di ritiro: " + codiceRitiro,
@@ -69,7 +69,10 @@ public class BoxDespar {
                             JOptionPane.INFORMATION_MESSAGE
                     );
                 } else {
-                    JOptionPane.showMessageDialog(null, "Errore: Le Box per questo punto vendita sono terminate!", "Box Terminate",
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Errore: Le Box per questo punto vendita sono terminate!",
+                            "Box Terminate",
                             JOptionPane.ERROR_MESSAGE
                     );
                 }
@@ -77,20 +80,23 @@ public class BoxDespar {
         });
     }
 
-    //metodo getter per accedere al frame privato ed evitare il reset dei dati
+    //restituisce il frame della finestra despar
     public static JFrame getFrameDespar() {
         return frameDespar;
     }
 
+    //incrementa il numero di box disponibili a seguito di annullamento
     public static void aumentaDisponibile() {
-        quantitàDisponibileDespar++;
+        quantitaDisponibileDespar++;
     }
 
+    //restituisce la quantita attualmente disponibile
     public static int getDisponibile() {
-        return quantitàDisponibileDespar;
+        return quantitaDisponibileDespar;
     }
 
+    //aggiorna il testo dell etichetta della disponibilita
     public void aggiornaLabelDisponibile() {
-        qntDispDespar.setText("Quantità disponibile: " + quantitàDisponibileDespar);
+        qntDispDespar.setText("Quantità disponibile: " + quantitaDisponibileDespar);
     }
 }

@@ -1,13 +1,14 @@
 package gui;
 
 import controller.Controller;
-
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.*;
 
 public class Login {
-    private static JFrame loginFrame;
+
+    //componenti grafici della finestra
+    private JFrame loginFrame;
     private JPanel loginFinestra;
     private JTextField campoEmail;
     private JButton accediButton;
@@ -16,40 +17,43 @@ public class Login {
     private JLabel nomeApp;
     private JPasswordField campoPassword;
 
-    public static void main(String[] args) {
-        Controller controller= new Controller();
-        Login login = new Login();
+    //riferimento al controller per la logica di business
+    private Controller controller;
+
+    //costruttore della schermata di login
+    public Login(Controller controller) {
+        this.controller = controller;
+
+        //configurazione della finestra principale
         loginFrame = new JFrame("Login");
-        loginFrame.setContentPane(login.loginFinestra);
+        loginFrame.setContentPane(loginFinestra);
         loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         loginFrame.pack();
+        loginFrame.setResizable(false);
+        loginFrame.setSize(450, 450);
+        loginFrame.setLocationRelativeTo(null);
 
-        loginFrame.setResizable(false); //non cambia dimensione
-        loginFrame.setSize(450,450); //grandezza della finestra
-        loginFrame.setLocationRelativeTo(null); //finestra si apre al centro
-        loginFrame.setVisible(true);
-
-        //gestione pulsante account
-        login.creaAccountButton.addActionListener(new ActionListener() {
+        //gestione click pulsante crea account
+        creaAccountButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                login.campoEmail.setText(""); //se l'utente ha scritto qualcosa in questi campi, vengono resettati
-                login.campoPassword.setText("");
-                CreaAccount creaAccount = new CreaAccount(loginFrame, controller);
+                campoEmail.setText("");
+                campoPassword.setText("");
+                new CreaAccount(loginFrame, controller);
                 loginFrame.setVisible(false);
             }
         });
 
-        //pulsante accedi
-        login.accediButton.addActionListener(new ActionListener() {
+        //gestione click pulsante accedi
+        accediButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    if (controller.checkUtente(login.campoEmail.getText(), login.campoPassword.getText())) {
+                    if (controller.checkUtente(campoEmail.getText(), new String(campoPassword.getPassword()))) {
                         JOptionPane.showMessageDialog(null, "Accesso effettuato correttamente.");
-                        login.campoEmail.setText("");
-                        login.campoPassword.setText("");
-                        Home Home = new Home(loginFrame, controller);
+                        campoEmail.setText("");
+                        campoPassword.setText("");
+                        new Home(loginFrame, controller);
                         loginFrame.setVisible(false);
                     }
                 } catch (RuntimeException ex) {
@@ -57,7 +61,15 @@ public class Login {
                 }
             }
         });
+    }
 
+    //rende visibile la finestra di login
+    public void mostraFinestra() {
+        loginFrame.setVisible(true);
+    }
+
+    //restituisce il frame principale del login
+    public JFrame getLoginFrame() {
+        return loginFrame;
     }
 }
-
