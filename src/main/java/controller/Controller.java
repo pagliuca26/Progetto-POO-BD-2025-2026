@@ -108,7 +108,7 @@ public class Controller {
         return listaUtenti;
     }
 
-    //imposta l avatar scelto dall utente
+    //imposta l'avatar scelto dall utente
     public void setAvatarSelezionato(String avatar) {
         this.avatarSelezionato = avatar;
     }
