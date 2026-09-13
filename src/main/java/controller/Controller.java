@@ -16,6 +16,12 @@ import java.util.ArrayList;
 import model.Prenotazione;
 import model.Utente;
 
+/**
+ * Questa classe fa da ponte tra la grafica e il database.
+ * Serve per gestire le azioni dell'utente quando usa l'applicazione,
+ * come fare il login, registrarsi, comprare una box o annullare una prenotazione,
+ * coordinando il passaggio dei dati senza far comunicare direttamente la grafica con Postgres.
+ */
 public class Controller {
 
     //attributi per la gestione della sessione e dei dati in memoria
@@ -28,7 +34,12 @@ public class Controller {
     private PrenotazioneDAO prenotazioneDAO;
     private BoxDAO boxDAO;
 
-    //costruttore del controller che inizializza le strutture dati e i dao
+    /**
+     * Costruttore della classe Controller.
+     * Crea una lista vuota in memoria per tenere traccia degli utenti
+     * e collega l'applicazione alle classi DAO per dialogare con PostgreSQL.
+     */
+//costruttore del controller che inizializza le strutture dati e i dao
     public Controller() {
         this.listaUtenti = new ArrayList<>();
         this.utenteDAO = new UtentePostgresDAO();
@@ -36,12 +47,27 @@ public class Controller {
         this.boxDAO = new BoxPostgresDAO();
     }
 
-    //aggiunge un utente alla lista in memoria
+    /**
+     * Inserisce un nuovo oggetto utente all'interno della lista temporanea tenuta in memoria.
+     *
+     * @param utente l'utente da salvare nella lista locale dell'applicazione
+     */
+//aggiunge un utente alla lista in memoria
     public void aggiungiUtente(Utente utente) {
         listaUtenti.add(utente);
     }
 
-    //verifica le credenziali dell utente ed effettua il login
+    /**
+     * Controlla se le credenziali inserite dall'utente sono corrette ed esegue il login.
+     * Verifica che i campi non siano lasciati vuoti e chiede al database se esiste
+     * una corrispondenza tra email e password. Se esiste, salva l'utente nella sessione.
+     *
+     * @param campoEmail l'email scritta dall'utente nella schermata di login
+     * @param campoPassword la password scritta dall'utente nella schermata di login
+     * @return true se l'accesso va a buon fine
+     * @throws ExceptionEmail se uno dei due campi è vuoto oppure se non esiste nessun account con questi dati
+     */
+//verifica le credenziali dell utente ed effettua il login
     public boolean checkUtente(String campoEmail, String campoPassword) {
         if (campoEmail.isBlank()) {
             throw new ExceptionEmail("Il campo email è vuoto.");
@@ -64,7 +90,22 @@ public class Controller {
         throw new ExceptionEmail("Utente non trovato.");
     }
 
-    //registra un nuovo utente verificando la compilazione dei campi
+    /**
+     * Registra un nuovo utente nel sistema dopo aver controllato che tutti i campi siano compilati.
+     * Crea l'oggetto Utente, lo salva in modo permanente nel database PostgreSQL tramite il DAO
+     * e lo aggiunge alla lista in memoria.
+     *
+     * @param email l'indirizzo email inserito nel form di registrazione
+     * @param password la password scelta per l'account
+     * @param nome il nome anagrafico dell'utente
+     * @param cognome il cognome anagrafico dell'utente
+     * @throws ExceptionEmail se il campo email è lasciato vuoto
+     * @throws ExceptionPassword se il campo password è lasciato vuoto
+     * @throws ExceptionNome se il campo nome è lasciato vuoto
+     * @throws ExceptionCognome se il campo cognome è lasciato vuoto
+     * @throws ExceptionEmailUguale se l'email è già usata da un altro utente sul database o se c'è un errore SQL
+     */
+//registra un nuovo utente verificando la compilazione dei campi
     public void creaUtente(String email, String password, String nome, String cognome) throws RuntimeException {
         if (email.isBlank()) {
             throw new ExceptionEmail("Il campo email è vuoto.");
@@ -90,12 +131,22 @@ public class Controller {
         }
     }
 
-    //restituisce l utente attualmente autenticato
+    /**
+     * Restituisce l'utente attualmente connesso all'applicazione.
+     * Serve alle varie schermate della grafica per sapere chi sta usando il sistema.
+     *
+     * @return l'oggetto Utente loggato, oppure null se non è stato fatto l'accesso
+     */
+//restituisce l utente attualmente autenticato
     public Utente getUtenteAttuale() {
         return utenteAttuale;
     }
 
-    //effettua il logout dell utente corrente
+    /**
+     * Effettua il logout dell'utente che sta usando l'applicazione.
+     * Imposta lo stato di accesso su false e rimuove l'utente dalla sessione attiva.
+     */
+//effettua il logout dell utente corrente
     public void esciUtente() {
         if (this.utenteAttuale != null) {
             this.utenteAttuale.setAccessoEffettuato(false);
@@ -103,22 +154,46 @@ public class Controller {
         }
     }
 
-    //restituisce la lista degli utenti
+    /**
+     * Restituisce l'elenco di tutti gli utenti salvati temporaneamente nella memoria dell'applicazione.
+     *
+     * @return la lista contenente gli oggetti Utente registrati durante la sessione
+     */
+//restituisce la lista degli utenti
     public ArrayList<Utente> getListaUtenti() {
         return listaUtenti;
     }
 
-    //imposta l'avatar scelto dall utente
+    /**
+     * Salva l'immagine di profilo o avatar scelta dall'utente.
+     * Serve per personalizzare l'aspetto grafico dell'interfaccia durante la sessione.
+     *
+     * @param avatar il nome o percorso del file immagine selezionato
+     */
+//imposta l'avatar scelto dall utente
     public void setAvatarSelezionato(String avatar) {
         this.avatarSelezionato = avatar;
     }
 
-    //restituisce il percorso dell avatar scelto
+    /**
+     * Restituisce il percorso o il nome dell'avatar attualmente impostato per l'utente.
+     * Viene richiamato dai form della grafica per caricare l'immagine corretta del profilo.
+     *
+     * @return la stringa che rappresenta l'avatar selezionato
+     */
+//restituisce il percorso dell avatar scelto
     public String getAvatarSelezionato() {
         return this.avatarSelezionato;
     }
 
-    //restituisce la stringa di benvenuto in base all avatar selezionato
+    /**
+     * Genera il messaggio di benvenuto adatto all'utente in base all'avatar scelto.
+     * Se l'utente ha selezionato l'avatar femminile restituisce "Benvenuta ",
+     * altrimenti restituisce la forma predefinita "Benvenuto ".
+     *
+     * @return la stringa di saluto personalizzata da mostrare a video
+     */
+//restituisce la stringa di benvenuto in base all avatar selezionato
     public String getSaluto() {
         if (avatarSelezionato != null && avatarSelezionato.equals("img/woman-avatar.png")) {
             return "Benvenuta ";
@@ -126,7 +201,17 @@ public class Controller {
         return "Benvenuto ";
     }
 
-    //aggiorna le credenziali dell utente sia in memoria che su postgresql
+    /**
+     * Modifica le informazioni dell'account dell'utente connesso sia in memoria che sul database PostgreSQL.
+     * Aggiorna solo i campi che non sono stati lasciati vuoti e salva le modifiche tramite il DAO.
+     *
+     * @param nuovoNome il nuovo nome inserito, oppure vuoto se non deve essere modificato
+     * @param nuovoCognome il nuovo cognome inserito, oppure vuoto se non deve essere modificato
+     * @param nuovaEmail il nuovo indirizzo email inserito, oppure vuoto se non deve essere modificato
+     * @param nuovaPassword la nuova password inserita, oppure vuota se non deve essere modificata
+     * @return true se l'aggiornamento sul database è riuscito con successo, false altrimenti
+     */
+//aggiorna le credenziali dell utente sia in memoria che su postgresql
     public boolean aggiornaDatiUtente(String nuovoNome, String nuovoCognome, String nuovaEmail, String nuovaPassword) {
         if (utenteAttuale != null) {
             String vecchiaEmail = utenteAttuale.getEmail();
@@ -154,7 +239,14 @@ public class Controller {
         return false;
     }
 
-    //annulla la prenotazione sul database
+    /**
+     * Annulla una prenotazione precedentemente effettuata dall'utente sul database.
+     * Elimina il legame tra l'utente loggato e la box indicata richiamando il DAO.
+     *
+     * @param idBox il codice identificativo della box di cui annullare la prenotazione
+     * @return true se l'annullamento è avvenuto con successo, false altrimenti
+     */
+//annulla la prenotazione sul database
     public boolean annullaPrenotazioneDB(int idBox) {
         if (utenteAttuale == null) {
             return false;
@@ -167,7 +259,15 @@ public class Controller {
         }
     }
 
-    //procede all acquisto della box creando la relativa prenotazione
+    /**
+     * Gestisce la procedura di acquisto di una box creando una nuova prenotazione.
+     * Genera un codice identificativo univoco basato sul timestamp, crea l'oggetto
+     * prenotazione impostandolo come "ATTIVA" e lo salva sul database tramite il DAO.
+     *
+     * @param idBox l'identificativo numerico della box che l'utente intende acquistare
+     * @return il codice alfanumerico della prenotazione se l'acquisto riesce, altrimenti null
+     */
+//procede all acquisto della box creando la relativa prenotazione
     public String acquistaBoxDB(int idBox) {
         if (utenteAttuale == null) {
             return null;
@@ -189,7 +289,13 @@ public class Controller {
         }
     }
 
-    //cancella l account dell utente autenticato
+    /**
+     * Cancella definitivamente l'account dell'utente connesso dal database PostgreSQL.
+     * Se la cancellazione va a buon fine, azzera la sessione attiva effettuando anche la disconnessione.
+     *
+     * @return true se l'account è stato eliminato con successo, false altrimenti
+     */
+//cancella l account dell utente autenticato
     public boolean eliminaAccount() {
         if (utenteAttuale == null) {
             return false;
@@ -207,7 +313,13 @@ public class Controller {
         }
     }
 
-    //restituisce le prenotazioni attive dell utente autenticato
+    /**
+     * Recupera dal database l'elenco di tutte le prenotazioni attive associate all'utente connesso.
+     * Serve alla schermata delle prenotazioni o del profilo per visualizzare gli ordini in corso.
+     *
+     * @return una lista di oggetti Prenotazione appartenenti all'utente, oppure una lista vuota in caso di errore o se non ci sono ordini
+     */
+//restituisce le prenotazioni attive dell utente autenticato
     public ArrayList<Prenotazione> getPrenotazioniAttiveUtente() {
         if (utenteAttuale == null) {
             return new ArrayList<>();
@@ -220,7 +332,14 @@ public class Controller {
         }
     }
 
-    //restituisce il numero di box disponibili dal database
+    /**
+     * Interroga il database per sapere quante porzioni o pezzi sono ancora disponibili per una determinata box.
+     * Serve all'interfaccia grafica per aggiornare il contatore a video e impedire l'acquisto se le scorte sono esaurite.
+     *
+     * @param idBox il codice identificativo della box da controllare
+     * @return la quantità numerica rimasta a disposizione, oppure 0 in caso di errore o esaurimento scorte
+     */
+//restituisce il numero di box disponibili dal database
     public int getDisponibilitaBoxDB(int idBox) {
         try {
             return boxDAO.getDisponibilitaBox(idBox);

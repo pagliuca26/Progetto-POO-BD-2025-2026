@@ -9,12 +9,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Prenotazione;
 
+/**
+ * The type Prenotazione postgres dao.
+ */
 public class PrenotazionePostgresDAO implements PrenotazioneDAO {
 
     //connessione al database
     private Connection connection;
 
-    //costruttore che recupera l istanza attiva del database
+    /**
+     * Instantiates a new Prenotazione postgres dao.
+     */
+//costruttore che recupera l istanza attiva del database
     public PrenotazionePostgresDAO() {
         try {
             this.connection = ConnessioneDatabase.getInstance().getConnection();

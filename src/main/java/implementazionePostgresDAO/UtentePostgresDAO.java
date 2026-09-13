@@ -8,12 +8,22 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import model.Utente;
 
+/**
+ * Implementazione concreta dell'interfaccia UtenteDAO per il database relazionale PostgreSQL.
+ * Gestisce l'esecuzione delle query SQL tramite JDBC (connessione, PreparedStatement e ResultSet)
+ * per la registrazione, l'autenticazione, la modifica e l'eliminazione dei profili utente.
+ */
 public class UtentePostgresDAO implements UtenteDAO {
 
     //connessione al database
     private Connection connection;
 
-    //costruttore che recupera l istanza della connessione
+    /**
+     * Costruttore della classe UtentePostgresDAO.
+     * Inizializza l'oggetto recuperando l'istanza attiva della connessione JDBC
+     * verso il database PostgreSQL tramite la classe singleton ConnessioneDatabase.
+     */
+//costruttore che recupera l istanza della connessione
     public UtentePostgresDAO() {
         try {
             this.connection = ConnessioneDatabase.getInstance().getConnection();

@@ -9,12 +9,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Box;
 
+/**
+ * The type Box postgres dao.
+ */
 public class BoxPostgresDAO implements BoxDAO {
 
     //connessione al database
     private Connection connection;
 
-    //costruttore che recupera la connessione attiva
+    /**
+     * Instantiates a new Box postgres dao.
+     */
+//costruttore che recupera la connessione attiva
     public BoxPostgresDAO() {
         try {
             this.connection = ConnessioneDatabase.getInstance().getConnection();
