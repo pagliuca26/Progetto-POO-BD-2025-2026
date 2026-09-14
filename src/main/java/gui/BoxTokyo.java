@@ -8,6 +8,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
 
+/**
+ * The type Box tokyo.
+ */
 public class BoxTokyo {
 
     //componenti grafici della finestra box tokyo
@@ -19,7 +22,13 @@ public class BoxTokyo {
     private JLabel sushiTokyo;
     private static int quantitaDisponibileTokyo = 7;
 
-    //costruttore della schermata box tokyo
+    /**
+     * Instantiates a new Box tokyo.
+     *
+     * @param frameRistorante the frame ristorante
+     * @param controller      the controller
+     */
+//costruttore della schermata box tokyo
     public BoxTokyo(JFrame frameRistorante, Controller controller) {
         frameTokyo = new JFrame("Tokyo");
         frameTokyo.setContentPane(boxTokyo);
@@ -80,22 +89,38 @@ public class BoxTokyo {
         });
     }
 
-    //restituisce il frame della finestra tokyo
+    /**
+     * Gets frame tokyo.
+     *
+     * @return the frame tokyo
+     */
+//restituisce il frame della finestra tokyo
     public static JFrame getFrameTokyo() {
         return frameTokyo;
     }
 
-    //incrementa il numero di box disponibili a seguito di annullamento
+    /**
+     * Aumenta disponibile.
+     */
+//incrementa il numero di box disponibili a seguito di annullamento
     public static void aumentaDisponibile() {
         quantitaDisponibileTokyo++;
     }
 
-    //restituisce la quantita attualmente disponibile
+    /**
+     * Gets disponibile.
+     *
+     * @return the disponibile
+     */
+//restituisce la quantita attualmente disponibile
     public static int getDisponibile() {
         return quantitaDisponibileTokyo;
     }
 
-    //aggiorna il testo dell etichetta della disponibilita
+    /**
+     * Aggiorna label disponibile.
+     */
+//aggiorna il testo dell etichetta della disponibilita
     public void aggiornaLabelDisponibile() {
         qntDispTokyo.setText("Quantità disponibile: " + quantitaDisponibileTokyo);
     }

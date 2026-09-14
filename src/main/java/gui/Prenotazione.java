@@ -10,6 +10,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import javax.swing.*;
 
+/**
+ * The type Prenotazione.
+ */
 public class Prenotazione {
 
     //componenti grafici della finestra prenotazioni
@@ -35,7 +38,13 @@ public class Prenotazione {
     private JLabel benvenutoP;
     private Controller controller;
 
-    //costruttore della schermata prenotazioni
+    /**
+     * Instantiates a new Prenotazione.
+     *
+     * @param frameHome  the frame home
+     * @param controller the controller
+     */
+//costruttore della schermata prenotazioni
     public Prenotazione(JFrame frameHome, Controller controller) {
         this.controller = controller;
         framePrenotazione = new JFrame("Prenotazioni");
@@ -245,12 +254,24 @@ public class Prenotazione {
         caricaPrenotazioniSalvate();
     }
 
-    //restituisce il frame della pagina prenotazioni
+    /**
+     * Gets frame prenotazione.
+     *
+     * @return the frame prenotazione
+     */
+//restituisce il frame della pagina prenotazioni
     public static JFrame getFramePrenotazione() {
         return framePrenotazione;
     }
 
-    //aggiorna la visualizzazione dei contatori e del codice di ritiro
+    /**
+     * Aggiorna prenotazione.
+     *
+     * @param negozio            the negozio
+     * @param quantitaAcquistata the quantita acquistata
+     * @param codiceUnivoco      the codice univoco
+     */
+//aggiorna la visualizzazione dei contatori e del codice di ritiro
     public void aggiornaPrenotazione(String negozio, int quantitaAcquistata, String codiceUnivoco) {
         if (negozio.equals("Guacamole") || negozio.equals("Italiamo") || negozio.equals("Tokyo")) {
             elencoR.setVisible(true);
@@ -295,7 +316,12 @@ public class Prenotazione {
         }
     }
 
-    //aggiorna l icona dell avatar dell utente
+    /**
+     * Cambia avatar.
+     *
+     * @param nomeFile the nome file
+     */
+//aggiorna l icona dell avatar dell utente
     public void cambiaAvatar(String nomeFile) {
         if (nomeFile != null) {
             String path = nomeFile.startsWith("/") ? nomeFile : "/" + nomeFile;
@@ -309,7 +335,12 @@ public class Prenotazione {
         }
     }
 
-    //aggiorna il messaggio di benvenuto con i dati della sessione
+    /**
+     * Aggiorna saluto.
+     *
+     * @param controller the controller
+     */
+//aggiorna il messaggio di benvenuto con i dati della sessione
     public void aggiornaSaluto(Controller controller) {
         if (controller.getUtenteAttuale() != null) {
             benvenutoP.setText(controller.getSaluto() + controller.getUtenteAttuale().getNome());
@@ -328,7 +359,10 @@ public class Prenotazione {
         return risposta == JOptionPane.YES_OPTION;
     }
 
-    //carica le prenotazioni registrate sul database all avvio
+    /**
+     * Carica prenotazioni salvate.
+     */
+//carica le prenotazioni registrate sul database all avvio
     public void caricaPrenotazioniSalvate() {
         ArrayList<model.Prenotazione> lista = controller.getPrenotazioniAttiveUtente();
 

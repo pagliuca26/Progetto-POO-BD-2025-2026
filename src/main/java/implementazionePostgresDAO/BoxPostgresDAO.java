@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import model.Box;
 
 /**
- * The type Box postgres dao.
+ * Implementazione PostgreSQL per BoxDAO.
+ * Gestisce l'estrazione e il controllo delle scorte delle box dal database.
  */
 public class BoxPostgresDAO implements BoxDAO {
 
@@ -18,7 +19,8 @@ public class BoxPostgresDAO implements BoxDAO {
     private Connection connection;
 
     /**
-     * Instantiates a new Box postgres dao.
+     * Costruttore della classe.
+     * Recupera la connessione attiva con il database PostgreSQL tramite la classe ConnessioneDatabase.
      */
 //costruttore che recupera la connessione attiva
     public BoxPostgresDAO() {

@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import model.Prenotazione;
 
 /**
- * The type Prenotazione postgres dao.
+ * Implementazione PostgreSQL per PrenotazioneDAO.
+ * Gestisce il salvataggio, il recupero e l'annullamento delle prenotazioni sul database.
  */
 public class PrenotazionePostgresDAO implements PrenotazioneDAO {
 
@@ -18,7 +19,8 @@ public class PrenotazionePostgresDAO implements PrenotazioneDAO {
     private Connection connection;
 
     /**
-     * Instantiates a new Prenotazione postgres dao.
+     * Costruttore della classe.
+     * Recupera la connessione attiva con il database PostgreSQL tramite la classe ConnessioneDatabase.
      */
 //costruttore che recupera l istanza attiva del database
     public PrenotazionePostgresDAO() {

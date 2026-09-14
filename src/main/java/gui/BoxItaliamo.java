@@ -8,6 +8,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
 
+/**
+ * The type Box italiamo.
+ */
 public class BoxItaliamo {
 
     //componenti grafici della finestra box italiamo
@@ -19,7 +22,13 @@ public class BoxItaliamo {
     private JLabel spaghettiItaliamo;
     private static int quantitaDisponibileItaliamo = 10;
 
-    //costruttore della schermata box italiamo
+    /**
+     * Instantiates a new Box italiamo.
+     *
+     * @param frameRistorante the frame ristorante
+     * @param controller      the controller
+     */
+//costruttore della schermata box italiamo
     public BoxItaliamo(JFrame frameRistorante, Controller controller) {
         frameItaliamo = new JFrame("Italiamo");
         frameItaliamo.setContentPane(boxItaliamo);
@@ -80,22 +89,38 @@ public class BoxItaliamo {
         });
     }
 
-    //restituisce il frame della finestra italiamo
+    /**
+     * Gets frame italiano.
+     *
+     * @return the frame italiano
+     */
+//restituisce il frame della finestra italiamo
     public static JFrame getFrameItaliano() {
         return frameItaliamo;
     }
 
-    //incrementa il numero di box disponibili a seguito di annullamento
+    /**
+     * Aumenta disponibile.
+     */
+//incrementa il numero di box disponibili a seguito di annullamento
     public static void aumentaDisponibile() {
         quantitaDisponibileItaliamo++;
     }
 
-    //restituisce la quantita attualmente disponibile
+    /**
+     * Gets disponibile.
+     *
+     * @return the disponibile
+     */
+//restituisce la quantita attualmente disponibile
     public static int getDisponibile() {
         return quantitaDisponibileItaliamo;
     }
 
-    //aggiorna il testo dell etichetta della disponibilita
+    /**
+     * Aggiorna label disponibile.
+     */
+//aggiorna il testo dell etichetta della disponibilita
     public void aggiornaLabelDisponibile() {
         qntDispItaliamo.setText("Quantità disponibile: " + quantitaDisponibileItaliamo);
     }

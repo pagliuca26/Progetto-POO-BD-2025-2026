@@ -8,6 +8,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
 
+/**
+ * The type Box sole 365.
+ */
 public class BoxSole365 {
 
     //componenti grafici della finestra box sole365
@@ -19,7 +22,13 @@ public class BoxSole365 {
     private JLabel logoSole;
     private static int quantitaDisponibileSole = 5;
 
-    //costruttore della schermata box sole365
+    /**
+     * Instantiates a new Box sole 365.
+     *
+     * @param frameSupermercato the frame supermercato
+     * @param controller        the controller
+     */
+//costruttore della schermata box sole365
     public BoxSole365(JFrame frameSupermercato, Controller controller) {
         frameSole365 = new JFrame("Sole365");
         frameSole365.setContentPane(boxSole365);
@@ -80,22 +89,38 @@ public class BoxSole365 {
         });
     }
 
-    //restituisce il frame della finestra sole365
+    /**
+     * Gets frame sole 365.
+     *
+     * @return the frame sole 365
+     */
+//restituisce il frame della finestra sole365
     public static JFrame getFrameSole365() {
         return frameSole365;
     }
 
-    //incrementa il numero di box disponibili a seguito di annullamento
+    /**
+     * Aumenta disponibile.
+     */
+//incrementa il numero di box disponibili a seguito di annullamento
     public static void aumentaDisponibile() {
         quantitaDisponibileSole++;
     }
 
-    //restituisce la quantita attualmente disponibile
+    /**
+     * Gets disponibile.
+     *
+     * @return the disponibile
+     */
+//restituisce la quantita attualmente disponibile
     public static int getDisponibile() {
         return quantitaDisponibileSole;
     }
 
-    //aggiorna il testo dell etichetta della disponibilita
+    /**
+     * Aggiorna label disponibile.
+     */
+//aggiorna il testo dell etichetta della disponibilita
     public void aggiornaLabelDisponibile() {
         qntDispSole.setText("Quantità disponibile: " + quantitaDisponibileSole);
     }

@@ -8,6 +8,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
 
+/**
+ * The type Supermercato.
+ */
 public class Supermercato {
 
     //componenti grafici della schermata supermercati
@@ -24,7 +27,13 @@ public class Supermercato {
     private BoxSole365 sole365 = null;
     private BoxDespar despar = null;
 
-    //costruttore della schermata selezione supermercati
+    /**
+     * Instantiates a new Supermercato.
+     *
+     * @param homeFrame  the home frame
+     * @param controller the controller
+     */
+//costruttore della schermata selezione supermercati
     public Supermercato(JFrame homeFrame, Controller controller) {
         frameSupermercato = new JFrame("Supermercati");
         frameSupermercato.setContentPane(supermercatoPanel);
@@ -90,7 +99,12 @@ public class Supermercato {
         });
     }
 
-    //restituisce il frame della schermata supermercati
+    /**
+     * Gets frame supermercato.
+     *
+     * @return the frame supermercato
+     */
+//restituisce il frame della schermata supermercati
     public static JFrame getFrameSupermercato() {
         return frameSupermercato;
     }

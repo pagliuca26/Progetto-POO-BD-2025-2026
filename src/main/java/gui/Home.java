@@ -8,6 +8,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
 
+/**
+ * The type Home.
+ */
 public class Home {
 
     //componenti grafici della finestra home
@@ -28,7 +31,13 @@ public class Home {
     private static Prenotazione paginaPrenotazione = null;
     private static Impostazioni paginaImpostazioni = null;
 
-    //costruttore della schermata home
+    /**
+     * Instantiates a new Home.
+     *
+     * @param loginFrame the login frame
+     * @param controller the controller
+     */
+//costruttore della schermata home
     public Home(JFrame loginFrame, Controller controller) {
         this.controller = controller;
 
@@ -110,7 +119,12 @@ public class Home {
         });
     }
 
-    //restituisce il riferimento alla pagina delle prenotazioni
+    /**
+     * Gets pagina prenotazione.
+     *
+     * @return the pagina prenotazione
+     */
+//restituisce il riferimento alla pagina delle prenotazioni
     public static Prenotazione getPaginaPrenotazione() {
         return paginaPrenotazione;
     }

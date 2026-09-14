@@ -8,6 +8,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
 
+/**
+ * The type Crea account.
+ */
 public class CreaAccount {
 
     //componenti grafici della finestra di registrazione
@@ -23,7 +26,13 @@ public class CreaAccount {
     private JLabel cognome;
     private JLabel tornaAccedi;
 
-    //costruttore della schermata di registrazione
+    /**
+     * Instantiates a new Crea account.
+     *
+     * @param loginFrame the login frame
+     * @param controller the controller
+     */
+//costruttore della schermata di registrazione
     public CreaAccount(JFrame loginFrame, Controller controller) {
 
         JFrame frame = new JFrame("Crea un nuovo account ;)");

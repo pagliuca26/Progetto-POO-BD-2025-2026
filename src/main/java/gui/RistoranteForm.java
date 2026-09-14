@@ -8,6 +8,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
 
+/**
+ * The type Ristorante form.
+ */
 public class RistoranteForm {
 
     //componenti grafici della schermata ristoranti
@@ -24,7 +27,13 @@ public class RistoranteForm {
     private BoxGuacamole guacamole = null;
     private BoxItaliamo italiamo = null;
 
-    //costruttore della schermata selezione ristoranti
+    /**
+     * Instantiates a new Ristorante form.
+     *
+     * @param frameHome  the frame home
+     * @param controller the controller
+     */
+//costruttore della schermata selezione ristoranti
     public RistoranteForm(JFrame frameHome, Controller controller) {
         frameRistorante = new JFrame("Ristoranti");
         frameRistorante.setContentPane(ristorantePanel);
@@ -90,7 +99,12 @@ public class RistoranteForm {
         });
     }
 
-    //restituisce il frame della schermata ristoranti
+    /**
+     * Gets frame ristorante.
+     *
+     * @return the frame ristorante
+     */
+//restituisce il frame della schermata ristoranti
     public static JFrame getFrameRistorante() {
         return frameRistorante;
     }

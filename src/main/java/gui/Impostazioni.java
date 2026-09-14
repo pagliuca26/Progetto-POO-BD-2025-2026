@@ -8,6 +8,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
 
+/**
+ * The type Impostazioni.
+ */
 public class Impostazioni {
 
     //componenti grafici della finestra impostazioni
@@ -30,7 +33,13 @@ public class Impostazioni {
     private JPanel impostazioniPanel;
     private JLabel rotellaImpostazioni;
 
-    //costruttore della schermata impostazioni
+    /**
+     * Instantiates a new Impostazioni.
+     *
+     * @param frameHome  the frame home
+     * @param controller the controller
+     */
+//costruttore della schermata impostazioni
     public Impostazioni(JFrame frameHome, Controller controller) {
         frameImpostazioni = new JFrame("Impostazioni");
         frameImpostazioni.setContentPane(impostazioniPanel);
@@ -120,7 +129,12 @@ public class Impostazioni {
         });
     }
 
-    //restituisce il frame delle impostazioni
+    /**
+     * Gets frame impostazioni.
+     *
+     * @return the frame impostazioni
+     */
+//restituisce il frame delle impostazioni
     public JFrame getFrameImpostazioni() {
         return frameImpostazioni;
     }

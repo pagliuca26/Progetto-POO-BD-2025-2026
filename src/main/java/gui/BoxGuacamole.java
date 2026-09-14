@@ -8,6 +8,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
 
+/**
+ * The type Box guacamole.
+ */
 public class BoxGuacamole {
 
     //componenti grafici della finestra box guacamole
@@ -19,7 +22,13 @@ public class BoxGuacamole {
     private JLabel nachosGuacamole;
     private static int quantitaDisponibileGuacamole = 6;
 
-    //costruttore della schermata box guacamole
+    /**
+     * Instantiates a new Box guacamole.
+     *
+     * @param frameRistorante the frame ristorante
+     * @param controller      the controller
+     */
+//costruttore della schermata box guacamole
     public BoxGuacamole(JFrame frameRistorante, Controller controller) {
         frameGuacamole = new JFrame("Guacamole");
         frameGuacamole.setContentPane(boxGuacamole);
@@ -80,22 +89,38 @@ public class BoxGuacamole {
         });
     }
 
-    //restituisce il frame della finestra guacamole
+    /**
+     * Gets frame guacamole.
+     *
+     * @return the frame guacamole
+     */
+//restituisce il frame della finestra guacamole
     public static JFrame getFrameGuacamole() {
         return frameGuacamole;
     }
 
-    //incrementa il numero di box disponibili a seguito di annullamento
+    /**
+     * Aumenta disponibile.
+     */
+//incrementa il numero di box disponibili a seguito di annullamento
     public static void aumentaDisponibile() {
         quantitaDisponibileGuacamole++;
     }
 
-    //restituisce la quantita attualmente disponibile
+    /**
+     * Gets disponibile.
+     *
+     * @return the disponibile
+     */
+//restituisce la quantita attualmente disponibile
     public static int getDisponibile() {
         return quantitaDisponibileGuacamole;
     }
 
-    //aggiorna il testo dell etichetta della disponibilita
+    /**
+     * Aggiorna label disponibile.
+     */
+//aggiorna il testo dell etichetta della disponibilita
     public void aggiornaLabelDisponibile() {
         qntDispGuacamole.setText("Quantità disponibile: " + quantitaDisponibileGuacamole);
     }

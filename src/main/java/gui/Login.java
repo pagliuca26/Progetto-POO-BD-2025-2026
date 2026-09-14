@@ -5,6 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
+/**
+ * The type Login.
+ */
 public class Login {
 
     //componenti grafici della finestra
@@ -20,7 +23,12 @@ public class Login {
     //riferimento al controller per la logica di business
     private Controller controller;
 
-    //costruttore della schermata di login
+    /**
+     * Instantiates a new Login.
+     *
+     * @param controller the controller
+     */
+//costruttore della schermata di login
     public Login(Controller controller) {
         this.controller = controller;
 
@@ -63,12 +71,20 @@ public class Login {
         });
     }
 
-    //rende visibile la finestra di login
+    /**
+     * Mostra finestra.
+     */
+//rende visibile la finestra di login
     public void mostraFinestra() {
         loginFrame.setVisible(true);
     }
 
-    //restituisce il frame principale del login
+    /**
+     * Gets login frame.
+     *
+     * @return the login frame
+     */
+//restituisce il frame principale del login
     public JFrame getLoginFrame() {
         return loginFrame;
     }

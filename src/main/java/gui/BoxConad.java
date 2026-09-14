@@ -8,6 +8,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
 
+/**
+ * The type Box conad.
+ */
 public class BoxConad {
 
     //componenti grafici della finestra box conad
@@ -19,7 +22,13 @@ public class BoxConad {
     private JLabel qntDispConad;
     private static int quantitaDisponibileConad = 7;
 
-    //costruttore della schermata box conad
+    /**
+     * Instantiates a new Box conad.
+     *
+     * @param frameSupermercato the frame supermercato
+     * @param controller        the controller
+     */
+//costruttore della schermata box conad
     public BoxConad(JFrame frameSupermercato, Controller controller) {
         frameConad = new JFrame("Conad");
         frameConad.setContentPane(boxConad);
@@ -80,22 +89,38 @@ public class BoxConad {
         });
     }
 
-    //restituisce il frame della finestra conad
+    /**
+     * Gets frame conad.
+     *
+     * @return the frame conad
+     */
+//restituisce il frame della finestra conad
     public static JFrame getFrameConad() {
         return frameConad;
     }
 
-    //incrementa il numero di box disponibili a seguito di annullamento
+    /**
+     * Aumenta disponibile.
+     */
+//incrementa il numero di box disponibili a seguito di annullamento
     public static void aumentaDisponibile() {
         quantitaDisponibileConad++;
     }
 
-    //restituisce la quantita attualmente disponibile
+    /**
+     * Gets disponibile.
+     *
+     * @return the disponibile
+     */
+//restituisce la quantita attualmente disponibile
     public static int getDisponibile() {
         return quantitaDisponibileConad;
     }
 
-    //aggiorna il testo dell etichetta della disponibilita
+    /**
+     * Aggiorna label disponibile.
+     */
+//aggiorna il testo dell etichetta della disponibilita
     public void aggiornaLabelDisponibile() {
         qntDispConad.setText("Quantità disponibile: " + quantitaDisponibileConad);
     }

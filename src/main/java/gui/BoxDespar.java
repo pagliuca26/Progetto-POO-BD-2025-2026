@@ -8,6 +8,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
 
+/**
+ * The type Box despar.
+ */
 public class BoxDespar {
 
     //componenti grafici della finestra box despar
@@ -19,7 +22,13 @@ public class BoxDespar {
     private JLabel logoDespar;
     private static int quantitaDisponibileDespar = 9;
 
-    //costruttore della schermata box despar
+    /**
+     * Instantiates a new Box despar.
+     *
+     * @param frameSupermercato the frame supermercato
+     * @param controller        the controller
+     */
+//costruttore della schermata box despar
     public BoxDespar(JFrame frameSupermercato, Controller controller) {
         frameDespar = new JFrame("Despar");
         frameDespar.setContentPane(boxDespar);
@@ -80,22 +89,38 @@ public class BoxDespar {
         });
     }
 
-    //restituisce il frame della finestra despar
+    /**
+     * Gets frame despar.
+     *
+     * @return the frame despar
+     */
+//restituisce il frame della finestra despar
     public static JFrame getFrameDespar() {
         return frameDespar;
     }
 
-    //incrementa il numero di box disponibili a seguito di annullamento
+    /**
+     * Aumenta disponibile.
+     */
+//incrementa il numero di box disponibili a seguito di annullamento
     public static void aumentaDisponibile() {
         quantitaDisponibileDespar++;
     }
 
-    //restituisce la quantita attualmente disponibile
+    /**
+     * Gets disponibile.
+     *
+     * @return the disponibile
+     */
+//restituisce la quantita attualmente disponibile
     public static int getDisponibile() {
         return quantitaDisponibileDespar;
     }
 
-    //aggiorna il testo dell etichetta della disponibilita
+    /**
+     * Aggiorna label disponibile.
+     */
+//aggiorna il testo dell etichetta della disponibilita
     public void aggiornaLabelDisponibile() {
         qntDispDespar.setText("Quantità disponibile: " + quantitaDisponibileDespar);
     }
