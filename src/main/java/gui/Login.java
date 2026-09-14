@@ -6,7 +6,9 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
- * The type Login.
+ * Finestra principale di autenticazione dell'applicazione.
+ * Gestisce l'interfaccia grafica per l'accesso utente, l'acquisizione delle credenziali
+ * e la navigazione verso la schermata di registrazione.
  */
 public class Login {
 
@@ -24,9 +26,12 @@ public class Login {
     private Controller controller;
 
     /**
-     * Instantiates a new Login.
+     * Costruttore della schermata di Login.
+     * Riceve il riferimento al Controller per la gestione della logica di autenticazione,
+     * inizializza le proprietà grafiche del JFrame e associa gli ActionListener ai pulsanti
+     * per il cambio schermata verso CreaAccount e per la validazione dell'accesso verso Home.
      *
-     * @param controller the controller
+     * @param controller l'istanza del Controller dell'applicazione che coordina il flusso logico
      */
 //costruttore della schermata di login
     public Login(Controller controller) {
@@ -72,7 +77,8 @@ public class Login {
     }
 
     /**
-     * Mostra finestra.
+     * Rende visibile a schermo la finestra di login (loginFrame).
+     * Utilizzato per mostrare nuovamente la vista di autenticazione al logout o al ritorno da altre schermate.
      */
 //rende visibile la finestra di login
     public void mostraFinestra() {
@@ -80,9 +86,10 @@ public class Login {
     }
 
     /**
-     * Gets login frame.
+     * Restituisce il riferimento al JFrame principale della schermata di login.
+     * Permette ad altre viste di gestirne la visibilità o di utilizzarlo come finestra genitore per i dialoghi modali.
      *
-     * @return the login frame
+     * @return il componente JFrame associato al login
      */
 //restituisce il frame principale del login
     public JFrame getLoginFrame() {

@@ -9,7 +9,9 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 /**
- * The type Crea account.
+ * Finestra dedicata alla registrazione di un nuovo utente nel sistema.
+ * Gestisce l'interfaccia grafica per l'inserimento dei dati anagrafici e delle credenziali,
+ * notificando eventuali errori di validazione tramite eccezioni dedicate e comunicando con il Controller.
  */
 public class CreaAccount {
 
@@ -27,10 +29,13 @@ public class CreaAccount {
     private JLabel tornaAccedi;
 
     /**
-     * Instantiates a new Crea account.
+     * Costruttore della schermata di registrazione CreaAccount.
+     * Configura il JFrame per la visualizzazione del form, gestisce l'evento di ritorno
+     * alla schermata di login e associa al pulsante di conferma l'acquisizione dei dati,
+     * delegando al Controller la creazione del nuovo utente con gestione delle eccezioni.
      *
-     * @param loginFrame the login frame
-     * @param controller the controller
+     * @param loginFrame il riferimento alla finestra di Login precedente per consentire il ritorno
+     * @param controller l'istanza del Controller dell'applicazione che coordina la logica di business
      */
 //costruttore della schermata di registrazione
     public CreaAccount(JFrame loginFrame, Controller controller) {

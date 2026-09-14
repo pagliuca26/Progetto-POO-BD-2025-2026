@@ -11,7 +11,9 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 /**
- * The type Prenotazione.
+ * Schermata grafica per il riepilogo e la gestione delle prenotazioni effettuate dall'utente.
+ * Mostra il numero di box ordinate per ciascun ristorante o supermercato
+ * e permette di annullare gli ordini tramite gli appositi pulsanti.
  */
 public class Prenotazione {
 
@@ -39,10 +41,13 @@ public class Prenotazione {
     private Controller controller;
 
     /**
-     * Instantiates a new Prenotazione.
+     * Costruttore della schermata di gestione delle prenotazioni.
+     * Configura il JFrame, imposta il messaggio di benvenuto e l'avatar dell'utente,
+     * nasconde inizialmente le etichette di riepilogo e assegna gli ActionListener ai pulsanti
+     * di annullamento ordine per ripristinare le scorte e cancellare la riga dal database.
      *
-     * @param frameHome  the frame home
-     * @param controller the controller
+     * @param frameHome  il riferimento al JFrame della Home per consentire il ritorno indietro
+     * @param controller l'istanza del Controller per la gestione delle operazioni su database
      */
 //costruttore della schermata prenotazioni
     public Prenotazione(JFrame frameHome, Controller controller) {
@@ -255,9 +260,10 @@ public class Prenotazione {
     }
 
     /**
-     * Gets frame prenotazione.
+     * Restituisce il JFrame principale della schermata Prenotazione.
+     * Consente alle altre viste di controllarne direttamente la visualizzazione.
      *
-     * @return the frame prenotazione
+     * @return il frame grafico delle prenotazioni
      */
 //restituisce il frame della pagina prenotazioni
     public static JFrame getFramePrenotazione() {
@@ -265,11 +271,13 @@ public class Prenotazione {
     }
 
     /**
-     * Aggiorna prenotazione.
+     * Aggiorna la schermata mostrando la riga della prenotazione effettuata per il punto vendita specificato.
+     * Rende visibile la sezione di riferimento (Ristoranti o Supermercati), aggiorna l'etichetta
+     * con il numero di box e il codice univoco di ritiro generato, e abilita il relativo tasto di annullamento.
      *
-     * @param negozio            the negozio
-     * @param quantitaAcquistata the quantita acquistata
-     * @param codiceUnivoco      the codice univoco
+     * @param negozio            il nome del punto vendita (es. Guacamole, Conad)
+     * @param quantitaAcquistata il numero totale di box acquistate
+     * @param codiceUnivoco      la stringa del codice univoco generata per il ritiro
      */
 //aggiorna la visualizzazione dei contatori e del codice di ritiro
     public void aggiornaPrenotazione(String negozio, int quantitaAcquistata, String codiceUnivoco) {
@@ -317,9 +325,10 @@ public class Prenotazione {
     }
 
     /**
-     * Cambia avatar.
+     * Carica e imposta la nuova immagine dell'avatar dell'utente sulla schermata.
+     * Cerca il file nella cartella delle immagini e aggiorna l'icona.
      *
-     * @param nomeFile the nome file
+     * @param nomeFile il nome del file dell'immagine da impostare
      */
 //aggiorna l icona dell avatar dell utente
     public void cambiaAvatar(String nomeFile) {
@@ -336,9 +345,9 @@ public class Prenotazione {
     }
 
     /**
-     * Aggiorna saluto.
+     * Aggiorna la scritta di benvenuto in alto inserendo il saluto e il nome dell'utente loggato.
      *
-     * @param controller the controller
+     * @param controller il controller da cui recuperare i dati dell'utente
      */
 //aggiorna il messaggio di benvenuto con i dati della sessione
     public void aggiornaSaluto(Controller controller) {
@@ -346,7 +355,11 @@ public class Prenotazione {
             benvenutoP.setText(controller.getSaluto() + controller.getUtenteAttuale().getNome());
         }
     }
-
+    /**
+     * Mostra una finestra di dialogo per chiedere all'utente se vuole davvero annullare l'ordine.
+     *
+     * @return true se l'utente clicca su Sì, false altrimenti
+     */
     //mostra il dialogo di conferma annullamento
     private boolean confermaAnnullamento() {
         int risposta = JOptionPane.showConfirmDialog(
@@ -360,7 +373,8 @@ public class Prenotazione {
     }
 
     /**
-     * Carica prenotazioni salvate.
+     * Recupera le prenotazioni attive dell'utente dal database tramite il controller
+     * e aggiorna la schermata mostrando le box ordinate con i rispettivi codici di ritiro.
      */
 //carica le prenotazioni registrate sul database all avvio
     public void caricaPrenotazioniSalvate() {

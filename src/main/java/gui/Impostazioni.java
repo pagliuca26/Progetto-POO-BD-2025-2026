@@ -9,7 +9,9 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 /**
- * The type Impostazioni.
+ * Finestra delle impostazioni del profilo utente.
+ * Permette all'utente autenticato di modificare i propri dati anagrafici,
+ * cambiare password o email, selezionare l'avatar ed eliminare il proprio account.
  */
 public class Impostazioni {
 
@@ -34,10 +36,12 @@ public class Impostazioni {
     private JLabel rotellaImpostazioni;
 
     /**
-     * Instantiates a new Impostazioni.
+     * Costruttore della schermata Impostazioni.
+     * Precompila i campi con i dati dell'utente attuale, raggruppa i radio button per l'avatar
+     * e associa le azioni per salvare le modifiche del profilo o eliminare l'account.
      *
-     * @param frameHome  the frame home
-     * @param controller the controller
+     * @param frameHome  il riferimento alla Home per consentire il ritorno indietro
+     * @param controller l'istanza del Controller per aggiornare o eliminare i dati sul database
      */
 //costruttore della schermata impostazioni
     public Impostazioni(JFrame frameHome, Controller controller) {
@@ -130,9 +134,10 @@ public class Impostazioni {
     }
 
     /**
-     * Gets frame impostazioni.
+     * Restituisce la finestra principale delle impostazioni.
+     * Permette alla Home di renderla nuovamente visibile senza ricrearla.
      *
-     * @return the frame impostazioni
+     * @return il frame grafico delle impostazioni
      */
 //restituisce il frame delle impostazioni
     public JFrame getFrameImpostazioni() {

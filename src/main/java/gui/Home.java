@@ -9,7 +9,9 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 /**
- * The type Home.
+ * Schermata principale dell'applicazione per l'utente autenticato.
+ * Fornisce il menu di navigazione verso le sezioni Ristoranti, Supermercati, Prenotazioni
+ * e Impostazioni profilo, oltre a consentire il logout verso la schermata di Login.
  */
 public class Home {
 
@@ -32,10 +34,12 @@ public class Home {
     private static Impostazioni paginaImpostazioni = null;
 
     /**
-     * Instantiates a new Home.
+     * Costruttore della schermata principale Home.
+     * Inizializza il frame grafico della dashboard, predispone l'istanza condivisa della schermata Prenotazione
+     * e registra i listener per la navigazione verso Ristoranti, Supermercati, Prenotazioni, Impostazioni e Logout.
      *
-     * @param loginFrame the login frame
-     * @param controller the controller
+     * @param loginFrame il riferimento al JFrame della schermata di Login per consentire il logout
+     * @param controller l'istanza del Controller che gestisce la logica di business e i dati utente
      */
 //costruttore della schermata home
     public Home(JFrame loginFrame, Controller controller) {
@@ -120,15 +124,19 @@ public class Home {
     }
 
     /**
-     * Gets pagina prenotazione.
+     * Restituisce la schermata delle prenotazioni già creata,
+     * così le altre pagine possono usarla senza aprirne una nuova.
      *
-     * @return the pagina prenotazione
+     * @return la schermata Prenotazione condivisa
      */
 //restituisce il riferimento alla pagina delle prenotazioni
     public static Prenotazione getPaginaPrenotazione() {
         return paginaPrenotazione;
     }
 
+    /**
+     * Inizializza il pannello principale disegnando l'immagine di sfondo.
+     */
     //creazione personalizzata dei componenti grafici per lo sfondo
     private void createUIComponents() {
         final Image backgroundImage = new ImageIcon(getClass().getResource("/img/sfondoHome.png")).getImage();
