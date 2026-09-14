@@ -9,7 +9,9 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 /**
- * The type Box tokyo.
+ * Schermata di dettaglio e acquisto per le box del ristorante giapponese Tokyo.
+ * Mostra le box rimaste a disposizione e gestisce la prenotazione,
+ * aggiornando la disponibilità e salvando l'ordine tramite il Controller.
  */
 public class BoxTokyo {
 
@@ -23,10 +25,13 @@ public class BoxTokyo {
     private static int quantitaDisponibileTokyo = 7;
 
     /**
-     * Instantiates a new Box tokyo.
+     * Costruttore della schermata BoxTokyo.
+     * Inizializza l'interfaccia grafica, visualizza la disponibilità residua di box
+     * e gestisce l'acquisto memorizzando la prenotazione sul database e fornendo
+     * il codice di ritiro all'utente.
      *
-     * @param frameRistorante the frame ristorante
-     * @param controller      the controller
+     * @param frameRistorante il frame del menu ristoranti per consentire il ritorno indietro
+     * @param controller      l'istanza del Controller per effettuare l'acquisto sul database
      */
 //costruttore della schermata box tokyo
     public BoxTokyo(JFrame frameRistorante, Controller controller) {
@@ -90,9 +95,10 @@ public class BoxTokyo {
     }
 
     /**
-     * Gets frame tokyo.
+     * Restituisce la finestra principale della schermata Box Tokyo.
+     * Permette alla schermata dei ristoranti di renderla visibile senza doverla ricreare.
      *
-     * @return the frame tokyo
+     * @return il frame grafico della pagina Tokyo
      */
 //restituisce il frame della finestra tokyo
     public static JFrame getFrameTokyo() {
@@ -100,7 +106,8 @@ public class BoxTokyo {
     }
 
     /**
-     * Aumenta disponibile.
+     * Incrementa il contatore delle box disponibili per Tokyo.
+     * Viene richiamato quando l'utente annulla una prenotazione esistente.
      */
 //incrementa il numero di box disponibili a seguito di annullamento
     public static void aumentaDisponibile() {
@@ -108,9 +115,9 @@ public class BoxTokyo {
     }
 
     /**
-     * Gets disponibile.
+     * Restituisce il numero di box Tokyo attualmente disponibili per l'acquisto.
      *
-     * @return the disponibile
+     * @return la quantità residua di box
      */
 //restituisce la quantita attualmente disponibile
     public static int getDisponibile() {
@@ -118,7 +125,7 @@ public class BoxTokyo {
     }
 
     /**
-     * Aggiorna label disponibile.
+     * Ricarica il testo dell'etichetta grafica mostrando la quantità aggiornata di box disponibili per Tokyo.
      */
 //aggiorna il testo dell etichetta della disponibilita
     public void aggiornaLabelDisponibile() {

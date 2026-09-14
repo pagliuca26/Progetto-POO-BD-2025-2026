@@ -9,7 +9,9 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 /**
- * The type Box sole 365.
+ * Schermata di dettaglio e acquisto per le box del supermercato Sole365.
+ * Mostra le box rimaste a disposizione e gestisce la prenotazione,
+ * aggiornando la disponibilità e salvando l'ordine tramite il Controller.
  */
 public class BoxSole365 {
 
@@ -23,10 +25,13 @@ public class BoxSole365 {
     private static int quantitaDisponibileSole = 5;
 
     /**
-     * Instantiates a new Box sole 365.
+     * Costruttore della schermata BoxSole365.
+     * Inizializza l'interfaccia grafica, visualizza la disponibilità residua di box
+     * e gestisce l'acquisto memorizzando la prenotazione sul database e fornendo
+     * il codice di ritiro all'utente.
      *
-     * @param frameSupermercato the frame supermercato
-     * @param controller        the controller
+     * @param frameSupermercato il frame del menu supermercati per tornare indietro
+     * @param controller        l'istanza del Controller per gestire l'acquisto sul database
      */
 //costruttore della schermata box sole365
     public BoxSole365(JFrame frameSupermercato, Controller controller) {
@@ -90,9 +95,10 @@ public class BoxSole365 {
     }
 
     /**
-     * Gets frame sole 365.
+     * Restituisce la finestra principale della schermata Box Sole365.
+     * Permette alla schermata dei supermercati di renderla visibile senza ricrearla.
      *
-     * @return the frame sole 365
+     * @return il frame grafico della pagina Sole365
      */
 //restituisce il frame della finestra sole365
     public static JFrame getFrameSole365() {
@@ -100,7 +106,8 @@ public class BoxSole365 {
     }
 
     /**
-     * Aumenta disponibile.
+     * Incrementa il contatore delle box disponibili per Sole365.
+     * Viene richiamato quando l'utente annulla una prenotazione esistente.
      */
 //incrementa il numero di box disponibili a seguito di annullamento
     public static void aumentaDisponibile() {
@@ -108,9 +115,9 @@ public class BoxSole365 {
     }
 
     /**
-     * Gets disponibile.
+     * Restituisce il numero di box Sole365 attualmente disponibili per l'acquisto.
      *
-     * @return the disponibile
+     * @return la quantità residua di box
      */
 //restituisce la quantita attualmente disponibile
     public static int getDisponibile() {
@@ -118,7 +125,7 @@ public class BoxSole365 {
     }
 
     /**
-     * Aggiorna label disponibile.
+     * Ricarica il testo dell'etichetta grafica mostrando la quantità aggiornata di box disponibili per Sole365.
      */
 //aggiorna il testo dell etichetta della disponibilita
     public void aggiornaLabelDisponibile() {

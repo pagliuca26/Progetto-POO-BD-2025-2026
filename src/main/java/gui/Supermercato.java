@@ -9,7 +9,9 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 /**
- * The type Supermercato.
+ * Schermata di selezione dei supermercati partner.
+ * Mostra l'elenco delle insegne disponibili (Conad, Sole365, Despar)
+ * e permette di aprire le relative pagine per l'acquisto delle box.
  */
 public class Supermercato {
 
@@ -28,10 +30,13 @@ public class Supermercato {
     private BoxDespar despar = null;
 
     /**
-     * Instantiates a new Supermercato.
+     * Costruttore della schermata di selezione dei supermercati.
+     * Configura la finestra grafica, gestisce il ritorno alla schermata Home
+     * e collega i pulsanti per aprire le pagine di acquisto delle box (Conad, Sole365, Despar)
+     * aggiornandone ogni volta la disponibilità a video.
      *
-     * @param homeFrame  the home frame
-     * @param controller the controller
+     * @param homeFrame  il riferimento alla Home per consentire il ritorno indietro
+     * @param controller l'istanza del Controller per gestire la logica applicativa
      */
 //costruttore della schermata selezione supermercati
     public Supermercato(JFrame homeFrame, Controller controller) {
@@ -100,9 +105,10 @@ public class Supermercato {
     }
 
     /**
-     * Gets frame supermercato.
+     * Restituisce la finestra principale della schermata Supermercato.
+     * Permette alle altre viste di riaprirla o controllarne la visibilità.
      *
-     * @return the frame supermercato
+     * @return il frame grafico dei supermercati
      */
 //restituisce il frame della schermata supermercati
     public static JFrame getFrameSupermercato() {

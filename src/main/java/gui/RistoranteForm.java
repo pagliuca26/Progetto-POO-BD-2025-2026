@@ -9,7 +9,9 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 /**
- * The type Ristorante form.
+ * Schermata di selezione dei ristoranti partner.
+ * Mostra l'elenco delle tipologie di ristoranti (Italiano, Messicano, Giapponese)
+ * e permette di aprire le relative pagine per l'acquisto delle box.
  */
 public class RistoranteForm {
 
@@ -28,10 +30,13 @@ public class RistoranteForm {
     private BoxItaliamo italiamo = null;
 
     /**
-     * Instantiates a new Ristorante form.
+     * Costruttore della schermata di selezione dei ristoranti.
+     * Inizializza la finestra, gestisce il ritorno alla Home e collega i pulsanti
+     * per aprire le viste delle box (Italiamo, Guacamole, Tokyo),
+     * aggiornando ogni volta la disponibilità a video.
      *
-     * @param frameHome  the frame home
-     * @param controller the controller
+     * @param frameHome  il riferimento alla Home per consentire il ritorno indietro
+     * @param controller l'istanza del Controller per la gestione della logica applicativa
      */
 //costruttore della schermata selezione ristoranti
     public RistoranteForm(JFrame frameHome, Controller controller) {
@@ -100,9 +105,10 @@ public class RistoranteForm {
     }
 
     /**
-     * Gets frame ristorante.
+     * Restituisce la finestra principale della schermata Ristoranti.
+     * Permette alle altre viste di riaprirla o gestirne la visibilità.
      *
-     * @return the frame ristorante
+     * @return il frame grafico dei ristoranti
      */
 //restituisce il frame della schermata ristoranti
     public static JFrame getFrameRistorante() {

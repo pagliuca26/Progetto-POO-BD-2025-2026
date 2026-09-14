@@ -9,7 +9,9 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 /**
- * The type Box guacamole.
+ * Schermata di dettaglio e acquisto per le box del ristorante messicano Guacamole.
+ * Mostra le box rimaste a disposizione e gestisce la prenotazione,
+ * aggiornando la disponibilità e salvando l'ordine tramite il Controller.
  */
 public class BoxGuacamole {
 
@@ -23,10 +25,13 @@ public class BoxGuacamole {
     private static int quantitaDisponibileGuacamole = 6;
 
     /**
-     * Instantiates a new Box guacamole.
+     * Costruttore della schermata BoxGuacamole.
+     * Inizializza la finestra grafica, mostra la disponibilità residua di box
+     * e gestisce l'acquisto registrando la prenotazione sul database tramite il controller
+     * e comunicando all'utente il codice di ritiro univoco.
      *
-     * @param frameRistorante the frame ristorante
-     * @param controller      the controller
+     * @param frameRistorante il riferimento alla schermata ristoranti per consentire il ritorno indietro
+     * @param controller      l'istanza del Controller per effettuare l'acquisto sul database
      */
 //costruttore della schermata box guacamole
     public BoxGuacamole(JFrame frameRistorante, Controller controller) {
@@ -90,9 +95,10 @@ public class BoxGuacamole {
     }
 
     /**
-     * Gets frame guacamole.
+     * Restituisce la finestra principale della schermata Box Guacamole.
+     * Permette al menu dei ristoranti di riaprirla senza doverla ricreare.
      *
-     * @return the frame guacamole
+     * @return il frame grafico della pagina Guacamole
      */
 //restituisce il frame della finestra guacamole
     public static JFrame getFrameGuacamole() {
@@ -100,7 +106,8 @@ public class BoxGuacamole {
     }
 
     /**
-     * Aumenta disponibile.
+     * Incrementa il contatore delle box disponibili per Guacamole.
+     * Viene richiamato quando l'utente annulla una prenotazione esistente.
      */
 //incrementa il numero di box disponibili a seguito di annullamento
     public static void aumentaDisponibile() {
@@ -108,9 +115,9 @@ public class BoxGuacamole {
     }
 
     /**
-     * Gets disponibile.
+     * Restituisce il numero di box Guacamole attualmente disponibili per l'acquisto.
      *
-     * @return the disponibile
+     * @return la quantità residua di box
      */
 //restituisce la quantita attualmente disponibile
     public static int getDisponibile() {
@@ -118,7 +125,7 @@ public class BoxGuacamole {
     }
 
     /**
-     * Aggiorna label disponibile.
+     * Ricarica il testo dell'etichetta grafica mostrando la quantità aggiornata di box disponibili per Guacamole.
      */
 //aggiorna il testo dell etichetta della disponibilita
     public void aggiornaLabelDisponibile() {

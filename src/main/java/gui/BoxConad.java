@@ -9,7 +9,9 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 /**
- * The type Box conad.
+ * Schermata di dettaglio e acquisto per le box del supermercato Conad.
+ * Mostra le box rimaste a disposizione e gestisce la prenotazione,
+ * aggiornando la disponibilità e salvando l'ordine tramite il Controller.
  */
 public class BoxConad {
 
@@ -23,10 +25,13 @@ public class BoxConad {
     private static int quantitaDisponibileConad = 7;
 
     /**
-     * Instantiates a new Box conad.
+     * Costruttore della schermata BoxConad.
+     * Inizializza la finestra, imposta l'etichetta con le box disponibili
+     * e gestisce l'acquisto: decrementa le scorte, registra la prenotazione sul database
+     * tramite il controller e notifica l'utente con il codice di ritiro univoco.
      *
-     * @param frameSupermercato the frame supermercato
-     * @param controller        the controller
+     * @param frameSupermercato la finestra del menu supermercati per consentire il ritorno indietro
+     * @param controller        l'istanza del Controller per effettuare l'acquisto sul database
      */
 //costruttore della schermata box conad
     public BoxConad(JFrame frameSupermercato, Controller controller) {
@@ -90,9 +95,10 @@ public class BoxConad {
     }
 
     /**
-     * Gets frame conad.
+     * Restituisce la finestra principale della pagina Box Conad.
+     * Permette al menu dei supermercati di riaprirla senza doverla ricreare.
      *
-     * @return the frame conad
+     * @return il frame grafico della schermata Conad
      */
 //restituisce il frame della finestra conad
     public static JFrame getFrameConad() {
@@ -100,7 +106,8 @@ public class BoxConad {
     }
 
     /**
-     * Aumenta disponibile.
+     * Incrementa il contatore delle box disponibili per il Conad.
+     * Viene richiamato quando l'utente annulla una prenotazione esistente.
      */
 //incrementa il numero di box disponibili a seguito di annullamento
     public static void aumentaDisponibile() {
@@ -108,9 +115,9 @@ public class BoxConad {
     }
 
     /**
-     * Gets disponibile.
+     * Restituisce il numero di box del Conad attualmente disponibili per l'acquisto.
      *
-     * @return the disponibile
+     * @return la quantità residua di box
      */
 //restituisce la quantita attualmente disponibile
     public static int getDisponibile() {
@@ -118,7 +125,7 @@ public class BoxConad {
     }
 
     /**
-     * Aggiorna label disponibile.
+     * Ricarica il testo dell'etichetta grafica mostrando la quantità aggiornata di box disponibili.
      */
 //aggiorna il testo dell etichetta della disponibilita
     public void aggiornaLabelDisponibile() {

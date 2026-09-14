@@ -9,7 +9,9 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 /**
- * The type Box despar.
+ * Schermata di dettaglio e acquisto per le box del supermercato Despar.
+ * Mostra le box rimaste a disposizione e gestisce la prenotazione,
+ * aggiornando la disponibilità e salvando l'ordine tramite il Controller.
  */
 public class BoxDespar {
 
@@ -23,10 +25,12 @@ public class BoxDespar {
     private static int quantitaDisponibileDespar = 9;
 
     /**
-     * Instantiates a new Box despar.
+     * Costruttore della schermata BoxDespar.
+     * Inizializza la finestra, mostra le scorte disponibili e gestisce l'acquisto
+     * salvando la prenotazione sul database e comunicando il codice di ritiro all'utente.
      *
-     * @param frameSupermercato the frame supermercato
-     * @param controller        the controller
+     * @param frameSupermercato la schermata del menu supermercati per tornare indietro
+     * @param controller l'istanza del Controller per effettuare l'acquisto sul database
      */
 //costruttore della schermata box despar
     public BoxDespar(JFrame frameSupermercato, Controller controller) {
@@ -90,9 +94,10 @@ public class BoxDespar {
     }
 
     /**
-     * Gets frame despar.
+     * Restituisce la finestra principale della schermata Box Despar.
+     * Permette al menu dei supermercati di renderla visibile senza ricrearla.
      *
-     * @return the frame despar
+     * @return il frame grafico della pagina Despar
      */
 //restituisce il frame della finestra despar
     public static JFrame getFrameDespar() {
@@ -100,7 +105,8 @@ public class BoxDespar {
     }
 
     /**
-     * Aumenta disponibile.
+     * Incrementa il contatore delle box disponibili per Despar.
+     * Viene richiamato quando l'utente annulla una prenotazione esistente.
      */
 //incrementa il numero di box disponibili a seguito di annullamento
     public static void aumentaDisponibile() {
@@ -108,9 +114,9 @@ public class BoxDespar {
     }
 
     /**
-     * Gets disponibile.
+     * Restituisce il numero di box Despar attualmente disponibili per l'acquisto.
      *
-     * @return the disponibile
+     * @return la quantità residua di box
      */
 //restituisce la quantita attualmente disponibile
     public static int getDisponibile() {
@@ -118,7 +124,7 @@ public class BoxDespar {
     }
 
     /**
-     * Aggiorna label disponibile.
+     * Ricarica il testo dell'etichetta grafica mostrando la quantità aggiornata di box disponibili per Despar.
      */
 //aggiorna il testo dell etichetta della disponibilita
     public void aggiornaLabelDisponibile() {
