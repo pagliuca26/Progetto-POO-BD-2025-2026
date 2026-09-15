@@ -3,11 +3,11 @@ package controller;
 import dao.BoxDAO;
 import dao.PrenotazioneDAO;
 import dao.UtenteDAO;
-import gui.ExceptionCognome;
-import gui.ExceptionEmail;
-import gui.ExceptionEmailUguale;
-import gui.ExceptionNome;
-import gui.ExceptionPassword;
+import exceptions.ExceptionCognome;
+import exceptions.ExceptionEmail;
+import exceptions.ExceptionEmailUguale;
+import exceptions.ExceptionNome;
+import exceptions.ExceptionPassword;
 import implementazionePostgresDAO.BoxPostgresDAO;
 import implementazionePostgresDAO.PrenotazionePostgresDAO;
 import implementazionePostgresDAO.UtentePostgresDAO;
@@ -259,6 +259,10 @@ public class Controller {
         }
     }
 
+    public int getQtaBoxDisponibili(int id) throws SQLException{
+        return boxDAO.getQtaBoxDisponibili(id);
+    }
+
     /**
      * Gestisce la procedura di acquisto di una box creando una nuova prenotazione.
      * Genera un codice identificativo univoco basato sul timestamp, crea l'oggetto
@@ -268,7 +272,7 @@ public class Controller {
      * @return il codice alfanumerico della prenotazione se l'acquisto riesce, altrimenti null
      */
 //procede all acquisto della box creando la relativa prenotazione
-    public String acquistaBoxDB(int idBox) {
+    public String acquistaBoxDB(int idBox, int quantita) {
         if (utenteAttuale == null) {
             return null;
         }
@@ -276,7 +280,9 @@ public class Controller {
         try {
             String codiceUnivoco = "BOX-" + System.currentTimeMillis();
             Prenotazione nuovaPrenotazione = new Prenotazione(codiceUnivoco);
+            boxDAO.aggiornaDisponibilita(idBox, quantita);
             nuovaPrenotazione.setStato("ATTIVA");
+
 
             boolean inserito = prenotazioneDAO.inserisciPrenotazione(nuovaPrenotazione, utenteAttuale.getEmail(), idBox);
             if (inserito) {

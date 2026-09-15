@@ -1,19 +1,19 @@
-package gui;
+package exceptions;
 
 /**
  * Eccezione personalizzata unchecked lanciata durante la fase di registrazione
- * qualora la password inserita dall'utente non rispetti i criteri di validazione (es. campo vuoto o formato non valido).
+ * qualora l'e-mail inserito dall'utente non rispetti i criteri di validazione (es. campo vuoto o formato non valido).
  */
-public class ExceptionPassword extends RuntimeException {
+public class ExceptionEmail extends RuntimeException {
 
     /**
      * Costruttore con messaggio personalizzato.
      * Inoltra il dettaglio dell'errore alla superclasse RuntimeException tramite super().
      *
-     * @param message la descrizione del motivo per cui la password non è valida
+     * @param message la descrizione del motivo per cui l'e-mail non è valida
      */
 //costruttore che passa il messaggio di errore alla superclasse
-    public ExceptionPassword(String message) {
+    public ExceptionEmail(String message) {
         super(message);
     }
 }

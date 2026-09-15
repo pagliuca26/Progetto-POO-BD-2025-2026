@@ -18,7 +18,7 @@ public interface BoxDAO {
      * @throws SQLException se si verifica un errore durante l'interrogazione SQL o di connessione al database
      */
 //recupera tutte le box con disponibilita nel database
-    ArrayList<Box> getBoxDisponibili() throws SQLException;
+    int getQtaBoxDisponibili(int id) throws SQLException;
 
     /**
      * Dichiara l'operazione di aggiornamento della quantità residua disponibile per una box.

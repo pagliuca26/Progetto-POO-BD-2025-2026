@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 import javax.swing.*;
 
 /**
@@ -22,7 +23,7 @@ public class BoxSole365 {
     private JLabel supSole365;
     private JLabel qntDispSole;
     private JLabel logoSole;
-    private static int quantitaDisponibileSole = 5;
+    private static int quantitaDisponibileSole;
 
     /**
      * Costruttore della schermata BoxSole365.
@@ -56,6 +57,13 @@ public class BoxSole365 {
             }
         });
 
+        //recupera quantita delle box disponibili
+        try{
+            quantitaDisponibileSole=controller.getQtaBoxDisponibili(3);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
         //inizializzazione del testo di disponibilita
         qntDispSole.setText("Quantità disponibile: " + quantitaDisponibileSole);
 
@@ -67,10 +75,11 @@ public class BoxSole365 {
                     quantitaDisponibileSole--;
                     qntDispSole.setText("Quantità disponibile: " + quantitaDisponibileSole);
 
+
                     int quantitaPresa = 5 - quantitaDisponibileSole;
 
                     //salva lacquisto nel db con id 3 e ottiene il codice generato
-                    String codiceRitiro = controller.acquistaBoxDB(3);
+                    String codiceRitiro = controller.acquistaBoxDB(3, quantitaDisponibileSole);
 
                     //aggiorna la schermata di riepilogo prenotazioni
                     Home.getPaginaPrenotazione().aggiornaPrenotazione("Sole365", quantitaPresa, codiceRitiro);

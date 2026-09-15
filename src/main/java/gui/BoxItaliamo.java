@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 import javax.swing.*;
 
 /**
@@ -22,7 +23,7 @@ public class BoxItaliamo {
     private JButton acquistaItaliamo;
     private JLabel qntDispItaliamo;
     private JLabel spaghettiItaliamo;
-    private static int quantitaDisponibileItaliamo = 10;
+    private static int quantitaDisponibileItaliamo;
 
     /**
      * Costruttore della schermata BoxItaliamo.
@@ -56,6 +57,13 @@ public class BoxItaliamo {
             }
         });
 
+        //recupera quantita delle box disponibili
+        try{
+            quantitaDisponibileItaliamo=controller.getQtaBoxDisponibili(4);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
         //inizializzazione del testo di disponibilita
         qntDispItaliamo.setText("Quantità disponibile: " + quantitaDisponibileItaliamo);
 
@@ -70,7 +78,7 @@ public class BoxItaliamo {
                     int quantitaPresa = 10 - quantitaDisponibileItaliamo;
 
                     //salva lacquisto nel db con id 4 e ottiene il codice generato
-                    String codiceRitiro = controller.acquistaBoxDB(4);
+                    String codiceRitiro = controller.acquistaBoxDB(4, quantitaDisponibileItaliamo);
 
                     //aggiorna la schermata di riepilogo prenotazioni
                     Home.getPaginaPrenotazione().aggiornaPrenotazione("Italiamo", quantitaPresa, codiceRitiro);

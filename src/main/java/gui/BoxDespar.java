@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 import javax.swing.*;
 
 /**
@@ -22,7 +23,7 @@ public class BoxDespar {
     private JLabel supDespar;
     private JLabel qntDispDespar;
     private JLabel logoDespar;
-    private static int quantitaDisponibileDespar = 9;
+    private static int quantitaDisponibileDespar;
 
     /**
      * Costruttore della schermata BoxDespar.
@@ -55,6 +56,13 @@ public class BoxDespar {
             }
         });
 
+        //recupera quantita delle box disponibili
+        try{
+            quantitaDisponibileDespar=controller.getQtaBoxDisponibili(1);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
         //inizializzazione del testo di disponibilita
         qntDispDespar.setText("Quantità disponibile: " + quantitaDisponibileDespar);
 
@@ -69,7 +77,7 @@ public class BoxDespar {
                     int quantitaPresa = 9 - quantitaDisponibileDespar;
 
                     //salva lacquisto nel db e ottiene il codice generato
-                    String codiceRitiro = controller.acquistaBoxDB(1);
+                    String codiceRitiro = controller.acquistaBoxDB(1, quantitaDisponibileDespar);
 
                     //aggiorna la schermata di riepilogo prenotazioni
                     Home.getPaginaPrenotazione().aggiornaPrenotazione("Despar", quantitaPresa, codiceRitiro);

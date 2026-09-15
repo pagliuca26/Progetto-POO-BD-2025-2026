@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 import javax.swing.*;
 
 /**
@@ -22,7 +23,7 @@ public class BoxConad {
     private JButton acquistaConad;
     private JLabel supConad;
     private JLabel qntDispConad;
-    private static int quantitaDisponibileConad = 7;
+    private static int quantitaDisponibileConad;
 
     /**
      * Costruttore della schermata BoxConad.
@@ -56,6 +57,13 @@ public class BoxConad {
             }
         });
 
+        //recupera quantita delle box disponibili
+        try{
+            quantitaDisponibileConad=controller.getQtaBoxDisponibili(2);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
         //inizializzazione del testo di disponibilita
         qntDispConad.setText("Quantità disponibile: " + quantitaDisponibileConad);
 
@@ -70,7 +78,7 @@ public class BoxConad {
                     int quantitaPresa = 7 - quantitaDisponibileConad;
 
                     //salva lacquisto nel db e ottiene il codice generato
-                    String codiceRitiro = controller.acquistaBoxDB(2);
+                    String codiceRitiro = controller.acquistaBoxDB(2, quantitaDisponibileConad);
 
                     //aggiorna la schermata di riepilogo prenotazioni
                     Home.getPaginaPrenotazione().aggiornaPrenotazione("Conad", quantitaPresa, codiceRitiro);

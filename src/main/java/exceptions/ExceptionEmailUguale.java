@@ -1,19 +1,19 @@
-package gui;
+package exceptions;
 
 /**
  * Eccezione personalizzata unchecked lanciata durante la fase di registrazione
- * qualora il nome inserito dall'utente non rispetti i criteri di validazione (es. campo vuoto o formato non valido).
+ * qualora l'indirizzo email inserito risulti già presente nel database.
  */
-public class ExceptionNome extends RuntimeException {
+public class ExceptionEmailUguale extends RuntimeException {
 
     /**
      * Costruttore con messaggio personalizzato.
      * Inoltra il dettaglio dell'errore alla superclasse RuntimeException tramite super().
      *
-     * @param message la descrizione del motivo per cui il nome non è valido
+     * @param message la descrizione dell'errore relativo all'email già registrata
      */
 //costruttore che passa il messaggio di errore alla superclasse
-    public ExceptionNome(String message) {
+    public ExceptionEmailUguale(String message) {
         super(message);
     }
 }

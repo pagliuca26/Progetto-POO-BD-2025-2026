@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 import javax.swing.*;
 
 /**
@@ -22,7 +23,7 @@ public class BoxTokyo {
     private JLabel ristTokyo;
     private JLabel qntDispTokyo;
     private JLabel sushiTokyo;
-    private static int quantitaDisponibileTokyo = 7;
+    private static int quantitaDisponibileTokyo;
 
     /**
      * Costruttore della schermata BoxTokyo.
@@ -56,6 +57,13 @@ public class BoxTokyo {
             }
         });
 
+        //recupera quantita delle box disponibili
+        try{
+            quantitaDisponibileTokyo=controller.getQtaBoxDisponibili(6);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
         //inizializzazione del testo di disponibilita
         qntDispTokyo.setText("Quantità disponibile: " + quantitaDisponibileTokyo);
 
@@ -70,7 +78,7 @@ public class BoxTokyo {
                     int quantitaPresa = 7 - quantitaDisponibileTokyo;
 
                     //salva lacquisto nel db con id 6 e ottiene il codice generato
-                    String codiceRitiro = controller.acquistaBoxDB(6);
+                    String codiceRitiro = controller.acquistaBoxDB(6, quantitaDisponibileTokyo);
 
                     //aggiorna la schermata di riepilogo prenotazioni
                     Home.getPaginaPrenotazione().aggiornaPrenotazione("Tokyo", quantitaPresa, codiceRitiro);

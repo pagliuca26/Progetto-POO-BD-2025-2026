@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 import javax.swing.*;
 
 /**
@@ -22,7 +23,7 @@ public class BoxGuacamole {
     private JButton acquistaGuacamole;
     private JLabel qntDispGuacamole;
     private JLabel nachosGuacamole;
-    private static int quantitaDisponibileGuacamole = 6;
+    private static int quantitaDisponibileGuacamole;
 
     /**
      * Costruttore della schermata BoxGuacamole.
@@ -56,6 +57,13 @@ public class BoxGuacamole {
             }
         });
 
+        //recupera quantita delle box disponibili
+        try{
+            quantitaDisponibileGuacamole=controller.getQtaBoxDisponibili(5);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
         //inizializzazione del testo di disponibilita
         qntDispGuacamole.setText("Quantità disponibile: " + quantitaDisponibileGuacamole);
 
@@ -70,7 +78,7 @@ public class BoxGuacamole {
                     int quantitaPresa = 6 - quantitaDisponibileGuacamole;
 
                     //salva lacquisto nel db e ottiene il codice generato
-                    String codiceRitiro = controller.acquistaBoxDB(5);
+                    String codiceRitiro = controller.acquistaBoxDB(5, quantitaDisponibileGuacamole);
 
                     //aggiorna la schermata di riepilogo prenotazioni
                     Home.getPaginaPrenotazione().aggiornaPrenotazione("Guacamole", quantitaPresa, codiceRitiro);
